@@ -1,0 +1,12 @@
+C:\Users\felip\OneDrive\Documentos\GitHub\MarcketPlace\MarcketPlace.Core\bin\Debug\net6.0\MarcketPlace.Core.deps.json
+C:\Users\felip\OneDrive\Documentos\GitHub\MarcketPlace\MarcketPlace.Core\bin\Debug\net6.0\MarcketPlace.Core.dll
+C:\Users\felip\OneDrive\Documentos\GitHub\MarcketPlace\MarcketPlace.Core\bin\Debug\net6.0\MarcketPlace.Core.pdb
+C:\Users\felip\OneDrive\Documentos\GitHub\MarcketPlace\MarcketPlace.Core\obj\Debug\net6.0\MarcketPlace.Core.csproj.AssemblyReference.cache
+C:\Users\felip\OneDrive\Documentos\GitHub\MarcketPlace\MarcketPlace.Core\obj\Debug\net6.0\MarcketPlace.Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\felip\OneDrive\Documentos\GitHub\MarcketPlace\MarcketPlace.Core\obj\Debug\net6.0\MarcketPlace.Core.AssemblyInfoInputs.cache
+C:\Users\felip\OneDrive\Documentos\GitHub\MarcketPlace\MarcketPlace.Core\obj\Debug\net6.0\MarcketPlace.Core.AssemblyInfo.cs
+C:\Users\felip\OneDrive\Documentos\GitHub\MarcketPlace\MarcketPlace.Core\obj\Debug\net6.0\MarcketPlace.Core.csproj.CoreCompileInputs.cache
+C:\Users\felip\OneDrive\Documentos\GitHub\MarcketPlace\MarcketPlace.Core\obj\Debug\net6.0\MarcketPlace.Core.dll
+C:\Users\felip\OneDrive\Documentos\GitHub\MarcketPlace\MarcketPlace.Core\obj\Debug\net6.0\refint\MarcketPlace.Core.dll
+C:\Users\felip\OneDrive\Documentos\GitHub\MarcketPlace\MarcketPlace.Core\obj\Debug\net6.0\MarcketPlace.Core.pdb
+C:\Users\felip\OneDrive\Documentos\GitHub\MarcketPlace\MarcketPlace.Core\obj\Debug\net6.0\ref\MarcketPlace.Core.dll
