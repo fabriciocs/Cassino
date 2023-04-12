@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\felip\\OneDrive\\Documentos\\Solution1\\Cassino.Core\\Cassino.Core.csproj": {}
+    "C:\\Users\\felip\\OneDrive\\Documentos\\GitHub\\Cassino\\backend\\Cassino.Core\\Cassino.Core.csproj": {}
   },
   "projects": {
-    "C:\\Users\\felip\\OneDrive\\Documentos\\Solution1\\Cassino.Core\\Cassino.Core.csproj": {
+    "C:\\Users\\felip\\OneDrive\\Documentos\\GitHub\\Cassino\\backend\\Cassino.Core\\Cassino.Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\felip\\OneDrive\\Documentos\\Solution1\\Cassino.Core\\Cassino.Core.csproj",
+        "projectUniqueName": "C:\\Users\\felip\\OneDrive\\Documentos\\GitHub\\Cassino\\backend\\Cassino.Core\\Cassino.Core.csproj",
         "projectName": "Cassino.Core",
-        "projectPath": "C:\\Users\\felip\\OneDrive\\Documentos\\Solution1\\Cassino.Core\\Cassino.Core.csproj",
+        "projectPath": "C:\\Users\\felip\\OneDrive\\Documentos\\GitHub\\Cassino\\backend\\Cassino.Core\\Cassino.Core.csproj",
         "packagesPath": "C:\\Users\\felip\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\felip\\OneDrive\\Documentos\\Solution1\\Cassino.Core\\obj\\",
+        "outputPath": "C:\\Users\\felip\\OneDrive\\Documentos\\GitHub\\Cassino\\backend\\Cassino.Core\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\felip\\AppData\\Roaming\\NuGet\\NuGet.Config"

@@ -25,7 +25,7 @@ public static class DependencyInjection
                 ? new AuthenticatedUser(httpContextAccessor)
                 : new AuthenticatedUser();
         });
-        
+
         service.AddDbContext<ApplicationDbContext>(options =>
         {
             options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
@@ -44,7 +44,8 @@ public static class DependencyInjection
     public static void ConfigureRepositories(this IServiceCollection service)
     {
         service
-            .AddScoped<IAdministradorRepository, AdministradorRepository>();
+            .AddScoped<IAdministradorRepository, AdministradorRepository>()
+            .AddScoped<IUsuarioRepository, UsuarioRepository>();
     }
 
     public static void UseMigrations(this IApplicationBuilder app, IServiceProvider service)

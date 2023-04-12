@@ -3,9 +3,9 @@ using FluentValidation;
 
 namespace Cassino.Domain.Validation;
 
-public class FornecedorValidator : AbstractValidator<Fornecedor>
+public class UsuarioValidator: AbstractValidator<Usuario>
 {
-    public FornecedorValidator()
+    public UsuarioValidator()
     {
         RuleFor(u => u.Nome)
             .NotEmpty();

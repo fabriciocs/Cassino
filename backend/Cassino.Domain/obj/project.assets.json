@@ -49,11 +49,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\felip\\OneDrive\\Documentos\\Solution1\\Cassino.Domain\\Cassino.Domain.csproj",
+      "projectUniqueName": "C:\\Users\\felip\\OneDrive\\Documentos\\GitHub\\Cassino\\backend\\Cassino.Domain\\Cassino.Domain.csproj",
       "projectName": "Cassino.Domain",
-      "projectPath": "C:\\Users\\felip\\OneDrive\\Documentos\\Solution1\\Cassino.Domain\\Cassino.Domain.csproj",
+      "projectPath": "C:\\Users\\felip\\OneDrive\\Documentos\\GitHub\\Cassino\\backend\\Cassino.Domain\\Cassino.Domain.csproj",
       "packagesPath": "C:\\Users\\felip\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\felip\\OneDrive\\Documentos\\Solution1\\Cassino.Domain\\obj\\",
+      "outputPath": "C:\\Users\\felip\\OneDrive\\Documentos\\GitHub\\Cassino\\backend\\Cassino.Domain\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\felip\\AppData\\Roaming\\NuGet\\NuGet.Config"

@@ -5233,11 +5233,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\felip\\OneDrive\\Documentos\\Solution1\\Cassino.Application\\Cassino.Application.csproj",
+      "projectUniqueName": "C:\\Users\\felip\\OneDrive\\Documentos\\GitHub\\Cassino\\backend\\Cassino.Application\\Cassino.Application.csproj",
       "projectName": "Cassino.Application",
-      "projectPath": "C:\\Users\\felip\\OneDrive\\Documentos\\Solution1\\Cassino.Application\\Cassino.Application.csproj",
+      "projectPath": "C:\\Users\\felip\\OneDrive\\Documentos\\GitHub\\Cassino\\backend\\Cassino.Application\\Cassino.Application.csproj",
       "packagesPath": "C:\\Users\\felip\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\felip\\OneDrive\\Documentos\\Solution1\\Cassino.Application\\obj\\",
+      "outputPath": "C:\\Users\\felip\\OneDrive\\Documentos\\GitHub\\Cassino\\backend\\Cassino.Application\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\felip\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -5252,14 +5252,14 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Users\\felip\\OneDrive\\Documentos\\Solution1\\Cassino.Core\\Cassino.Core.csproj": {
-              "projectPath": "C:\\Users\\felip\\OneDrive\\Documentos\\Solution1\\Cassino.Core\\Cassino.Core.csproj"
+            "C:\\Users\\felip\\OneDrive\\Documentos\\GitHub\\Cassino\\backend\\Cassino.Core\\Cassino.Core.csproj": {
+              "projectPath": "C:\\Users\\felip\\OneDrive\\Documentos\\GitHub\\Cassino\\backend\\Cassino.Core\\Cassino.Core.csproj"
             },
-            "C:\\Users\\felip\\OneDrive\\Documentos\\Solution1\\Cassino.Domain\\Cassino.Domain.csproj": {
-              "projectPath": "C:\\Users\\felip\\OneDrive\\Documentos\\Solution1\\Cassino.Domain\\Cassino.Domain.csproj"
+            "C:\\Users\\felip\\OneDrive\\Documentos\\GitHub\\Cassino\\backend\\Cassino.Domain\\Cassino.Domain.csproj": {
+              "projectPath": "C:\\Users\\felip\\OneDrive\\Documentos\\GitHub\\Cassino\\backend\\Cassino.Domain\\Cassino.Domain.csproj"
             },
-            "C:\\Users\\felip\\OneDrive\\Documentos\\Solution1\\Cassino.Infra\\Cassino.Infra.csproj": {
-              "projectPath": "C:\\Users\\felip\\OneDrive\\Documentos\\Solution1\\Cassino.Infra\\Cassino.Infra.csproj"
+            "C:\\Users\\felip\\OneDrive\\Documentos\\GitHub\\Cassino\\backend\\Cassino.Infra\\Cassino.Infra.csproj": {
+              "projectPath": "C:\\Users\\felip\\OneDrive\\Documentos\\GitHub\\Cassino\\backend\\Cassino.Infra\\Cassino.Infra.csproj"
             }
           }
         }

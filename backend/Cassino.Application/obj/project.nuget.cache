@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "pFPAnMesh4TJedNjxyknw6wAtMEzKBmt7cQMvdF1vgS3gd2GkmZQ3YnP3ehzSA+FHKXeORnsm5CmjnzqegG2jw==",
+  "dgSpecHash": "UivvF9nhJ72F3+YtBF4PFNO/c/T0HCjqlFi4s/j0TVv8Gnq2FwhKe2wGfj3dplcqVOg1yyo+6U1z1uEYCRcrTw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\felip\\OneDrive\\Documentos\\Solution1\\Cassino.Application\\Cassino.Application.csproj",
+  "projectFilePath": "C:\\Users\\felip\\OneDrive\\Documentos\\GitHub\\Cassino\\backend\\Cassino.Application\\Cassino.Application.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\felip\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\felip\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",

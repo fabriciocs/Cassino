@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Cassino.Infra.Mappings;
 
-public class ClienteMap : IEntityTypeConfiguration<Cliente>
+public class UsuarioMap : IEntityTypeConfiguration<Usuario>
 {
-    public void Configure(EntityTypeBuilder<Cliente> builder)
+    public void Configure(EntityTypeBuilder<Usuario> builder)
     {
         builder
             .Property(c => c.Nome)
@@ -37,14 +37,5 @@ public class ClienteMap : IEntityTypeConfiguration<Cliente>
             .Property(c => c.Senha)
             .IsRequired()
             .HasMaxLength(255);
-        
-        builder
-            .Property(c => c.Inadiplente)
-            .IsRequired(false)
-            .HasDefaultValue(false);
-        
-        builder
-            .Property(c => c.DataPagamento)
-            .IsRequired();
     }
 }

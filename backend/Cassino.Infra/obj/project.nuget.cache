@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "cjt2HUd1iQI2loxwl7YFnj03b1ussLTpD6JTXJBZLIfP2vJ4pqTYa6x2AfPzlGVsRkg44VmQADOOzVD6Vbxkiw==",
+  "dgSpecHash": "lVz1nEePWg/PDsPQ3xx9LD+oCdEEsPezshVAlAvwxSZKmJBr92xDdfQctZIpRc4k5q1fbW51AjDJTjCZQuWYRw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\felip\\OneDrive\\Documentos\\Solution1\\Cassino.Infra\\Cassino.Infra.csproj",
+  "projectFilePath": "C:\\Users\\felip\\OneDrive\\Documentos\\GitHub\\Cassino\\backend\\Cassino.Infra\\Cassino.Infra.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\felip\\.nuget\\packages\\fluentvalidation\\11.5.2\\fluentvalidation.11.5.2.nupkg.sha512",
     "C:\\Users\\felip\\.nuget\\packages\\microsoft.aspnetcore.authentication.abstractions\\2.2.0\\microsoft.aspnetcore.authentication.abstractions.2.2.0.nupkg.sha512",
