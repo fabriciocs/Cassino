@@ -15,32 +15,32 @@ public class UsuarioRepository : Repository<Usuario>, IUsuarioRepository
 
     public void Adicionar(Usuario usuario)
     {
-        Context.Clientes.Add(usuario);
+        Context.Usuarios.Add(usuario);
     }
 
     public void Alterar(Usuario usuario)
     {
-        Context.Clientes.Update(usuario);
+        Context.Usuarios.Update(usuario);
     }
 
     public async Task<Usuario?> ObterPorId(int id)
     {
-        return await Context.Clientes.FirstOrDefaultAsync(c => c.Id == id);
+        return await Context.Usuarios.FirstOrDefaultAsync(c => c.Id == id);
     }
 
     public async Task<Usuario?> ObterPorEmail(string email)
     {
-        return await Context.Clientes.FirstOrDefaultAsync(c => c.Email == email);
+        return await Context.Usuarios.FirstOrDefaultAsync(c => c.Email == email);
     }
 
     public async Task<Usuario?> ObterPorCpf(string cpf)
     {
-        return await Context.Clientes.FirstOrDefaultAsync(c => c.Cpf == cpf);
+        return await Context.Usuarios.FirstOrDefaultAsync(c => c.Cpf == cpf);
     }
 
     public async Task<IResultadoPaginado<Usuario>> Buscar(IBuscaPaginada<Usuario> filtro)
     {
-        var query = Context.Clientes.AsQueryable();
+        var query = Context.Usuarios.AsQueryable();
         return await base.Buscar(query, filtro);
     }
 }

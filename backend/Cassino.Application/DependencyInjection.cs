@@ -35,7 +35,8 @@ public static class DependencyInjection
             .AddScoped<IAuthService, AuthService>()
             .AddScoped<INotificator, Notificator>()
             .AddScoped<IUsuarioAuthService, UsuarioAuthService>()
-            .AddScoped<IPasswordHasher<Administrador>, Argon2PasswordHasher<Administrador>>();
+            .AddScoped<IPasswordHasher<Administrador>, Argon2PasswordHasher<Administrador>>()
+            .AddScoped<IPasswordHasher<Usuario>, Argon2PasswordHasher<Usuario>>();
     }
     
     // public static void UseStaticFileConfiguration(this IApplicationBuilder app, IConfiguration configuration)
