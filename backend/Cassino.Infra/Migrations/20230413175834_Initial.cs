@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
@@ -19,10 +18,8 @@ namespace Cassino.Infra.Migrations
                     Email = table.Column<string>(type: "nvarchar(80)", maxLength: 80, nullable: false),
                     Senha = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
                     Desativado = table.Column<bool>(type: "bit", nullable: false, defaultValue: false),
-                    CriadoEm = table.Column<byte[]>(type: "timestamp", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
                     CriadoPor = table.Column<int>(type: "int", nullable: true),
                     CriadoPorAdmin = table.Column<bool>(type: "bit", nullable: false, defaultValue: false),
-                    AtualizadoEm = table.Column<byte[]>(type: "timestamp", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
                     AtualizadoPor = table.Column<int>(type: "int", nullable: true),
                     AtualizadoPorAdmin = table.Column<bool>(type: "bit", nullable: false, defaultValue: false)
                 },
@@ -44,10 +41,8 @@ namespace Cassino.Infra.Migrations
                     Telefone = table.Column<string>(type: "nvarchar(17)", maxLength: 17, nullable: true),
                     Senha = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
                     Desativado = table.Column<bool>(type: "bit", nullable: false, defaultValue: false),
-                    CriadoEm = table.Column<byte[]>(type: "timestamp", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
                     CriadoPor = table.Column<int>(type: "int", nullable: true),
                     CriadoPorAdmin = table.Column<bool>(type: "bit", nullable: false, defaultValue: false),
-                    AtualizadoEm = table.Column<byte[]>(type: "timestamp", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
                     AtualizadoPor = table.Column<int>(type: "int", nullable: true),
                     AtualizadoPorAdmin = table.Column<bool>(type: "bit", nullable: false, defaultValue: false)
                 },

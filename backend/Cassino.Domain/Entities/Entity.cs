@@ -5,10 +5,8 @@ namespace Cassino.Domain.Entities;
 
 public abstract class Entity : BaseEntity, ITracking
 {
-    public DateTime CriadoEm { get; set; }
     public int? CriadoPor { get; set; }
     public bool CriadoPorAdmin { get; set; }
-    public DateTime AtualizadoEm { get; set; }
     public int? AtualizadoPor { get; set; }
     public bool AtualizadoPorAdmin { get; set; }
 
