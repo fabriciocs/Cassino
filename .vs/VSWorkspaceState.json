@@ -2,11 +2,15 @@
   "ExpandedNodes": [
     "",
     "\\backend",
-    "\\backend\\Cassino.Api",
+    "\\backend\\Cassino.Application",
+    "\\backend\\Cassino.Application\\Dtos",
+    "\\backend\\Cassino.Application\\Dtos\\V1",
+    "\\backend\\Cassino.Application\\Dtos\\V1\\Usuario",
+    "\\backend\\Cassino.Domain",
+    "\\backend\\Cassino.Domain\\Entities",
     "\\backend\\Cassino.Infra",
-    "\\backend\\Cassino.Infra\\Mappings",
-    "\\backend\\Cassino.Infra\\Migrations"
+    "\\backend\\Cassino.Infra\\Mappings"
   ],
-  "SelectedNode": "\\.gitignore.txt",
+  "SelectedNode": "\\backend\\Cassino.Application\\Dtos\\V1\\Usuario\\CadastrarUsuarioDto.cs",
   "PreviewInSolutionExplorer": false
 }
