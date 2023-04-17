@@ -1,5 +1,6 @@
 ﻿using Cassino.Application.Dtos.V1.Base;
 using Cassino.Application.Dtos.V1.Usuario;
+using Cassino.Application.Dtos.V1.Saldo;
 
 namespace Cassino.Application.Contracts;
 
@@ -11,6 +12,7 @@ public interface IUsuarioService
     Task<UsuarioDto?> ObterPorId(int id);
     Task<UsuarioDto?> ObterPorEmail(string email);
     Task<UsuarioDto?> ObterPorCpf(string cpf);
+    Task<SaldoUsuarioDto> BuscarSaldo(int id);
     Task Desativar(int id);
     Task Reativar(int id);
 }

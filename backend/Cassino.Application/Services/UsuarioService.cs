@@ -1,6 +1,7 @@
 using AutoMapper;
 using Cassino.Application.Contracts;
 using Cassino.Application.Dtos.V1.Base;
+using Cassino.Application.Dtos.V1.Saldo;
 using Cassino.Application.Dtos.V1.Usuario;
 using Cassino.Application.Notification;
 using Cassino.Domain.Contracts.Repositories;
@@ -112,6 +113,20 @@ public class UsuarioService : BaseService, IUsuarioService
         Notificator.HandleNotFoundResource();
         return null;
     }
+
+    //Task Rota Get Saldo
+    public async Task<SaldoUsuarioDto> BuscarSaldo(int id)
+    {
+        var usuario = await _clienteRepository.ObterPorId(id);
+        if (usuario != null)
+        {
+            return Mapper.Map<SaldoUsuarioDto>(usuario);
+        }
+
+        Notificator.HandleNotFoundResource();
+        return null;
+    }
+
 
     public async Task Desativar(int id)
     {
