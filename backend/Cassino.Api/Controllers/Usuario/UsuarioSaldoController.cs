@@ -21,13 +21,24 @@ namespace Cassino.Api.Controllers.Usuario
 
         [HttpGet]
         [AllowAnonymous]
-        [SwaggerOperation(Summary = "Consulta Saldo de um Cliente.", Tags = new[] { "Saldo - Usuario - Cliente" })]
+        [SwaggerOperation(Summary = "Consulta Saldo de um Cliente.", Tags = new[] { "Usuario - Cliente - Saldo" })]
         [ProducesResponseType(typeof(decimal), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(Nullable), StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> BuscarSaldo([FromForm] int id)
+        public async Task<IActionResult> BuscarSaldo([FromQuery] int id)
         {
             var saldo = await _usuarioService.BuscarSaldo(id);
             return saldo == null ? NotFound() : Ok(saldo.Saldo);
+        }
+
+        [HttpPut]
+        [AllowAnonymous]
+        [SwaggerOperation(Summary = "Atualiza o Saldo de um Cliente.", Tags = new[] { "Usuario - Cliente - Saldo" })]
+        [ProducesResponseType(typeof(Nullable), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(Nullable), StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> AtualizarSaldo([FromForm] SaldoUsuarioDto saldoUsuarioDto)
+        {
+            var usuarioAtualizado = await _usuarioService.AtualizarSaldo(saldoUsuarioDto);
+            return usuarioAtualizado == true ? Ok() : BadRequest();
         }
     }
 }

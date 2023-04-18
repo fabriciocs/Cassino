@@ -114,7 +114,6 @@ public class UsuarioService : BaseService, IUsuarioService
         return null;
     }
 
-    //Task Rota Get Saldo
     public async Task<SaldoUsuarioDto> BuscarSaldo(int id)
     {
         var usuario = await _clienteRepository.ObterPorId(id);
@@ -125,6 +124,19 @@ public class UsuarioService : BaseService, IUsuarioService
 
         Notificator.HandleNotFoundResource();
         return null;
+    }
+
+    public async Task<Boolean> AtualizarSaldo(SaldoUsuarioDto saldoUsuarioDto)
+    {
+        var usuario = await _clienteRepository.ObterPorId(saldoUsuarioDto.Id);
+        if (usuario != null)
+        {
+            usuario.Saldo = saldoUsuarioDto.Saldo;
+            return true;
+        }
+
+        Notificator.HandleNotFoundResource();
+        return false;
     }
 
 
