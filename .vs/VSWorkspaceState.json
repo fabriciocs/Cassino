@@ -1,16 +1,7 @@
 {
   "ExpandedNodes": [
-    "",
-    "\\backend",
-    "\\backend\\Cassino.Application",
-    "\\backend\\Cassino.Application\\Dtos",
-    "\\backend\\Cassino.Application\\Dtos\\V1",
-    "\\backend\\Cassino.Application\\Dtos\\V1\\Usuario",
-    "\\backend\\Cassino.Domain",
-    "\\backend\\Cassino.Domain\\Entities",
-    "\\backend\\Cassino.Infra",
-    "\\backend\\Cassino.Infra\\Mappings"
+    ""
   ],
-  "SelectedNode": "\\backend\\Cassino.Application\\Dtos\\V1\\Usuario\\CadastrarUsuarioDto.cs",
+  "SelectedNode": "\\Cassino.sln",
   "PreviewInSolutionExplorer": false
 }
