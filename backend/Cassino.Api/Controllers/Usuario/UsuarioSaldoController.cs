@@ -19,8 +19,7 @@ namespace Cassino.Api.Controllers.Usuario
             _usuarioService = usuarioService;
         }
 
-        [HttpGet]
-        [AllowAnonymous]
+        [HttpGet("buscar-saldo/{id}")]
         [SwaggerOperation(Summary = "Consulta Saldo de um Cliente.", Tags = new[] { "Usuario - Cliente - Saldo" })]
         [ProducesResponseType(typeof(decimal), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(Nullable), StatusCodes.Status404NotFound)]
@@ -31,9 +30,8 @@ namespace Cassino.Api.Controllers.Usuario
         }
 
         [HttpPut]
-        [AllowAnonymous]
         [SwaggerOperation(Summary = "Atualiza o Saldo de um Cliente.", Tags = new[] { "Usuario - Cliente - Saldo" })]
-        [ProducesResponseType(typeof(Nullable), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(Nullable), StatusCodes.Status204NoContent)]
         [ProducesResponseType(typeof(Nullable), StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> AtualizarSaldo([FromForm] SaldoUsuarioDto saldoUsuarioDto)
         {
