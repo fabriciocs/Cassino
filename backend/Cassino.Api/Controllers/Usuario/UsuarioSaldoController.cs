@@ -13,10 +13,10 @@ namespace Cassino.Api.Controllers.Usuario
     [ApiController]
     public class UsuarioSaldoController : BaseController
     {
-        private readonly IUsuarioService _usuarioService;
-        public UsuarioSaldoController(INotificator notificator, IUsuarioService usuarioService) : base(notificator)
+        private readonly ISaldoService _saldoService;
+        public UsuarioSaldoController(INotificator notificator, ISaldoService saldoService) : base(notificator)
         {
-            _usuarioService = usuarioService;
+            _saldoService = saldoService;
         }
 
         [HttpGet("buscar-saldo/{id}")]
@@ -25,7 +25,7 @@ namespace Cassino.Api.Controllers.Usuario
         [ProducesResponseType(typeof(Nullable), StatusCodes.Status404NotFound)]
         public async Task<IActionResult> BuscarSaldo([FromQuery] int id)
         {
-            var saldo = await _usuarioService.BuscarSaldo(id);
+            var saldo = await _saldoService.BuscarSaldo(id);
             return saldo == null ? NotFound() : Ok(saldo.Saldo);
         }
 
@@ -35,7 +35,7 @@ namespace Cassino.Api.Controllers.Usuario
         [ProducesResponseType(typeof(Nullable), StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> AtualizarSaldo([FromForm] SaldoUsuarioDto saldoUsuarioDto)
         {
-            var usuarioAtualizado = await _usuarioService.AtualizarSaldo(saldoUsuarioDto);
+            var usuarioAtualizado = await _saldoService.AtualizarSaldo(saldoUsuarioDto);
             return usuarioAtualizado == true ? Ok() : BadRequest();
         }
     }

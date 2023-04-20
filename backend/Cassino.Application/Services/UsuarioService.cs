@@ -114,32 +114,6 @@ public class UsuarioService : BaseService, IUsuarioService
         return null;
     }
 
-    public async Task<SaldoUsuarioDto> BuscarSaldo(int id)
-    {
-        var usuario = await _clienteRepository.ObterPorId(id);
-        if (usuario != null)
-        {
-            return Mapper.Map<SaldoUsuarioDto>(usuario);
-        }
-
-        Notificator.HandleNotFoundResource();
-        return null;
-    }
-
-    public async Task<Boolean> AtualizarSaldo(SaldoUsuarioDto saldoUsuarioDto)
-    {
-        var usuario = await _clienteRepository.ObterPorId(saldoUsuarioDto.Id);
-        if (usuario != null)
-        {
-            usuario.Saldo = saldoUsuarioDto.Saldo;
-            return true;
-        }
-
-        Notificator.HandleNotFoundResource();
-        return false;
-    }
-
-
     public async Task Desativar(int id)
     {
         var usuario = await _clienteRepository.ObterPorId(id);

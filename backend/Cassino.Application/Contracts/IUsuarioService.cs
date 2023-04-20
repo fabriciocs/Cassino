@@ -12,8 +12,6 @@ public interface IUsuarioService
     Task<UsuarioDto?> ObterPorId(int id);
     Task<UsuarioDto?> ObterPorEmail(string email);
     Task<UsuarioDto?> ObterPorCpf(string cpf);
-    Task<SaldoUsuarioDto> BuscarSaldo(int id);
-    Task<Boolean> AtualizarSaldo(SaldoUsuarioDto saldoUsuarioDto);
     Task Desativar(int id);
     Task Reativar(int id);
 }
