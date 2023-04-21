@@ -36,7 +36,7 @@ namespace Cassino.Api.Controllers.Usuario
         public async Task<IActionResult> AtualizarSaldo([FromForm] SaldoUsuarioDto saldoUsuarioDto)
         {
             var usuarioAtualizado = await _saldoService.AtualizarSaldo(saldoUsuarioDto);
-            return usuarioAtualizado == true ? Ok() : BadRequest();
+            return usuarioAtualizado == true ? NoContentResponse() : BadRequest();
         }
     }
 }

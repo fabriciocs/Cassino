@@ -38,16 +38,17 @@ namespace Cassino.Application.Services
         public async Task<Boolean> AtualizarSaldo(SaldoUsuarioDto saldoUsuarioDto)
         {
             var usuario = await _clienteRepository.ObterPorId(saldoUsuarioDto.Id);
-            if (usuario != null)
+            if (usuario == null)
             {
-                usuario.Saldo = saldoUsuarioDto.Saldo;
-                _clienteRepository.Alterar(usuario);
-
-                if (await _clienteRepository.UnitOfWork.Commit())
-                    return true;
+                Notificator.Handle("Não foi possível atualizar o saldo do usuário no banco de dados.");
+                return false;
             }
 
-            Notificator.HandleNotFoundResource();
+            usuario.Saldo = saldoUsuarioDto.Saldo;
+            _clienteRepository.Alterar(usuario);
+
+            if (await _clienteRepository.UnitOfWork.Commit())
+                return true;
             return false;
         }
     }
