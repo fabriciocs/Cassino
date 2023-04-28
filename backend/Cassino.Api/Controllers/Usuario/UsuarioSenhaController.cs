@@ -14,9 +14,6 @@ namespace Cassino.Api.Controllers.Usuario
         }
 
         [HttpPost]
-        public async Task<IActionResult> RecuperarSenha([FromForm] string email)
-        {
-
-        }
+        public async Task<IActionResult> RedefinirSenha([FromForm] string email){ }
     }
 }

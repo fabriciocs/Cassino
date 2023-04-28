@@ -10,6 +10,7 @@ namespace Cassino.Application.Contracts
     public interface ISenhaService
     {
         Task<bool> EmailExiste(string email);
-        Task<bool> EmailRecuperacaoSenha(Usuario user);
+        Task<string> CriarTokenRedefinicaoSenha(Usuario usuario);
+        Task<bool> EmailRedefinicaoSenha(Usuario user, string token);
     }
 }
