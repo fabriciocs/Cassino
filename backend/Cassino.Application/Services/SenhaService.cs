@@ -35,11 +35,11 @@ namespace Cassino.Application.Services
             var usuario = await _usuarioRepository.ObterPorEmail(email);
             if (usuario != null)
                  return usuario;
+            Notificator.HandleNotFoundResource();
             return null;
         }
 
-
-        public string GerarLinkRedefinicaoSenha(Usuario usuario)
+        public async Task<string?> GerarLinkRedefinicaoSenha(Usuario usuario)
         {
             Guid guid = Guid.NewGuid();
             string codigo = guid.ToString();
@@ -47,12 +47,16 @@ namespace Cassino.Application.Services
             //Salva o codigo no banco atrelado a conta do usuario.
             usuario.CodigoRecuperacaoSenha = codigo;
             _usuarioRepository.Alterar(usuario);
+            if(!await _usuarioRepository.UnitOfWork.Commit())
+            {
+                Notificator.Handle("Ocorreu um problema ao salvar Codigo de Recuperação no banco de dados.");
+                return null;
+            }
 
             string urlBase = "https://localhost:7161";
             string link = $"{urlBase}/v1/senha/usuario-senha/alterar-senha-deslogado/codigo={codigo}";
             return link;
         }
-
 
         public bool EmailRedefinicaoSenha(string email, string link)
         {
@@ -77,6 +81,7 @@ namespace Cassino.Application.Services
             }
             catch (Exception)
             {
+                Notificator.Handle("Ocorreu um problema ao tentar enviar o e-mail de redefinição de senha.");
                 return false;
             }
             return true;
@@ -96,7 +101,7 @@ namespace Cassino.Application.Services
         {
             if (novaSenha.NovaSenha == novaSenha.ConfirmarNovaSenha)
                 return true;
-            Notificator.Handle("As senha e confirmação de senha não são iguais.");
+            Notificator.Handle("Senha e confirmação de senha não são iguais.");
             return false;
         }
 
@@ -110,7 +115,7 @@ namespace Cassino.Application.Services
             {
                 return true;
             }
-            Notificator.Handle("Houve um problema ao salvar nova senha no banco.");
+            Notificator.Handle("Ocorreu um problema ao salvar nova senha no banco.");
             return false;
         }
     }

@@ -11,7 +11,7 @@ namespace Cassino.Application.Contracts
     public interface ISenhaService
     {
         Task<Usuario> EmailExiste(string email);
-        string GerarLinkRedefinicaoSenha(Usuario usuario);
+        Task<string?> GerarLinkRedefinicaoSenha(Usuario usuario);
         bool EmailRedefinicaoSenha(string email, string link);
         Task<Usuario?> CodigoExiste(string codigo);
         bool VerificarSenha(AlterarSenhaDeslogadoDto novaSenha);
