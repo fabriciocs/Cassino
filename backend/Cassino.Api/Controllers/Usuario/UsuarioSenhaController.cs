@@ -13,7 +13,10 @@ namespace Cassino.Api.Controllers.Usuario
             _clienteRepository = clienteRepository;
         }
 
-        [HttpPost]
+        [HttpPost("redefinir-senha")]
         public async Task<IActionResult> RedefinirSenha([FromForm] string email){ }
+
+        //[HttpPost("alterar-senha-deslogado/codigo={code:string}")]
+        //public async Task<IActionResult> AlterarSenhaDeslogado([FromForm] ) { }
     }
 }

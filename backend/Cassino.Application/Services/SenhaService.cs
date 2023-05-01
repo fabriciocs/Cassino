@@ -24,11 +24,11 @@ namespace Cassino.Application.Services
 
         public async Task<bool> EmailExiste(string email)
         {
-            var usuarioExiste = await _usuarioRepository.ObterPorEmail(email);
-            if (usuarioExiste != null)
+            var usuario = await _usuarioRepository.ObterPorEmail(email);
+            if (usuario != null)
             {
-                var token = await CriarTokenRedefinicaoSenha(usuarioExiste);
-                var codigoEnviado = await EmailRedefinicaoSenha(usuarioExiste, token);
+                var codigo = CriarCodigoRedefinicaoSenha(usuario);
+                var codigoEnviado = await EmailRedefinicaoSenha(usuario, codigo);
                 
                 if(codigoEnviado)
                     return true;
@@ -36,11 +36,16 @@ namespace Cassino.Application.Services
             }
             return false;
         }
-        
-        //public Task<string> CriarTokenRedefinicaoSenha(Usuario usuario)
-        //{
-        //    //Gera o token/GUID
-        //}
+
+        public string CriarCodigoRedefinicaoSenha(Usuario usuario)
+        {
+            Guid guid = Guid.NewGuid();
+            string codigo = guid.ToString();
+            //Salva o codigo no banco atrelado a conta do usuario.
+            usuario.CodigoRecuperacaoSenha = codigo;
+            _usuarioRepository.Alterar(usuario);
+            return codigo;
+        }
 
 
         //public async Task<bool> EmailRedefinicaoSenha(Usuario user, string token)
