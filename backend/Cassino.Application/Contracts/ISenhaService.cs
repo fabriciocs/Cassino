@@ -1,4 +1,5 @@
-﻿using Cassino.Domain.Entities;
+﻿using Cassino.Application.Dtos.V1.Senha;
+using Cassino.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,5 +14,7 @@ namespace Cassino.Application.Contracts
         string GerarLinkRedefinicaoSenha(Usuario usuario);
         bool EmailRedefinicaoSenha(string email, string link);
         Task<Usuario?> CodigoExiste(string codigo);
+        bool VerificarSenha(AlterarSenhaDeslogadoDto novaSenha);
+        Task<bool> SalvarNovaSenha(Usuario usuario, AlterarSenhaDeslogadoDto alterarSenha)
     }
 }

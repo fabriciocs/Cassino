@@ -1,7 +1,11 @@
-﻿using Cassino.Application.Contracts;
+﻿using AutoMapper;
+using Cassino.Application.Contracts;
+using Cassino.Application.Dtos.V1.Senha;
+using Cassino.Application.Notification;
 using Cassino.Domain.Contracts.Repositories;
 using Cassino.Domain.Entities;
 using Cassino.Infra.Repositories;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
@@ -15,11 +19,14 @@ using System.Threading.Tasks;
 
 namespace Cassino.Application.Services
 {
-    public class SenhaService : ISenhaService
+    public class SenhaService : BaseService, ISenhaService
     {
         public readonly IUsuarioRepository _usuarioRepository;
-        public SenhaService(IUsuarioRepository usuarioRepository) {
+        private readonly IPasswordHasher<Usuario> _passwordHasher;
+        public SenhaService(IUsuarioRepository usuarioRepository, IPasswordHasher<Usuario> passwordHasher, INotificator notificator, IMapper mapper) : base(mapper, notificator)
+        {
             _usuarioRepository = usuarioRepository;
+            _passwordHasher = passwordHasher;
         }
 
         //Metodos de RedefinirSenha
@@ -81,9 +88,30 @@ namespace Cassino.Application.Services
             var usuario = await _usuarioRepository.ObterPorCodigoRecuperacaoSenha(codigo);
             if(usuario != null)
                 return usuario;
+            Notificator.HandleNotFoundResource();
             return null;
         }
 
+        public bool VerificarSenha(AlterarSenhaDeslogadoDto novaSenha)
+        {
+            if (novaSenha.NovaSenha == novaSenha.ConfirmarNovaSenha)
+                return true;
+            Notificator.Handle("As senha e confirmação de senha não são iguais.");
+            return false;
+        }
 
+        public async Task<bool> SalvarNovaSenha(Usuario usuario, AlterarSenhaDeslogadoDto alterarSenha)
+        {
+            usuario.CodigoRecuperacaoSenha = "";
+            usuario.Senha = alterarSenha.NovaSenha;
+            usuario.Senha = _passwordHasher.HashPassword(usuario, usuario.Senha);
+            _usuarioRepository.Alterar(usuario);
+            if (await _usuarioRepository.UnitOfWork.Commit())
+            {
+                return true;
+            }
+            Notificator.Handle("Houve um problema ao salvar nova senha no banco.");
+            return false;
+        }
     }
 }

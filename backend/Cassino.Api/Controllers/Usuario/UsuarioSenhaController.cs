@@ -33,6 +33,6 @@ namespace Cassino.Api.Controllers.Usuario
         }
 
         [HttpPost("alterar-senha-deslogado/codigo={code:string}")]
-        public async Task<IActionResult> AlterarSenhaDeslogado(string code, [FromForm] AlterarSenhaDeslogadoDto alterarSenha) { }
+        public async Task<IActionResult> AlterarSenhaDeslogado(string code, [FromForm] AlterarSenhaDeslogadoDto novaSenha) { }
     }
 }
