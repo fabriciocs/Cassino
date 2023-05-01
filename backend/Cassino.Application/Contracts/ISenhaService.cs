@@ -9,8 +9,8 @@ namespace Cassino.Application.Contracts
 {
     public interface ISenhaService
     {
-        Task<bool> EmailExiste(string email);
-        string CriarCodigoRedefinicaoSenha(Usuario usuario);
-        Task<bool> EmailRedefinicaoSenha(Usuario user, string token);
+        Task<Usuario> EmailExiste(string email);
+        string GerarLinkRedefinicaoSenha(Usuario usuario);
+        bool EmailRedefinicaoSenha(string email, string link);
     }
 }

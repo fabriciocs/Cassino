@@ -22,50 +22,55 @@ namespace Cassino.Application.Services
             _usuarioRepository = usuarioRepository;
         }
 
-        public async Task<bool> EmailExiste(string email)
+        public async Task<Usuario> EmailExiste(string email)
         {
             var usuario = await _usuarioRepository.ObterPorEmail(email);
             if (usuario != null)
-            {
-                var codigo = CriarCodigoRedefinicaoSenha(usuario);
-                var codigoEnviado = await EmailRedefinicaoSenha(usuario, codigo);
-                
-                if(codigoEnviado)
-                    return true;
-                return false;
-            }
-            return false;
+                 return usuario;
+            return null;
         }
 
-        public string CriarCodigoRedefinicaoSenha(Usuario usuario)
+        public string GerarLinkRedefinicaoSenha(Usuario usuario)
         {
             Guid guid = Guid.NewGuid();
             string codigo = guid.ToString();
+
             //Salva o codigo no banco atrelado a conta do usuario.
             usuario.CodigoRecuperacaoSenha = codigo;
             _usuarioRepository.Alterar(usuario);
-            return codigo;
+
+            string urlBase = "https://localhost:7161";
+            string link = $"{urlBase}/v1/senha/usuario-senha/alterar-senha-deslogado/codigo={codigo}";
+            return link;
         }
 
 
-        //public async Task<bool> EmailRedefinicaoSenha(Usuario user, string token)
-        //{
-        //    //Configuração de servidor SMTP Gmail
-        //    SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);
-        //    smtp.UseDefaultCredentials = false;
-        //    smtp.EnableSsl = true;
-        //    smtp.Credentials = new NetworkCredential("", ""); //Email e Password do remetente
+        public bool EmailRedefinicaoSenha(string email, string link)
+        {
+            //Configuração de servidor SMTP Gmail
+            SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);
+            smtp.UseDefaultCredentials = false;
+            smtp.EnableSsl = true;
+            smtp.Credentials = new NetworkCredential("", ""); //Email e Password do remetente
 
-        //    //Configuração email
-        //    MailMessage mail = new MailMessage();
-        //    mail.From = new MailAddress("", "CASSINO"); //Endereço e titulo do remetente
-        //    mail.To.Add(user.Email);
-        //    mail.Subject = "Recuperação de Senha - CASSINO";
-        //    mail.Body = "Esse é um e-mail de recuperação de senha. " +
-        //        "Caso você não tenha solicitado a recuperação, por favor ignore-o. " +
-        //        $"Link para criar uma nova senha: {url}";
+            //Configuração email
+            try
+            {
+                MailMessage mail = new MailMessage();
+                mail.From = new MailAddress("", "CASSINO"); //Endereço e titulo do remetente
+                mail.To.Add(email);
+                mail.Subject = "Recuperação de Senha - CASSINO";
+                mail.Body = "Esse é um e-mail de recuperação de senha. " +
+                    "Caso você não tenha solicitado a recuperação, por favor ignore-o. " +
+                    $"Link para criar uma nova senha: {link}";
 
-        //    smtp.Send(mail);
-        //}
+                smtp.Send(mail);
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+            return true;
+        }
     }
 }
