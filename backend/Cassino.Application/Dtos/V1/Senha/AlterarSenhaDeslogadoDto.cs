@@ -8,7 +8,7 @@ namespace Cassino.Application.Dtos.V1.Senha
 {
     public class AlterarSenhaDeslogadoDto
     {
-        public string NovaSenha { get; set; }
-        public string ConfirmarNovaSenha { get; set; }
+        public string NovaSenha { get; set; } = null!;
+        public string ConfirmarNovaSenha { get; set; } = null!;
     }
 }
