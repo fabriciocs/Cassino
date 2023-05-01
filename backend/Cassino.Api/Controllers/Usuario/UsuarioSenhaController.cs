@@ -21,13 +21,15 @@ namespace Cassino.Api.Controllers.Usuario
             var usuario = await _senhaService.EmailExiste(email);
             if (usuario != null)
             {
-                string link = _senhaService.GerarLinkRedefinicaoSenha(usuario);
-                var isEmailEnviado = _senhaService.EmailRedefinicaoSenha(email, link);
-                if(isEmailEnviado)
+                string link = await _senhaService.GerarLinkRedefinicaoSenha(usuario);
+                if(link != null)
                 {
-                    return NoContentResponse();
+                    var isEmailEnviado = _senhaService.EmailRedefinicaoSenha(email, link);
+                    if (isEmailEnviado)
+                        return NoContentResponse();
+                    return BadRequest();
                 }
-                return BadRequest();
+                return BadRequest();                
             }
             return BadRequest();
         }

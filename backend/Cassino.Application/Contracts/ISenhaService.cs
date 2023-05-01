@@ -15,6 +15,6 @@ namespace Cassino.Application.Contracts
         bool EmailRedefinicaoSenha(string email, string link);
         Task<Usuario?> CodigoExiste(string codigo);
         bool VerificarSenha(AlterarSenhaDeslogadoDto novaSenha);
-        Task<bool> SalvarNovaSenha(Usuario usuario, AlterarSenhaDeslogadoDto alterarSenha)
+        Task<bool> SalvarNovaSenha(Usuario usuario, AlterarSenhaDeslogadoDto alterarSenha);
     }
 }

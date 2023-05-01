@@ -79,9 +79,9 @@ namespace Cassino.Application.Services
 
                 smtp.Send(mail);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                Notificator.Handle("Ocorreu um problema ao tentar enviar o e-mail de redefinição de senha.");
+                Notificator.Handle("Ocorreu um problema ao tentar enviar o e-mail de redefinição de senha. " + ex.Message);
                 return false;
             }
             return true;
