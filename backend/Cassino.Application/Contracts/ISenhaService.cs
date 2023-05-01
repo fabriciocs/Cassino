@@ -12,5 +12,6 @@ namespace Cassino.Application.Contracts
         Task<Usuario> EmailExiste(string email);
         string GerarLinkRedefinicaoSenha(Usuario usuario);
         bool EmailRedefinicaoSenha(string email, string link);
+        Task<Usuario?> CodigoExiste(string codigo);
     }
 }

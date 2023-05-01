@@ -1,4 +1,5 @@
 ﻿using Cassino.Application.Contracts;
+using Cassino.Application.Dtos.V1.Senha;
 using Cassino.Application.Notification;
 using Cassino.Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
@@ -32,6 +33,6 @@ namespace Cassino.Api.Controllers.Usuario
         }
 
         [HttpPost("alterar-senha-deslogado/codigo={code:string}")]
-        public async Task<IActionResult> AlterarSenhaDeslogado(string code, [FromForm] ) { }
+        public async Task<IActionResult> AlterarSenhaDeslogado(string code, [FromForm] AlterarSenhaDeslogadoDto alterarSenha) { }
     }
 }

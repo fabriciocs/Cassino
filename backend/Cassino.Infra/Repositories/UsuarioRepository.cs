@@ -38,6 +38,11 @@ public class UsuarioRepository : Repository<Usuario>, IUsuarioRepository
         return await Context.Usuarios.FirstOrDefaultAsync(c => c.Cpf == cpf);
     }
 
+    public async Task<Usuario?> ObterPorCodigoRecuperacaoSenha(string codigo)
+    {
+        return await Context.Usuarios.FirstOrDefaultAsync(c => c.CodigoRecuperacaoSenha == codigo);
+    }
+
     public async Task<IResultadoPaginado<Usuario>> Buscar(IBuscaPaginada<Usuario> filtro)
     {
         var query = Context.Usuarios.AsQueryable();

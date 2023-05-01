@@ -22,6 +22,7 @@ namespace Cassino.Application.Services
             _usuarioRepository = usuarioRepository;
         }
 
+        //Metodos de RedefinirSenha
         public async Task<Usuario> EmailExiste(string email)
         {
             var usuario = await _usuarioRepository.ObterPorEmail(email);
@@ -29,6 +30,7 @@ namespace Cassino.Application.Services
                  return usuario;
             return null;
         }
+
 
         public string GerarLinkRedefinicaoSenha(Usuario usuario)
         {
@@ -72,5 +74,16 @@ namespace Cassino.Application.Services
             }
             return true;
         }
+
+        //Metodos de AlterarSenhaDeslogado
+        public async Task<Usuario?> CodigoExiste(string codigo)
+        {
+            var usuario = await _usuarioRepository.ObterPorCodigoRecuperacaoSenha(codigo);
+            if(usuario != null)
+                return usuario;
+            return null;
+        }
+
+
     }
 }

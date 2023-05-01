@@ -10,5 +10,6 @@ public interface IUsuarioRepository : IRepository<Usuario>
     Task<Usuario?> ObterPorId(int id);
     Task<Usuario?> ObterPorEmail(string email);
     Task<Usuario?> ObterPorCpf(string cpf);
+    Task<Usuario?> ObterPorCodigoRecuperacaoSenha(string codigo);
     Task<IResultadoPaginado<Usuario>> Buscar(IBuscaPaginada<Usuario> filtro);
 }
