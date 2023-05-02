@@ -40,7 +40,7 @@ namespace Cassino.Api.Controllers.Usuario
         [SwaggerOperation(Summary = "Verifica e salva uma nova senha para o usuário deslogado.", Tags = new[] { "Usuario - Cliente - Senha" })]
         [ProducesResponseType(typeof(Nullable), StatusCodes.Status204NoContent)]
         [ProducesResponseType(typeof(Nullable), StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> RedefinirSenha(string code, [FromForm] AlterarSenhaDeslogadoDto novaSenha) 
+        public async Task<IActionResult> RedefinirSenha(string code, [FromForm] AlterarSenhaDto novaSenha) 
         {
             var usuario = await _senhaService.CodigoExiste(code);
             if (usuario == null)
@@ -50,6 +50,16 @@ namespace Cassino.Api.Controllers.Usuario
             if (await _senhaService.SalvarNovaSenha(usuario, novaSenha))
                 return NoContentResponse();
             return BadRequest();
+        }
+
+        [HttpPut("alterar-senha")]
+        [SwaggerOperation(Summary = "Verifica senha antiga e atualiza a senha do usuário logado.", Tags = new[] { "Usuario - Cliente - Senha" })]
+        [ProducesResponseType(typeof(Nullable), StatusCodes.Status204NoContent)]
+        [ProducesResponseType(typeof(Nullable), StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> AlterarSenha([FromForm] string senhaAntiga, [FromForm] AlterarSenhaDto alterarSenhaDto)
+        {
+            var resultado = await _senhaService.AlterarSenhaLogin(senhaAntiga, alterarSenhaDto);
+            return resultado ? NoContentResponse() : BadRequest(); 
         }
     }
 }

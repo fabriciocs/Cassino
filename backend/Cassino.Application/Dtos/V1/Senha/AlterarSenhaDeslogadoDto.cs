@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Cassino.Application.Dtos.V1.Senha
 {
-    public class AlterarSenhaDeslogadoDto
+    public class AlterarSenhaDto
     {
         public string NovaSenha { get; set; } = null!;
         public string ConfirmarNovaSenha { get; set; } = null!;

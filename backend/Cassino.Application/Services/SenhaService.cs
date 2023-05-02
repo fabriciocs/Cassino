@@ -1,10 +1,12 @@
 ﻿using AutoMapper;
 using Cassino.Application.Contracts;
+using Cassino.Application.Dtos.V1.Auth;
 using Cassino.Application.Dtos.V1.Senha;
 using Cassino.Application.Notification;
 using Cassino.Domain.Contracts.Repositories;
 using Cassino.Domain.Entities;
 using Cassino.Infra.Repositories;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
 using System;
@@ -23,10 +25,13 @@ namespace Cassino.Application.Services
     {
         public readonly IUsuarioRepository _usuarioRepository;
         private readonly IPasswordHasher<Usuario> _passwordHasher;
-        public SenhaService(IUsuarioRepository usuarioRepository, IPasswordHasher<Usuario> passwordHasher, INotificator notificator, IMapper mapper) : base(mapper, notificator)
+        private readonly UserManager<Usuario> _userManager;
+        private readonly IHttpContextAccessor _httpContextAccessor;
+        public SenhaService(IUsuarioRepository usuarioRepository, IPasswordHasher<Usuario> passwordHasher, INotificator notificator, IMapper mapper, IHttpContextAccessor httpContextAccessor) : base(mapper, notificator)
         {
             _usuarioRepository = usuarioRepository;
             _passwordHasher = passwordHasher;
+            _httpContextAccessor = httpContextAccessor;
         }
 
         //Metodos de SolicitarRedefinicaoSenha
@@ -97,7 +102,7 @@ namespace Cassino.Application.Services
             return null;
         }
 
-        public bool VerificarSenha(AlterarSenhaDeslogadoDto novaSenha)
+        public bool VerificarSenha(AlterarSenhaDto novaSenha)
         {
             if (novaSenha.NovaSenha == novaSenha.ConfirmarNovaSenha)
                 return true;
@@ -105,7 +110,7 @@ namespace Cassino.Application.Services
             return false;
         }
 
-        public async Task<bool> SalvarNovaSenha(Usuario usuario, AlterarSenhaDeslogadoDto alterarSenha)
+        public async Task<bool> SalvarNovaSenha(Usuario usuario, AlterarSenhaDto alterarSenha)
         {
             usuario.CodigoRecuperacaoSenha = "";
             usuario.Senha = alterarSenha.NovaSenha;
@@ -117,6 +122,39 @@ namespace Cassino.Application.Services
             }
             Notificator.Handle("Ocorreu um problema ao salvar nova senha no banco.");
             return false;
+        }
+
+        public async Task<bool> AlterarSenhaLogin(string senhaAntiga, AlterarSenhaDto alterarSenhaDto)
+        {
+            //Buscando usuario por meio do HTTPContext
+            var usuarioId = _httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            if(usuarioId == null)
+                return false;
+            var usuario = await _usuarioRepository.ObterPorId(Int32.Parse(usuarioId));
+
+            //Comparando senha antiga com a passada.
+            var resultado = _passwordHasher.VerifyHashedPassword(usuario, usuario.Senha, senhaAntiga);
+            if (resultado == PasswordVerificationResult.Failed)
+            {
+                Notificator.Handle("Senha incorreta.");
+                return false;
+            }
+
+            //Comparando as duas novas senhas (senha e confirmar senha)
+            if (alterarSenhaDto.NovaSenha != alterarSenhaDto.ConfirmarNovaSenha)
+            {
+                Notificator.Handle("Senha e confirmação de senha não são iguais.");
+                return false;
+            }
+            
+            usuario.Senha = _passwordHasher.HashPassword(usuario, alterarSenhaDto.NovaSenha);
+            _usuarioRepository.Alterar(usuario);
+            if (!await _usuarioRepository.UnitOfWork.Commit())
+            {
+                Notificator.Handle("Ocorreu um problema ao salvar nova senha no banco.");
+                return false;
+            }
+            return true;
         }
     }
 }
