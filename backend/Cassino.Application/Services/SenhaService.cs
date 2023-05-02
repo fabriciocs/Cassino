@@ -29,7 +29,7 @@ namespace Cassino.Application.Services
             _passwordHasher = passwordHasher;
         }
 
-        //Metodos de RedefinirSenha
+        //Metodos de SolicitarRedefinicaoSenha
         public async Task<Usuario> EmailExiste(string email)
         {
             var usuario = await _usuarioRepository.ObterPorEmail(email);
@@ -54,7 +54,7 @@ namespace Cassino.Application.Services
             }
 
             string urlBase = "https://localhost:7161";
-            string link = $"{urlBase}/v1/senha/usuario-senha/alterar-senha-deslogado/codigo={codigo}";
+            string link = $"{urlBase}/v1/senha/usuario-senha/redefinir-senha/codigo={codigo}";
             return link;
         }
 
@@ -87,7 +87,7 @@ namespace Cassino.Application.Services
             return true;
         }
 
-        //Metodos de AlterarSenhaDeslogado
+        //Metodos de RedefinirSenha
         public async Task<Usuario?> CodigoExiste(string codigo)
         {
             var usuario = await _usuarioRepository.ObterPorCodigoRecuperacaoSenha(codigo);

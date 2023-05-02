@@ -18,11 +18,11 @@ namespace Cassino.Api.Controllers.Usuario
             _senhaService = senhaService;
         }
 
-        [HttpPost("redefinir-senha")]
+        [HttpPost("solicitar-redefincao-de-senha")]
         [SwaggerOperation(Summary = "Envia um e-mail de redefinição de senha para o usuario deslogado.", Tags = new[] { "Usuario - Cliente - Senha" })]
         [ProducesResponseType(typeof(Nullable), StatusCodes.Status204NoContent)]
         [ProducesResponseType(typeof(Nullable), StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> RedefinirSenha([FromForm] string email)
+        public async Task<IActionResult> SolicitarRedefinicaoSenha([FromForm] string email)
         {
             var usuario = await _senhaService.EmailExiste(email);
             if (usuario == null)
@@ -36,11 +36,11 @@ namespace Cassino.Api.Controllers.Usuario
             return BadRequest();
         }
 
-        [HttpPost("alterar-senha-deslogado/codigo={code}")]
+        [HttpPost("redefinir-senha/codigo={code}")]
         [SwaggerOperation(Summary = "Verifica e salva uma nova senha para o usuário deslogado.", Tags = new[] { "Usuario - Cliente - Senha" })]
         [ProducesResponseType(typeof(Nullable), StatusCodes.Status204NoContent)]
         [ProducesResponseType(typeof(Nullable), StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> AlterarSenhaDeslogado(string code, [FromForm] AlterarSenhaDeslogadoDto novaSenha) 
+        public async Task<IActionResult> RedefinirSenha(string code, [FromForm] AlterarSenhaDeslogadoDto novaSenha) 
         {
             var usuario = await _senhaService.CodigoExiste(code);
             if (usuario == null)
