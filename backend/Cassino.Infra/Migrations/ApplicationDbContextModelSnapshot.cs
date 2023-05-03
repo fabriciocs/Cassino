@@ -72,6 +72,38 @@ namespace Cassino.Infra.Migrations
                     b.ToTable("Administradores");
                 });
 
+            modelBuilder.Entity("Cassino.Domain.Entities.temp.Renda", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int?>("AtualizadoPor")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("AtualizadoPorAdmin")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false);
+
+                    b.Property<int?>("CriadoPor")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("CriadoPorAdmin")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false);
+
+                    b.Property<decimal>("Valor")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Rendas");
+                });
+
             modelBuilder.Entity("Cassino.Domain.Entities.Usuario", b =>
                 {
                     b.Property<int>("Id")
@@ -119,6 +151,10 @@ namespace Cassino.Infra.Migrations
                     b.Property<string>("NomeSocial")
                         .HasMaxLength(60)
                         .HasColumnType("nvarchar(60)");
+
+                    b.Property<decimal>("Saldo")
+                        .HasPrecision(18, 2)
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("Senha")
                         .IsRequired()
