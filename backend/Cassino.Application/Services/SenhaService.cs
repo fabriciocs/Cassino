@@ -3,18 +3,23 @@ using Cassino.Application.Contracts;
 using Cassino.Application.Dtos.V1.Auth;
 using Cassino.Application.Dtos.V1.Senha;
 using Cassino.Application.Notification;
+using Cassino.Core.Settings;
 using Cassino.Domain.Contracts.Repositories;
 using Cassino.Domain.Entities;
 using Cassino.Infra.Repositories;
+using MailKit.Net.Smtp;
+using MailKit.Security;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
+using MimeKit;
+using MimeKit.Text;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Net;
-using System.Net.Mail;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,15 +28,16 @@ namespace Cassino.Application.Services
 {
     public class SenhaService : BaseService, ISenhaService
     {
-        public readonly IUsuarioRepository _usuarioRepository;
+        private readonly IUsuarioRepository _usuarioRepository;
         private readonly IPasswordHasher<Usuario> _passwordHasher;
-        private readonly UserManager<Usuario> _userManager;
         private readonly IHttpContextAccessor _httpContextAccessor;
-        public SenhaService(IUsuarioRepository usuarioRepository, IPasswordHasher<Usuario> passwordHasher, INotificator notificator, IMapper mapper, IHttpContextAccessor httpContextAccessor) : base(mapper, notificator)
+        private readonly IConfiguration _config;
+        public SenhaService(IUsuarioRepository usuarioRepository, IPasswordHasher<Usuario> passwordHasher, INotificator notificator, IMapper mapper, IHttpContextAccessor httpContextAccessor, IConfiguration config) : base(mapper, notificator)
         {
             _usuarioRepository = usuarioRepository;
             _passwordHasher = passwordHasher;
             _httpContextAccessor = httpContextAccessor;
+            _config = config;
         }
 
         //Metodos de SolicitarRedefinicaoSenha
@@ -63,26 +69,23 @@ namespace Cassino.Application.Services
             return link;
         }
 
-        public bool EmailRedefinicaoSenha(string email, string link)
+        public bool EmailRedefinicaoSenha(string emailUsuario, string link)
         {
-            //Configuração de servidor SMTP Gmail
-            SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);
-            smtp.UseDefaultCredentials = false;
-            smtp.EnableSsl = true;
-            smtp.Credentials = new NetworkCredential("", ""); //Email e Password do remetente
+            //Configuração E-mail
+            var email = new MimeMessage();
+            email.From.Add(MailboxAddress.Parse(_config.GetSection("EmailRemetenteUsername").Value));
+            email.To.Add(MailboxAddress.Parse(emailUsuario));
+            email.Subject = "Redefinição de Senha";
+            email.Body = new TextPart(TextFormat.Html) { Text = $"Acesse: {link}" }; //Trocar para arquivo HTML do Ivo
 
-            //Configuração email
+            //Configuração de servidor SMTP Gmail
+            using var smtp = new SmtpClient();
             try
             {
-                MailMessage mail = new MailMessage();
-                mail.From = new MailAddress("", "CASSINO"); //Endereço e titulo do remetente
-                mail.To.Add(email);
-                mail.Subject = "Recuperação de Senha - CASSINO";
-                mail.Body = "Esse é um e-mail de recuperação de senha. " +
-                    "Caso você não tenha solicitado a recuperação, por favor ignore-o. " +
-                    $"Link para criar uma nova senha: {link}";
-
-                smtp.Send(mail);
+                smtp.Connect(_config.GetSection("EmailProvedor").Value, int.Parse(_config.GetSection("EmailPort").Value), SecureSocketOptions.StartTls);
+                smtp.Authenticate(_config.GetSection("EmailRemetenteUsername").Value, _config.GetSection("EmailRemetenteSenha").Value);
+                smtp.Send(email);
+                smtp.Disconnect(true);
             }
             catch (Exception ex)
             {
