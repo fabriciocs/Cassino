@@ -10,5 +10,6 @@ public class UsuarioDto
     public string? Telefone { get; set; }
     public bool? Inadiplente { get; set; }
     public DateTime DataPagamento { get; set; }
+    public DateOnly DataDeNascimento { get; set; }
     public bool Desativado { get; set; }
 }

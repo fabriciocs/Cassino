@@ -8,6 +8,7 @@ public class CadastrarUsuarioDto
     public string Cpf { get; set; } = null!;
     public string? Telefone { get; set; }
     public string Senha { get; set; } = null!;
+    public DateOnly DataDeNascimento { get; set; }
     public bool? Inadiplente { get; set; }
     public DateTime DataPagamento { get; set; }
     public bool Desativado { get; set; }
