@@ -7,14 +7,14 @@ namespace Cassino.Infra.Repositories.temp;
 
 public class RendaCasaRepository : IRendaCasaRepository
 {
+    private bool _isDisposed;
     protected readonly BaseApplicationDbContext Context;
     public RendaCasaRepository(BaseApplicationDbContext context)
     {
         Context = context;
     }
-
-    public IUnitOfWork UnitOfWork { get; }
-
+    
+    public IUnitOfWork UnitOfWork => Context;
     public void Adicionar(Renda renda)
     {
         Context.Rendas.Add(renda);
@@ -22,6 +22,24 @@ public class RendaCasaRepository : IRendaCasaRepository
 
     public void Dispose()
     {
-        throw new NotImplementedException();
+        Dispose(true);
+        GC.SuppressFinalize(this);
+    }
+
+    protected virtual void Dispose(bool disposing)
+    {
+        if (_isDisposed) return;
+
+        if (disposing)
+        {
+            Context.Dispose();
+        }
+
+        _isDisposed = true;
+    }
+    
+    ~RendaCasaRepository()
+    {
+        Dispose(false);
     }
 }
