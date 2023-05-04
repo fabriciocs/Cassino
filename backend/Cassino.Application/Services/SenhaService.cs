@@ -12,6 +12,7 @@ using MailKit.Security;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging.Abstractions;
 using Microsoft.IdentityModel.Tokens;
 using MimeKit;
 using MimeKit.Text;
@@ -40,6 +41,7 @@ namespace Cassino.Application.Services
             _config = config;
         }
 
+
         //Metodos de SolicitarRedefinicaoSenha
         public async Task<Usuario> EmailExiste(string email)
         {
@@ -50,13 +52,16 @@ namespace Cassino.Application.Services
             return null;
         }
 
+
         public async Task<string?> GerarLinkRedefinicaoSenha(Usuario usuario)
         {
             Guid guid = Guid.NewGuid();
             string codigo = guid.ToString();
+            DateTime tempoExpiracaoCodigo = DateTime.UtcNow.AddHours(3);
 
-            //Salva o codigo no banco atrelado a conta do usuario.
+            //Salva o codigo e o timeStamp no banco atrelado a conta do usuario. 
             usuario.CodigoRecuperacaoSenha = codigo;
+            usuario.TempoExpiracaoDoCodigo = tempoExpiracaoCodigo;
             _usuarioRepository.Alterar(usuario);
             if(!await _usuarioRepository.UnitOfWork.Commit())
             {
@@ -68,6 +73,7 @@ namespace Cassino.Application.Services
             string link = $"{urlBase}/v1/senha/usuario-senha/redefinir-senha/codigo={codigo}";
             return link;
         }
+
 
         public bool EmailRedefinicaoSenha(string emailUsuario, string link)
         {
@@ -95,15 +101,33 @@ namespace Cassino.Application.Services
             return true;
         }
 
+
         //Metodos de RedefinirSenha
         public async Task<Usuario?> CodigoExiste(string codigo)
         {
             var usuario = await _usuarioRepository.ObterPorCodigoRecuperacaoSenha(codigo);
             if(usuario != null)
+            {
+                if(DateTime.UtcNow > usuario.TempoExpiracaoDoCodigo)
+                {
+                    //Apagando codigo e timeStamp do usuario.
+                    Notificator.Handle("O tempo do código de redefinição expirou.");
+
+                    usuario.CodigoRecuperacaoSenha = null;
+                    usuario.TempoExpiracaoDoCodigo = null;
+
+                    _usuarioRepository.Alterar(usuario);
+                    await _usuarioRepository.UnitOfWork.Commit();
+                    return null;
+                }
+
                 return usuario;
+            }
+            
             Notificator.HandleNotFoundResource();
             return null;
         }
+
 
         public bool VerificarSenha(AlterarSenhaDto novaSenha)
         {
@@ -113,9 +137,12 @@ namespace Cassino.Application.Services
             return false;
         }
 
+
         public async Task<bool> SalvarNovaSenha(Usuario usuario, AlterarSenhaDto alterarSenha)
         {
-            usuario.CodigoRecuperacaoSenha = "";
+            usuario.CodigoRecuperacaoSenha = null;
+            usuario.TempoExpiracaoDoCodigo = null;
+
             usuario.Senha = alterarSenha.NovaSenha;
             usuario.Senha = _passwordHasher.HashPassword(usuario, usuario.Senha);
             _usuarioRepository.Alterar(usuario);
@@ -126,6 +153,7 @@ namespace Cassino.Application.Services
             Notificator.Handle("Ocorreu um problema ao salvar nova senha no banco.");
             return false;
         }
+
 
         public async Task<bool> AlterarSenhaLogin(string senhaAntiga, AlterarSenhaDto alterarSenhaDto)
         {
