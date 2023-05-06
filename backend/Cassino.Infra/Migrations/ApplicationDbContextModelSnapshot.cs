@@ -133,6 +133,9 @@ namespace Cassino.Infra.Migrations
                         .HasColumnType("bit")
                         .HasDefaultValue(false);
 
+                    b.Property<DateTime>("DataDeNascimento")
+                        .HasColumnType("DATE");
+
                     b.Property<bool>("Desativado")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bit")
