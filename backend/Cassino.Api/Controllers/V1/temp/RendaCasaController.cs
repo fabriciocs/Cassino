@@ -16,7 +16,7 @@ public class RendaCasaController : BaseController
     
     [AllowAnonymous]
     [HttpPost]
-    public async Task<IActionResult> Adicionar(decimal valor)
+    public async Task<IActionResult> Adicionar([FromBody] decimal valor)
     {
         await _rendaCasaService.Adicionar(valor);
         return OkResponse();
