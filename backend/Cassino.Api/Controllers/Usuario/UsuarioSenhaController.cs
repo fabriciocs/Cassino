@@ -27,17 +27,17 @@ namespace Cassino.Api.Controllers.Usuario
             var usuario = await _senhaService.EmailExiste(email);
             if (usuario == null)
                 return BadRequest();
-            string? link = await _senhaService.GerarLinkRedefinicaoSenha(usuario);
-            if (link == null)
+            var usuarioPreenchido = await _senhaService.GerarCodigoRedefinicaoSenha(usuario);
+            if (usuarioPreenchido == null)
                 return BadRequest();
-            var EmailFoiEnviado = _senhaService.EmailRedefinicaoSenha(email, link);
+            var EmailFoiEnviado = await _senhaService.EmailRedefinicaoSenha(usuarioPreenchido);
             if (EmailFoiEnviado)
                 return NoContentResponse();
             return BadRequest();
         }
 
         [HttpPost("redefinir-senha/codigo={code}")]
-        [SwaggerOperation(Summary = "Verifica e salva uma nova senha para o usuário deslogado.", Tags = new[] { "Usuario - Cliente - Senha" })]
+        [SwaggerOperation(Summary = "Valida e salva uma nova senha para o usuário deslogado.", Tags = new[] { "Usuario - Cliente - Senha" })]
         [ProducesResponseType(typeof(Nullable), StatusCodes.Status204NoContent)]
         [ProducesResponseType(typeof(Nullable), StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> RedefinirSenha(string code, [FromForm] AlterarSenhaDto novaSenha) 

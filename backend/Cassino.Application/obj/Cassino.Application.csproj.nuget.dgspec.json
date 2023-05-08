@@ -74,6 +74,10 @@
               "target": "Package",
               "version": "[7.0.0, )"
             },
+            "RazorLight": {
+              "target": "Package",
+              "version": "[2.3.1, )"
+            },
             "ScottBrady91.AspNetCore.Identity.Argon2PasswordHasher": {
               "target": "Package",
               "version": "[1.4.0, )"

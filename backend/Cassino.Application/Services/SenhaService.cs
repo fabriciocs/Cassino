@@ -16,14 +16,17 @@ using Microsoft.Extensions.Logging.Abstractions;
 using Microsoft.IdentityModel.Tokens;
 using MimeKit;
 using MimeKit.Text;
+using RazorLight;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Net.WebRequestMethods;
 
 namespace Cassino.Application.Services
 {
@@ -53,7 +56,7 @@ namespace Cassino.Application.Services
         }
 
 
-        public async Task<string?> GerarLinkRedefinicaoSenha(Usuario usuario)
+        public async Task<Usuario?> GerarCodigoRedefinicaoSenha(Usuario usuario)
         {
             Guid guid = Guid.NewGuid();
             string codigo = guid.ToString();
@@ -69,20 +72,36 @@ namespace Cassino.Application.Services
                 return null;
             }
 
-            string urlBase = "https://localhost:7161";
-            string link = $"{urlBase}/v1/senha/usuario-senha/redefinir-senha/codigo={codigo}";
-            return link;
+            return usuario;
         }
 
 
-        public bool EmailRedefinicaoSenha(string emailUsuario, string link)
+        public async Task<bool> EmailRedefinicaoSenha(Usuario usuarioPreenchido)
         {
+            //Configuração modelo template e-mail
+            string baseDirectoryPath = @"Cassino\backend\";
+            
+            var engine = new RazorLightEngineBuilder()
+                .UseFileSystemProject(baseDirectoryPath)
+                .UseMemoryCachingProvider()
+                .Build();
+
+            var modeloEmail = new ModeloEmailDto
+            {
+                Nome = usuarioPreenchido.Nome,
+                Codigo = usuarioPreenchido.CodigoRecuperacaoSenha,
+                Url = "https://sys-bet.vercel.app",
+                ExpiracaoEmHoras = 3
+            };
+
+            string template = await engine.CompileRenderAsync("TemplateEmailResetarSenha.cshtml", modeloEmail);
+
             //Configuração E-mail
             var email = new MimeMessage();
             email.From.Add(MailboxAddress.Parse(_config.GetSection("EmailRemetenteUsername").Value));
-            email.To.Add(MailboxAddress.Parse(emailUsuario));
+            email.To.Add(MailboxAddress.Parse(usuarioPreenchido.Email));
             email.Subject = "Redefinição de Senha";
-            email.Body = new TextPart(TextFormat.Html) { Text = $"Acesse: {link}" }; //Trocar para arquivo HTML do Ivo
+            email.Body = new TextPart(TextFormat.Html) { Text = template };
 
             //Configuração de servidor SMTP Gmail
             using var smtp = new SmtpClient();
