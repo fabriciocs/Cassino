@@ -163,7 +163,11 @@ namespace Cassino.Application.Services
                     usuario.TempoExpiracaoDoCodigo = null;
 
                     _usuarioRepository.Alterar(usuario);
-                    await _usuarioRepository.UnitOfWork.Commit();
+                    if (!await _usuarioRepository.UnitOfWork.Commit())
+                    {
+                        Notificator.Handle("Ocorreu um problema ao atualizar os dados do usuario no banco de dados.");
+                        return null;
+                    }
                     return null;
                 }
 
