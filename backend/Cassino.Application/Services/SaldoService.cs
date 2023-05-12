@@ -47,7 +47,7 @@ namespace Cassino.Application.Services
             usuario.Saldo = saldoUsuarioDto.Saldo;
             _clienteRepository.Alterar(usuario);
 
-            if (await _clienteRepository.UnitOfWork.Commit())
+            if (await _clienteRepository.UnitOfWork.Commit()) //Chamar metodo que vai registrar uma nova aposta.
                 return true;
             return false;
         }
