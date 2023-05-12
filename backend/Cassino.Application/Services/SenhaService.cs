@@ -26,6 +26,7 @@ using System.Net;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using static Org.BouncyCastle.Crypto.Engines.SM2Engine;
 using static System.Net.WebRequestMethods;
 
 namespace Cassino.Application.Services
@@ -120,8 +121,34 @@ namespace Cassino.Application.Services
             return true;
         }
 
+        public async Task<bool> Solicitar(string email)
+        {
+            var usuario = await EmailExiste(email);
+            if (usuario == null)
+                return false;
+            var usuarioPreenchido = await GerarCodigoRedefinicaoSenha(usuario);
+            if (usuarioPreenchido == null)
+                return false;
+            var EmailFoiEnviado = await EmailRedefinicaoSenha(usuarioPreenchido);
+            if (EmailFoiEnviado)
+                return true;
+            return false;
+        }
+
 
         //Metodos de RedefinirSenha
+        public async Task<bool> Redefinir(string codigo, AlterarSenhaDto novaSenha)
+        {
+            var usuario = await CodigoExiste(codigo);
+            if (usuario == null)
+                return false;
+            if (!VerificarSenha(novaSenha))
+                return false;
+            if (await SalvarNovaSenha(usuario, novaSenha))
+                return true;
+            return false;
+        }
+
         public async Task<Usuario?> CodigoExiste(string codigo)
         {
             var usuario = await _usuarioRepository.ObterPorCodigoRecuperacaoSenha(codigo);

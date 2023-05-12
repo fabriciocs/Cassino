@@ -24,16 +24,8 @@ namespace Cassino.Api.Controllers.Usuario
         [ProducesResponseType(typeof(Nullable), StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> SolicitarRedefinicaoSenha([FromForm] string email)
         {
-            var usuario = await _senhaService.EmailExiste(email);
-            if (usuario == null)
-                return BadRequest();
-            var usuarioPreenchido = await _senhaService.GerarCodigoRedefinicaoSenha(usuario);
-            if (usuarioPreenchido == null)
-                return BadRequest();
-            var EmailFoiEnviado = await _senhaService.EmailRedefinicaoSenha(usuarioPreenchido);
-            if (EmailFoiEnviado)
-                return NoContentResponse();
-            return BadRequest();
+            var resultado = await _senhaService.Solicitar(email);
+            return resultado ? NoContentResponse() : BadRequest();
         }
 
         [HttpPost("redefinir-senha/codigo={code}")]
@@ -42,14 +34,8 @@ namespace Cassino.Api.Controllers.Usuario
         [ProducesResponseType(typeof(Nullable), StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> RedefinirSenha(string code, [FromForm] AlterarSenhaDto novaSenha) 
         {
-            var usuario = await _senhaService.CodigoExiste(code);
-            if (usuario == null)
-                return BadRequest();
-            if (!_senhaService.VerificarSenha(novaSenha))
-                return BadRequest();
-            if (await _senhaService.SalvarNovaSenha(usuario, novaSenha))
-                return NoContentResponse();
-            return BadRequest();
+            var resultado = await _senhaService.Redefinir(code, novaSenha);
+            return resultado ? NoContentResponse() : BadRequest();
         }
 
         [HttpPut("alterar-senha")]
@@ -59,7 +45,7 @@ namespace Cassino.Api.Controllers.Usuario
         public async Task<IActionResult> AlterarSenha([FromForm] string senhaAntiga, [FromForm] AlterarSenhaDto alterarSenhaDto)
         {
             var resultado = await _senhaService.AlterarSenhaLogin(senhaAntiga, alterarSenhaDto);
-            return resultado ? NoContentResponse() : BadRequest(); 
+            return resultado ? NoContentResponse() : BadRequest();
         }
     }
 }

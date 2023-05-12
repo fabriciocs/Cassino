@@ -10,12 +10,16 @@ namespace Cassino.Application.Contracts
 {
     public interface ISenhaService
     {
+        Task<bool> Solicitar(string email);
         Task<Usuario> EmailExiste(string email);
         Task<Usuario?> GerarCodigoRedefinicaoSenha(Usuario usuario);
         Task<bool> EmailRedefinicaoSenha(Usuario usuarioPreenchido);
+
+        Task<bool> Redefinir(string codigo, AlterarSenhaDto novaSenha);
         Task<Usuario?> CodigoExiste(string codigo);
         bool VerificarSenha(AlterarSenhaDto novaSenha);
         Task<bool> SalvarNovaSenha(Usuario usuario, AlterarSenhaDto alterarSenha);
+
         Task<bool> AlterarSenhaLogin(string novaSenha, AlterarSenhaDto alterarSenhaDto);
     }
 }
