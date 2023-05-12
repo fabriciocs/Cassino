@@ -11,7 +11,7 @@ namespace Cassino.Domain.Entities
         public int Id { get; set; }
         public int IdUsuario { get; set; }
         public decimal Valor { get; set; }
-        public DateOnly Data { get; set; }
+        public DateTime Data { get; set; } = DateTime.UtcNow;
         public GameName Jogo { get; set; }
     }
 
