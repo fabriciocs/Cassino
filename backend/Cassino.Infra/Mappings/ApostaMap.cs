@@ -14,7 +14,13 @@ namespace Cassino.Infra.Mappings
         public void Configure(EntityTypeBuilder<Aposta> builder)
         {
             builder
-                .Property(a => a.IdUsuario);
+                .HasKey(a => a.Id);
+
+            builder
+                .HasOne(a => a.Usuario)
+                .WithMany(u => u.Apostas)
+                .HasForeignKey(a => a.IdUsuario)
+                .OnDelete(DeleteBehavior.Cascade);
 
             builder
                 .Property(a => a.Valor)

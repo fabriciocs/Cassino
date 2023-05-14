@@ -13,6 +13,7 @@ namespace Cassino.Domain.Entities
         public decimal Valor { get; set; }
         public DateTime Data { get; set; } = DateTime.UtcNow;
         public GameName Jogo { get; set; }
+        public Usuario Usuario { get; set; } = null!;
     }
 
     public enum GameName

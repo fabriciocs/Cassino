@@ -15,6 +15,7 @@ public class Usuario : Entity, ISoftDelete, IAggregateRoot
     public DateOnly DataDeNascimento { get; set; }
     public bool Desativado { get; set; }
     public decimal Saldo { get; set; }
+    public List<Aposta> Apostas { get; set; } = null!;
 
     public override bool Validar(out ValidationResult validationResult)
     {
