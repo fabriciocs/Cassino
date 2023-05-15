@@ -29,7 +29,7 @@ namespace Cassino.Infra.Repositories
             await Context.Apostas.AddAsync(aposta);
         }
 
-        public async Task<List<Aposta>> ObterPorId(Usuario usuario)
+        public async Task<List<Aposta>> ObterPorUsuario(Usuario usuario)
         {
             return await Context.Apostas
                 .Where(a => a.IdUsuario == usuario.Id)
