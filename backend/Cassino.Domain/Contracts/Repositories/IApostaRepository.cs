@@ -9,6 +9,8 @@ namespace Cassino.Domain.Contracts.Repositories
 {
     public interface IApostaRepository
     {
-        void NovoRegistro(Aposta NovaAposta);
+        Task Adicionar(Aposta aposta);
+        Task<List<Aposta>> ObterPorId(Usuario usuario);
+        Task<List<Aposta>> ObterTodas();
     }
 }
