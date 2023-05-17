@@ -14,15 +14,13 @@ using System.Threading.Tasks;
 
 namespace Cassino.Infra.Repositories
 {
-    internal class ApostaRepository : IApostaRepository
+    internal class ApostaRepository : Repository<Aposta>, IApostaRepository
     {
         protected readonly BaseApplicationDbContext Context;
-        public ApostaRepository(BaseApplicationDbContext context)
+        public ApostaRepository(BaseApplicationDbContext context) : base(context)
         {
             Context = context;
         }
-
-        public IUnitOfWork UnitOfWork => Context;
 
         public async Task Adicionar(Aposta aposta)
         {

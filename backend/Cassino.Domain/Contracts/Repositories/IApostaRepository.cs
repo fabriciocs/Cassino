@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Cassino.Domain.Contracts.Repositories
 {
-    public interface IApostaRepository
+    public interface IApostaRepository : IRepository<Aposta>
     {
         Task Adicionar(Aposta aposta);
         Task<List<Aposta>> ObterPorUsuario(Usuario usuario);

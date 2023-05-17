@@ -1,4 +1,5 @@
-﻿using Cassino.Application.Dtos.V1.Saldo;
+﻿using Cassino.Application.Dtos.V1.Aposta;
+using Cassino.Application.Dtos.V1.Saldo;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,6 @@ namespace Cassino.Application.Contracts
     public interface ISaldoService
     {
         Task<SaldoUsuarioDto> BuscarSaldo(int id);
-        Task<Boolean> AtualizarSaldo(SaldoUsuarioDto saldoUsuarioDto);
+        Task<Boolean> AtualizarSaldo(AdicionarApostaDto apostaDto);
     }
 }
