@@ -1,6 +1,9 @@
 ﻿using Cassino.Application.Contracts;
+using Cassino.Application.Dtos.V1.Auth;
 using Cassino.Application.Notification;
 using Microsoft.AspNetCore.Mvc;
+using OpenTracing.Tag;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace Cassino.Api.Controllers.V1.Gerencia
 {
@@ -14,6 +17,8 @@ namespace Cassino.Api.Controllers.V1.Gerencia
         }
 
         [HttpGet]
+        [SwaggerOperation(Summary = "Lista todas as apostas registradas.", Tags = new[] { "Administrador - Listagem de Apostas" })]
+        [ProducesResponseType(typeof(AdministradorAutenticadoDto), StatusCodes.Status200OK)]
         public async Task<IActionResult> BuscarTodasApostas()
         {
             var apostas = _apostaService.ObterTodasApostas();
@@ -21,6 +26,8 @@ namespace Cassino.Api.Controllers.V1.Gerencia
         }
 
         [HttpGet("{id}")]
+        [SwaggerOperation(Summary = "Lista todas as apostas registradas de um jogador/usuário.", Tags = new[] { "Administrador - Listagem de Apostas" })]
+        [ProducesResponseType(typeof(AdministradorAutenticadoDto), StatusCodes.Status200OK)]
         public async Task<IActionResult> BuscarApostaUsuario(int id)
         {
             var apostasUsuario = _apostaService.ObterApostasDeUsuario(id);
