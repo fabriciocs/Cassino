@@ -17,8 +17,6 @@ namespace Cassino.Api.Controllers.V1.Gerencia
         public async Task<IActionResult> BuscarTodasApostas()
         {
             var apostas = _apostaService.ObterTodasApostas();
-            if(apostas == null)
-                return NotFound();
             return Ok(apostas);
         }
 
@@ -26,8 +24,6 @@ namespace Cassino.Api.Controllers.V1.Gerencia
         public async Task<IActionResult> BuscarApostaUsuario(int id)
         {
             var apostasUsuario = _apostaService.ObterApostasDeUsuario(id);
-            if(apostasUsuario == null)
-                return NotFound();
             return Ok(apostasUsuario);
         }
 

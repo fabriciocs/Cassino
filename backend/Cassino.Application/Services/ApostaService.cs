@@ -34,14 +34,22 @@ namespace Cassino.Application.Services
             if(usuario != null)
             {
                 var listaApostasDeUsuario = await _apostaRepository.ObterPorUsuario(usuario);
+                if (listaApostasDeUsuario.Count != 0)
+                    return listaApostasDeUsuario;
+                Notificator.Handle("Lista vazia: Ainda não existem apostas registradas.");
                 return listaApostasDeUsuario;
             }
+            Notificator.HandleNotFoundResource();
             return null;
         }
 
         public async Task<List<Aposta>> ObterTodasApostas()
         {
-            return await _apostaRepository.ObterTodas();
+            var listaApostas = await _apostaRepository.ObterTodas();
+            if (listaApostas.Count != 0)
+                return listaApostas;
+            Notificator.Handle("Lista vazia: Esse usuario ainda não tem apostas registradas.");
+            return listaApostas;
         }
     }
 }
