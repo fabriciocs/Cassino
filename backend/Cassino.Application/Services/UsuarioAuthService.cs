@@ -53,7 +53,7 @@ public class UsuarioAuthService : BaseService, IUsuarioAuthService
         Notificator.Handle("Combinação de email e senha incorreta!");
         return null;
     }
-
+    
     public Task<string> CreateTokenCliente(Usuario usuario)
     {
         var tokenHandler = new JwtSecurityTokenHandler();
