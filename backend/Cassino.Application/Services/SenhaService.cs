@@ -91,7 +91,7 @@ namespace Cassino.Application.Services
             {
                 Nome = usuarioPreenchido.Nome,
                 Codigo = usuarioPreenchido.CodigoRecuperacaoSenha,
-                Url = "https://sys-bet.vercel.app",
+                Url = "http://localhost:5173/redefinir-senha",
                 ExpiracaoEmHoras = 3
             };
 
