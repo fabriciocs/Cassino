@@ -28,4 +28,27 @@ public class ClientesCadastroController : BaseController
         var usuario = await _usuarioService.Cadastrar(dto);
         return CreatedResponse("", usuario);
     }
+    
+    [HttpPut("/{id}")]
+    [AllowAnonymous]
+    [SwaggerOperation(Summary = "Alterar um Cliente.", Tags = new [] { "Usuario - Cliente" })]
+    [ProducesResponseType(typeof(UsuarioDto), StatusCodes.Status201Created)]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+    [ProducesResponseType(StatusCodes.Status403Forbidden)]
+    public async Task<IActionResult> Alterar([FromForm] AlterarUsuarioDto dto, int id)
+    {
+        var usuario = await _usuarioService.Alterar(id, dto);
+        return CreatedResponse("", usuario);
+    }
+    
+    [HttpGet("/{id}")]
+    [SwaggerOperation(Summary = "Obter um Cliente.", Tags = new [] { "Usuario - Cliente" })]
+    [ProducesResponseType(typeof(UsuarioDto), StatusCodes.Status201Created)]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+    [ProducesResponseType(StatusCodes.Status403Forbidden)]
+    public async Task<IActionResult> ObterPorId(int id)
+    {
+        var usuario = await _usuarioService.ObterPorId(id);
+        return CreatedResponse("", usuario);
+    }
 }
