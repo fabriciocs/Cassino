@@ -25,7 +25,7 @@ namespace Cassino.Application.Services
         public async Task RegistrarAposta(AdicionarApostaDto apostaDto)
         {
             var aposta = Mapper.Map<Aposta>(apostaDto);
-            await _apostaRepository.Adicionar(aposta);
+            _apostaRepository.Adicionar(aposta);
         }
 
         public async Task<List<Aposta>> ObterApostasDeUsuario(int id)

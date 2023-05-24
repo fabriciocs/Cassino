@@ -9,7 +9,7 @@ namespace Cassino.Domain.Contracts.Repositories
 {
     public interface IApostaRepository : IRepository<Aposta>
     {
-        Task Adicionar(Aposta aposta);
+        void Adicionar(Aposta aposta);
         Task<List<Aposta>> ObterPorUsuario(Usuario usuario);
         Task<List<Aposta>> ObterTodas();
     }

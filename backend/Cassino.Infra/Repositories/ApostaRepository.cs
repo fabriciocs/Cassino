@@ -22,7 +22,7 @@ namespace Cassino.Infra.Repositories
             Context = context;
         }
 
-        public async Task Adicionar(Aposta aposta)
+        public async void Adicionar(Aposta aposta)
         {
             await Context.Apostas.AddAsync(aposta);
         }
