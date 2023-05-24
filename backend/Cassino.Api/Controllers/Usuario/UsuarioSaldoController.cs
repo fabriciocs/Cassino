@@ -30,7 +30,7 @@ public class UsuarioSaldoController : BaseController
     [SwaggerOperation(Summary = "Atualiza o Saldo de um Cliente.", Tags = new[] { "Usuario - Cliente - Saldo" })]
     [ProducesResponseType(typeof(Nullable), StatusCodes.Status204NoContent)]
     [ProducesResponseType(typeof(Nullable), StatusCodes.Status400BadRequest)]
-    public async Task<IActionResult> AtualizarSaldo([FromQuery] AdicionarApostaDto apostaDto)
+    public async Task<IActionResult> AtualizarSaldo([FromBody] AdicionarApostaDto apostaDto)
     {
         var usuarioAtualizado = await _saldoService.AtualizarSaldo(apostaDto);
         return usuarioAtualizado ? NoContentResponse() : BadRequest();
