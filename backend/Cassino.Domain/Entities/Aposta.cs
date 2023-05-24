@@ -1,4 +1,5 @@
 ﻿using Cassino.Domain.Contracts;
+using System.ComponentModel;
 
 namespace Cassino.Domain.Entities
 {
@@ -14,13 +15,21 @@ namespace Cassino.Domain.Entities
 
     public enum GameName
     {
-        Mines,
-        Aviator,
-        Roleta,
-        Penalty,
-        Dados,
-        SpaceMan,
-        FootballStudio,
-        BlackJack
+        [Description("Game: Mines")]
+        Mines = 1,
+        [Description("Game: Aviator")]
+        Aviator = 2,
+        [Description("Game: Roleta")]
+        Roleta = 3,
+        [Description("Game: Penalty")]
+        Penalty = 4,
+        [Description("Game: Dados")]
+        Dados = 5,
+        [Description("Game: Space Man")]
+        SpaceMan = 6,
+        [Description("Game: Football Studio")]
+        FootballStudio = 7,
+        [Description("Game: Black Jack")]
+        BlackJack = 8
     }
 }
