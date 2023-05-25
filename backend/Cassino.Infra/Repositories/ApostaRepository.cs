@@ -1,16 +1,9 @@
-﻿using Cassino.Domain.Contracts;
-using Cassino.Domain.Contracts.Paginacao;
-using Cassino.Domain.Contracts.Repositories;
+﻿using Cassino.Domain.Contracts.Repositories;
 using Cassino.Domain.Entities;
 using Cassino.Infra.Abstractions;
 using Cassino.Infra.Context;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace Cassino.Infra.Repositories
 {

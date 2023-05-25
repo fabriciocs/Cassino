@@ -4,11 +4,6 @@ using Cassino.Application.Dtos.V1.Aposta;
 using Cassino.Application.Notification;
 using Cassino.Domain.Contracts.Repositories;
 using Cassino.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Cassino.Application.Services
 {
@@ -22,7 +17,7 @@ namespace Cassino.Application.Services
             _usuarioRepository = usuarioRepository;
         }
 
-        public async Task RegistrarAposta(AdicionarApostaDto apostaDto)
+        public void RegistrarAposta(AdicionarApostaDto apostaDto)
         {
             var aposta = Mapper.Map<Aposta>(apostaDto);
             _apostaRepository.Adicionar(aposta);

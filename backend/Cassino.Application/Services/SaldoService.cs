@@ -4,13 +4,6 @@ using Cassino.Application.Dtos.V1.Aposta;
 using Cassino.Application.Dtos.V1.Saldo;
 using Cassino.Application.Notification;
 using Cassino.Domain.Contracts.Repositories;
-using Cassino.Domain.Entities;
-using Microsoft.AspNetCore.Identity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Cassino.Application.Services
 {
@@ -40,13 +33,13 @@ namespace Cassino.Application.Services
             return null;
         }
 
-        public async Task<Boolean> AtualizarSaldo(AdicionarApostaDto apostaDto)
+        public async Task<SaldoUsuarioDto> AtualizarSaldo(AdicionarApostaDto apostaDto)
         {
             var usuario = await _clienteRepository.ObterPorId(apostaDto.IdUsuario);
             if (usuario == null)
             {
                 Notificator.Handle("Não foi possível encontrar o usuário no banco de dados.");
-                return false;
+                return null;
             }
 
             usuario.Saldo += apostaDto.Valor;
@@ -55,16 +48,17 @@ namespace Cassino.Application.Services
             if (!await _clienteRepository.UnitOfWork.Commit())
             {
                 Notificator.Handle("Não foi possível atualizar o saldo do usuário no banco de dados.");
-                return false;
+                return null;
             }
 
             _apostaService.RegistrarAposta(apostaDto);
             if (!await _apostaRepository.UnitOfWork.Commit())
             {
                 Notificator.Handle("Não foi possível registrar a aposta do usuário no banco de dados.");
-                return false;
+                return null;
             }
-            return true;
+
+            return Mapper.Map<SaldoUsuarioDto>(usuario);
         }
     }
 }

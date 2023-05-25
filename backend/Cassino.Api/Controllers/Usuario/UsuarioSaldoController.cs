@@ -1,6 +1,5 @@
 ﻿using Cassino.Application.Contracts;
 using Cassino.Application.Dtos.V1.Aposta;
-using Cassino.Application.Dtos.V1.Saldo;
 using Cassino.Application.Notification;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
@@ -23,16 +22,20 @@ public class UsuarioSaldoController : BaseController
     public async Task<IActionResult> BuscarSaldo(int id)
     {
         var saldo = await _saldoService.BuscarSaldo(id);
-        return Ok(saldo.Saldo);
+        if(saldo != null)
+            return Ok(saldo.Saldo);
+        return NotFound();
     }
 
     [HttpPut("atualizar-saldo")]
     [SwaggerOperation(Summary = "Atualiza o Saldo de um Cliente.", Tags = new[] { "Usuario - Cliente - Saldo" })]
-    [ProducesResponseType(typeof(Nullable), StatusCodes.Status204NoContent)]
+    [ProducesResponseType(typeof(decimal), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(Nullable), StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> AtualizarSaldo([FromBody] AdicionarApostaDto apostaDto)
     {
         var usuarioAtualizado = await _saldoService.AtualizarSaldo(apostaDto);
-        return usuarioAtualizado ? NoContentResponse() : BadRequest();
+        if(usuarioAtualizado != null)
+            return Ok(usuarioAtualizado.Saldo);
+        return BadRequest();
     }
 }

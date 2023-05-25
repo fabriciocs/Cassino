@@ -2,7 +2,6 @@
 using Cassino.Application.Dtos.V1.Auth;
 using Cassino.Application.Notification;
 using Microsoft.AspNetCore.Mvc;
-using OpenTracing.Tag;
 using Swashbuckle.AspNetCore.Annotations;
 
 namespace Cassino.Api.Controllers.V1.Gerencia
@@ -21,7 +20,7 @@ namespace Cassino.Api.Controllers.V1.Gerencia
         [ProducesResponseType(typeof(AdministradorAutenticadoDto), StatusCodes.Status200OK)]
         public async Task<IActionResult> BuscarTodasApostas()
         {
-            var apostas = _apostaService.ObterTodasApostas();
+            var apostas = await _apostaService.ObterTodasApostas();
             return Ok(apostas);
         }
 
@@ -30,7 +29,7 @@ namespace Cassino.Api.Controllers.V1.Gerencia
         [ProducesResponseType(typeof(AdministradorAutenticadoDto), StatusCodes.Status200OK)]
         public async Task<IActionResult> BuscarApostaUsuario(int id)
         {
-            var apostasUsuario = _apostaService.ObterApostasDeUsuario(id);
+            var apostasUsuario = await _apostaService.ObterApostasDeUsuario(id);
             return Ok(apostasUsuario);
         }
 

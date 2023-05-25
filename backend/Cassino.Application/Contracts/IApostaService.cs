@@ -10,7 +10,7 @@ namespace Cassino.Application.Contracts
 {
     public interface IApostaService
     {
-        Task RegistrarAposta(AdicionarApostaDto apostaDto);
+        void RegistrarAposta(AdicionarApostaDto apostaDto);
         Task<List<Aposta>> ObterApostasDeUsuario(int id);
         Task<List<Aposta>> ObterTodasApostas();
     }
