@@ -3,13 +3,6 @@ using Cassino.Application.Contracts;
 using Cassino.Application.Dtos.V1.Saldo;
 using Cassino.Application.Notification;
 using Cassino.Domain.Contracts.Repositories;
-using Cassino.Domain.Entities;
-using Microsoft.AspNetCore.Identity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Cassino.Application.Services
 {
