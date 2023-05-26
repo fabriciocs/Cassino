@@ -29,19 +29,19 @@ public class ClientesCadastroController : BaseController
         return CreatedResponse("", usuario);
     }
     
-    [HttpPut("/{id}")]
+    [HttpPut("{id}")]
     [AllowAnonymous]
     [SwaggerOperation(Summary = "Alterar um Cliente.", Tags = new [] { "Usuario - Cliente" })]
     [ProducesResponseType(typeof(UsuarioDto), StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     [ProducesResponseType(StatusCodes.Status403Forbidden)]
-    public async Task<IActionResult> Alterar([FromForm] AlterarUsuarioDto dto, int id)
+    public async Task<IActionResult> Alterar([FromBody] AlterarUsuarioDto dto, int id)
     {
         var usuario = await _usuarioService.Alterar(id, dto);
         return CreatedResponse("", usuario);
     }
     
-    [HttpGet("/{id}")]
+    [HttpGet("{id}")]
     [SwaggerOperation(Summary = "Obter um Cliente.", Tags = new [] { "Usuario - Cliente" })]
     [ProducesResponseType(typeof(UsuarioDto), StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]

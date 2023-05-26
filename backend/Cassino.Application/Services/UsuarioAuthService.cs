@@ -5,6 +5,8 @@ using AutoMapper;
 using Cassino.Application.Contracts;
 using Cassino.Application.Dtos.V1.Auth;
 using Cassino.Application.Notification;
+using Cassino.Core.Enums;
+using Cassino.Core.Extensions;
 using Cassino.Core.Settings;
 using Cassino.Domain.Contracts.Repositories;
 using Cassino.Domain.Entities;
@@ -64,7 +66,8 @@ public class UsuarioAuthService : BaseService, IUsuarioAuthService
             {
                 new Claim(ClaimTypes.NameIdentifier, usuario.Id.ToString()),
                 new Claim(ClaimTypes.Name, usuario.Nome),
-                new Claim(ClaimTypes.Email, usuario.Email)
+                new Claim(ClaimTypes.Email, usuario.Email),
+                new Claim("TipoUsuario", ETipoUsuario.Comum.ToDescriptionString())
             }),
             Expires = DateTime.UtcNow.AddHours(2),
             SigningCredentials =
