@@ -1,33 +1,18 @@
 ﻿using AutoMapper;
 using Cassino.Application.Contracts;
-using Cassino.Application.Dtos.V1.Auth;
 using Cassino.Application.Dtos.V1.Senha;
 using Cassino.Application.Notification;
-using Cassino.Core.Settings;
 using Cassino.Domain.Contracts.Repositories;
 using Cassino.Domain.Entities;
-using Cassino.Infra.Repositories;
 using MailKit.Net.Smtp;
 using MailKit.Security;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Logging.Abstractions;
-using Microsoft.IdentityModel.Tokens;
 using MimeKit;
 using MimeKit.Text;
 using RazorLight;
-using System;
-using System.Collections.Generic;
-using System.IdentityModel.Tokens.Jwt;
-using System.IO;
-using System.Linq;
-using System.Net;
 using System.Security.Claims;
-using System.Text;
-using System.Threading.Tasks;
-using static Org.BouncyCastle.Crypto.Engines.SM2Engine;
-using static System.Net.WebRequestMethods;
 
 namespace Cassino.Application.Services
 {
@@ -47,6 +32,21 @@ namespace Cassino.Application.Services
 
 
         //Metodos de SolicitarRedefinicaoSenha
+        public async Task<bool> Solicitar(string email)
+        {
+            var usuario = await EmailExiste(email);
+            if (usuario == null)
+                return false;
+            var usuarioPreenchido = await GerarCodigoRedefinicaoSenha(usuario);
+            if (usuarioPreenchido == null)
+                return false;
+            var EmailFoiEnviado = await EmailRedefinicaoSenha(usuarioPreenchido);
+            if (EmailFoiEnviado)
+                return true;
+            return false;
+        }
+
+
         public async Task<Usuario> EmailExiste(string email)
         {
             var usuario = await _usuarioRepository.ObterPorEmail(email);
@@ -79,8 +79,8 @@ namespace Cassino.Application.Services
 
         public async Task<bool> EmailRedefinicaoSenha(Usuario usuarioPreenchido)
         {
-            //Configuração modelo template e-mail
-            string baseDirectoryPath = @"Cassino\backend\";
+#region Configuração modelo template e-mail
+            string baseDirectoryPath = @"Cassino\src\";
             
             var engine = new RazorLightEngineBuilder()
                 .UseFileSystemProject(baseDirectoryPath)
@@ -91,20 +91,22 @@ namespace Cassino.Application.Services
             {
                 Nome = usuarioPreenchido.Nome,
                 Codigo = usuarioPreenchido.CodigoRecuperacaoSenha,
-                Url = "http://localhost:5173/redefinir-senha",
+                Url = _config.GetSection("RedefinirPageUrl").Value,
                 ExpiracaoEmHoras = 3
             };
+            #endregion
 
             string template = await engine.CompileRenderAsync("TemplateEmailResetarSenha.cshtml", modeloEmail);
 
-            //Configuração E-mail
+# region Configuração E-mail
             var email = new MimeMessage();
             email.From.Add(MailboxAddress.Parse(_config.GetSection("EmailRemetenteUsername").Value));
             email.To.Add(MailboxAddress.Parse(usuarioPreenchido.Email));
-            email.Subject = "Redefinição de Senha";
+            email.Subject = "BigBet - Redefinição de Senha";
             email.Body = new TextPart(TextFormat.Html) { Text = template };
+            #endregion
 
-            //Configuração de servidor SMTP Gmail
+#region Configuração de servidor SMTP Gmail
             using var smtp = new SmtpClient();
             try
             {
@@ -119,20 +121,7 @@ namespace Cassino.Application.Services
                 return false;
             }
             return true;
-        }
-
-        public async Task<bool> Solicitar(string email)
-        {
-            var usuario = await EmailExiste(email);
-            if (usuario == null)
-                return false;
-            var usuarioPreenchido = await GerarCodigoRedefinicaoSenha(usuario);
-            if (usuarioPreenchido == null)
-                return false;
-            var EmailFoiEnviado = await EmailRedefinicaoSenha(usuarioPreenchido);
-            if (EmailFoiEnviado)
-                return true;
-            return false;
+            #endregion
         }
 
 
