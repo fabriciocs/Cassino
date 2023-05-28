@@ -62,7 +62,7 @@ namespace Cassino.Application.Services
             Guid guid = Guid.NewGuid();
             string codigo = guid.ToString();
             DateTime tempoExpiracaoCodigo = DateTime.UtcNow.AddHours(3);
-
+            
             //Salva o codigo e o timeStamp no banco atrelado a conta do usuario. 
             usuario.CodigoRecuperacaoSenha = codigo;
             usuario.TempoExpiracaoDoCodigo = tempoExpiracaoCodigo;
@@ -79,11 +79,15 @@ namespace Cassino.Application.Services
 
         public async Task<bool> EmailRedefinicaoSenha(Usuario usuarioPreenchido)
         {
-#region Configuração modelo template e-mail
-            string baseDirectoryPath = @"Cassino\src\";
-            
+            #region Configuração do Template Email
+            string baseDirectoryPath = Directory.GetCurrentDirectory();
+            string cut = "Cassino.Api";
+            int cutIndex = baseDirectoryPath.IndexOf(cut);
+            string pathBase = baseDirectoryPath.Substring(0, cutIndex);
+            string path = pathBase + @"Cassino.Application\EmailTemplate";
+
             var engine = new RazorLightEngineBuilder()
-                .UseFileSystemProject(baseDirectoryPath)
+                .UseFileSystemProject(path)
                 .UseMemoryCachingProvider()
                 .Build();
 
@@ -94,11 +98,12 @@ namespace Cassino.Application.Services
                 Url = _config.GetSection("RedefinirPageUrl").Value,
                 ExpiracaoEmHoras = 3
             };
+           
+            string template = await engine.CompileRenderAsync("TemplateEmailResetarSenha.cshtml", modeloEmail);
             #endregion
 
-            string template = await engine.CompileRenderAsync("TemplateEmailResetarSenha.cshtml", modeloEmail);
 
-# region Configuração E-mail
+            #region Configuração E-mail
             var email = new MimeMessage();
             email.From.Add(MailboxAddress.Parse(_config.GetSection("EmailRemetenteUsername").Value));
             email.To.Add(MailboxAddress.Parse(usuarioPreenchido.Email));
@@ -106,7 +111,7 @@ namespace Cassino.Application.Services
             email.Body = new TextPart(TextFormat.Html) { Text = template };
             #endregion
 
-#region Configuração de servidor SMTP Gmail
+            #region Configuração de servidor SMTP Gmail
             using var smtp = new SmtpClient();
             try
             {

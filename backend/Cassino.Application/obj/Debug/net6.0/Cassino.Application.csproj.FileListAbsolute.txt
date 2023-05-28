@@ -1,22 +1,3 @@
-C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Application\bin\Debug\net6.0\Cassino.Application.deps.json
-C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Application\bin\Debug\net6.0\Cassino.Application.dll
-C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Application\bin\Debug\net6.0\Cassino.Application.pdb
-C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Application\bin\Debug\net6.0\Cassino.Core.dll
-C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Application\bin\Debug\net6.0\Cassino.Domain.dll
-C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Application\bin\Debug\net6.0\Cassino.Infra.dll
-C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Application\bin\Debug\net6.0\Cassino.Core.pdb
-C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Application\bin\Debug\net6.0\Cassino.Domain.pdb
-C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Application\bin\Debug\net6.0\Cassino.Infra.pdb
-C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Application\obj\Debug\net6.0\Cassino.Application.csproj.AssemblyReference.cache
-C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Application\obj\Debug\net6.0\Cassino.Application.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Application\obj\Debug\net6.0\Cassino.Application.AssemblyInfoInputs.cache
-C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Application\obj\Debug\net6.0\Cassino.Application.AssemblyInfo.cs
-C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Application\obj\Debug\net6.0\Cassino.Application.csproj.CoreCompileInputs.cache
-C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Application\obj\Debug\net6.0\Cassino.Application.csproj.CopyComplete
-C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Application\obj\Debug\net6.0\Cassino.Application.dll
-C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Application\obj\Debug\net6.0\refint\Cassino.Application.dll
-C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Application\obj\Debug\net6.0\Cassino.Application.pdb
-C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Application\obj\Debug\net6.0\ref\Cassino.Application.dll
 C:\Users\felip\OneDrive\Documentos\GitHub\Cassino\backend\Cassino.Application\bin\Debug\net6.0\Cassino.Application.deps.json
 C:\Users\felip\OneDrive\Documentos\GitHub\Cassino\backend\Cassino.Application\bin\Debug\net6.0\Cassino.Application.dll
 C:\Users\felip\OneDrive\Documentos\GitHub\Cassino\backend\Cassino.Application\bin\Debug\net6.0\Cassino.Application.pdb
@@ -318,6 +299,10 @@ C:\Users\felip\OneDrive\Documentos\GitHub\Cassino\backend\Cassino.Application\bi
 C:\Users\felip\OneDrive\Documentos\GitHub\Cassino\backend\Cassino.Application\bin\Debug\net6.0\refs\System.Xml.XPath.dll
 C:\Users\felip\OneDrive\Documentos\GitHub\Cassino\backend\Cassino.Application\bin\Debug\net6.0\refs\System.Xml.XPath.XDocument.dll
 C:\Users\felip\OneDrive\Documentos\GitHub\Cassino\backend\Cassino.Application\bin\Debug\net6.0\refs\WindowsBase.dll
+C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Application\bin\Debug\net6.0\EmailTemplate\TemplateEmailResetarSenha.cshtml
+C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Application\bin\Debug\net6.0\Cassino.Application.deps.json
+C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Application\bin\Debug\net6.0\Cassino.Application.dll
+C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Application\bin\Debug\net6.0\Cassino.Application.pdb
 C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Application\bin\Debug\net6.0\refs\Microsoft.AspNetCore.Antiforgery.dll
 C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Application\bin\Debug\net6.0\refs\Microsoft.AspNetCore.Authentication.Abstractions.dll
 C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Application\bin\Debug\net6.0\refs\Microsoft.AspNetCore.Authentication.Cookies.dll
@@ -600,3 +585,19 @@ C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Application\bi
 C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Application\bin\Debug\net6.0\refs\System.Xml.XPath.dll
 C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Application\bin\Debug\net6.0\refs\System.Xml.XPath.XDocument.dll
 C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Application\bin\Debug\net6.0\refs\WindowsBase.dll
+C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Application\bin\Debug\net6.0\Cassino.Core.dll
+C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Application\bin\Debug\net6.0\Cassino.Domain.dll
+C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Application\bin\Debug\net6.0\Cassino.Infra.dll
+C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Application\bin\Debug\net6.0\Cassino.Core.pdb
+C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Application\bin\Debug\net6.0\Cassino.Domain.pdb
+C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Application\bin\Debug\net6.0\Cassino.Infra.pdb
+C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Application\obj\Debug\net6.0\Cassino.Application.csproj.AssemblyReference.cache
+C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Application\obj\Debug\net6.0\Cassino.Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Application\obj\Debug\net6.0\Cassino.Application.AssemblyInfoInputs.cache
+C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Application\obj\Debug\net6.0\Cassino.Application.AssemblyInfo.cs
+C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Application\obj\Debug\net6.0\Cassino.Application.csproj.CoreCompileInputs.cache
+C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Application\obj\Debug\net6.0\Cassino.Application.csproj.CopyComplete
+C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Application\obj\Debug\net6.0\Cassino.Application.dll
+C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Application\obj\Debug\net6.0\refint\Cassino.Application.dll
+C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Application\obj\Debug\net6.0\Cassino.Application.pdb
+C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Application\obj\Debug\net6.0\ref\Cassino.Application.dll
