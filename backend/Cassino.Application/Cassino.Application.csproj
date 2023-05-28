@@ -1,14 +1,10 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
         <TargetFramework>net6.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
     </PropertyGroup>
-	
-	<PropertyGroup>
-		<PreserveCompilationContext>true</PreserveCompilationContext>
-	</PropertyGroup>
 
     <ItemGroup>
       <PackageReference Include="AutoMapper" Version="12.0.1" />
@@ -25,12 +21,6 @@
       <ProjectReference Include="..\Cassino.Core\Cassino.Core.csproj" />
       <ProjectReference Include="..\Cassino.Domain\Cassino.Domain.csproj" />
       <ProjectReference Include="..\Cassino.Infra\Cassino.Infra.csproj" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <None Update="EmailTemplate\TemplateEmailResetarSenha.cshtml">
-        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      </None>
     </ItemGroup>
 
 </Project>

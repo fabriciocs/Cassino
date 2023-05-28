@@ -32,3 +32,4 @@ C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Infra\obj\Debu
 C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Infra\obj\Debug\net6.0\refint\Cassino.Infra.dll
 C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Infra\obj\Debug\net6.0\Cassino.Infra.pdb
 C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Infra\obj\Debug\net6.0\ref\Cassino.Infra.dll
+C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Infra\bin\Debug\net6.0\EmailTemplate\TemplateEmailResetarSenha.cshtml
