@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using MimeKit;
 using MimeKit.Text;
+using Org.BouncyCastle.Utilities;
 using RazorLight;
 using System.Security.Claims;
 
@@ -116,7 +117,9 @@ namespace Cassino.Application.Services
             try
             {
                 smtp.Connect(_config.GetSection("EmailProvedor").Value, int.Parse(_config.GetSection("EmailPort").Value), SecureSocketOptions.StartTls);
-                smtp.Authenticate(_config.GetSection("EmailRemetenteUsername").Value, _config.GetSection("EmailRemetenteSenha").Value);
+                byte[] emailSenhaBytes = Convert.FromBase64String(_config.GetSection("EmailRemetenteSenha").Value);
+                string emailSenha = System.Text.Encoding.UTF8.GetString(emailSenhaBytes);
+                smtp.Authenticate(_config.GetSection("EmailRemetenteUsername").Value, emailSenha);
                 smtp.Send(email);
                 smtp.Disconnect(true);
             }
