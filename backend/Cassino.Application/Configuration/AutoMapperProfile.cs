@@ -23,6 +23,5 @@ public class AutoMapperProfile : Profile
         CreateMap<Application.Dtos.V1.Usuario.AlterarUsuarioDto, Usuario>().ReverseMap();
         CreateMap<Application.Dtos.V1.Usuario.UsuarioDto, Usuario>().ReverseMap();
         CreateMap<Application.Dtos.V1.Usuario.BuscarUsuarioDto, ResultadoPaginado<Usuario>>().ReverseMap();
-        CreateMap<Dtos.V1.Saldo.SaldoUsuarioDto, Usuario>().ReverseMap();
     }
 }
