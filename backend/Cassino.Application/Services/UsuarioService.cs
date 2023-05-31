@@ -60,7 +60,7 @@ public class UsuarioService : BaseService, IUsuarioService
             return null;
         }
 
-        Mapper.Map(usuario, dto);
+        Mapper.Map(dto, usuario);
         if (!await Validar(usuario))
         {
             return null;

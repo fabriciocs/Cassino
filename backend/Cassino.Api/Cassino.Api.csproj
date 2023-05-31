@@ -30,6 +30,7 @@
         <PackageReference Include="OpenTelemetry.Instrumentation.Http" Version="1.0.0-rc9.9" />
         <PackageReference Include="OpenTracing" Version="0.12.1" />
         <PackageReference Include="Pagar.me" Version="5.7.3" />
+        <PackageReference Include="RestSharp" Version="110.2.0" />
         <PackageReference Include="Serilog.AspNetCore" Version="6.0.1" />
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
         <PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="6.5.0" />
