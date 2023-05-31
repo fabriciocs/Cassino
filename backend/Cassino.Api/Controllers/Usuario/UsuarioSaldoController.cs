@@ -22,14 +22,16 @@ public class UsuarioSaldoController : BaseController
     public async Task<IActionResult> BuscarSaldo(int id)
     {
         var saldo = await _saldoService.BuscarSaldo(id);
-        return Ok(saldo.Saldo);
+        if(saldo != null)
+            return Ok(saldo.Saldo);
+        return NotFound();
     }
 
     [HttpPut]
     [SwaggerOperation(Summary = "Atualiza o Saldo de um Cliente.", Tags = new[] { "Usuario - Cliente - Saldo" })]
     [ProducesResponseType(typeof(Nullable), StatusCodes.Status204NoContent)]
     [ProducesResponseType(typeof(Nullable), StatusCodes.Status400BadRequest)]
-    public async Task<IActionResult> AtualizarSaldo([FromForm] SaldoUsuarioDto saldoUsuarioDto)
+    public async Task<IActionResult> AtualizarSaldo([FromBody] SaldoUsuarioDto saldoUsuarioDto)
     {
         var usuarioAtualizado = await _saldoService.AtualizarSaldo(saldoUsuarioDto);
         return usuarioAtualizado ? NoContentResponse() : BadRequest();
