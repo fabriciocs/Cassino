@@ -22,9 +22,7 @@ public class UsuarioSaldoController : BaseController
     public async Task<IActionResult> BuscarSaldo(int id)
     {
         var saldo = await _saldoService.BuscarSaldo(id);
-        if(saldo != null)
-            return Ok(saldo.Saldo);
-        return NotFound();
+        return Ok(saldo.Saldo);
     }
 
     [HttpPut]

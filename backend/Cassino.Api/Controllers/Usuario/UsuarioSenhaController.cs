@@ -1,7 +1,10 @@
 ﻿using Cassino.Application.Contracts;
+using Cassino.Application.Dtos.V1.Auth;
 using Cassino.Application.Dtos.V1.Senha;
 using Cassino.Application.Notification;
+using Cassino.Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
+using OpenTracing.Tag;
 using Swashbuckle.AspNetCore.Annotations;
 
 namespace Cassino.Api.Controllers.Usuario
