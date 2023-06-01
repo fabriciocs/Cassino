@@ -125,6 +125,14 @@
               "target": "Package",
               "version": "[0.12.1, )"
             },
+            "Pagar.me": {
+              "target": "Package",
+              "version": "[5.7.3, )"
+            },
+            "RestSharp": {
+              "target": "Package",
+              "version": "[110.2.0, )"
+            },
             "Serilog.AspNetCore": {
               "target": "Package",
               "version": "[6.0.1, )"
@@ -227,9 +235,17 @@
               "target": "Package",
               "version": "[11.5.2, )"
             },
+            "MailKit": {
+              "target": "Package",
+              "version": "[4.0.0, )"
+            },
             "Microsoft.Extensions.Options.ConfigurationExtensions": {
               "target": "Package",
               "version": "[7.0.0, )"
+            },
+            "RazorLight": {
+              "target": "Package",
+              "version": "[2.3.1, )"
             },
             "ScottBrady91.AspNetCore.Identity.Argon2PasswordHasher": {
               "target": "Package",

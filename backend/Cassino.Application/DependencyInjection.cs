@@ -39,6 +39,7 @@ public static class DependencyInjection
             .AddScoped<IRendaCasaService, RendaCasaService>()
             .AddScoped<IUsuarioService, UsuarioService>()
             .AddScoped<ISaldoService, SaldoService>()
+            .AddScoped<ISenhaService, SenhaService>()
             .AddScoped<IApostaService, ApostaService>()
             .AddScoped<IUsuarioAuthService, UsuarioAuthService>()
             .AddScoped<IPasswordHasher<Administrador>, Argon2PasswordHasher<Administrador>>()

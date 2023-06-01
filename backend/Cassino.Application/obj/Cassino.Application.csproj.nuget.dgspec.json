@@ -66,9 +66,17 @@
               "target": "Package",
               "version": "[11.5.2, )"
             },
+            "MailKit": {
+              "target": "Package",
+              "version": "[4.0.0, )"
+            },
             "Microsoft.Extensions.Options.ConfigurationExtensions": {
               "target": "Package",
               "version": "[7.0.0, )"
+            },
+            "RazorLight": {
+              "target": "Package",
+              "version": "[2.3.1, )"
             },
             "ScottBrady91.AspNetCore.Identity.Argon2PasswordHasher": {
               "target": "Package",

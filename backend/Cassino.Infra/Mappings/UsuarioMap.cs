@@ -41,5 +41,13 @@ public class UsuarioMap : IEntityTypeConfiguration<Usuario>
         builder
             .Property(c => c.Saldo)
             .HasPrecision(18, 2);
+
+        builder
+            .Property(c => c.CodigoRecuperacaoSenha)
+            .IsRequired(false);
+
+        builder
+            .Property(c => c.TempoExpiracaoDoCodigo)
+            .IsRequired(false);
     }
 }

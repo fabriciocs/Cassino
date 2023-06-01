@@ -120,6 +120,9 @@ namespace Cassino.Infra.Migrations
                         .HasColumnType("bit")
                         .HasDefaultValue(false);
 
+                    b.Property<string>("CodigoRecuperacaoSenha")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Cpf")
                         .IsRequired()
                         .HasMaxLength(14)
@@ -167,6 +170,9 @@ namespace Cassino.Infra.Migrations
                     b.Property<string>("Telefone")
                         .HasMaxLength(17)
                         .HasColumnType("nvarchar(17)");
+
+                    b.Property<DateTime?>("TempoExpiracaoDoCodigo")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
