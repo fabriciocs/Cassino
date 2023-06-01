@@ -85,7 +85,7 @@ namespace Cassino.Application.Services
             string cut = "Cassino.Api";
             int cutIndex = baseDirectoryPath.IndexOf(cut);
             string pathBase = baseDirectoryPath.Substring(0, cutIndex);
-            string path = pathBase + @"Cassino.Core\EmailTemplate";
+            string path = pathBase + "Cassino.Core\\EmailTemplate";
 
             var engine = new RazorLightEngineBuilder()
                 .UseFileSystemProject(path)

@@ -24,4 +24,10 @@
       <ProjectReference Include="..\Cassino.Infra\Cassino.Infra.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <None Update="EmailTemplate\TemplateEmailResetarSenha.cshtml">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+    </ItemGroup>
+
 </Project>
