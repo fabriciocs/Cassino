@@ -83,7 +83,7 @@ namespace Cassino.Application.Services
             #region Configuração do Template Email
             string baseDirectoryPath = Directory.GetCurrentDirectory();
             string cut = "Cassino.Api";
-            int cutIndex = baseDirectoryPath.IndexOf(cut);
+            int cutIndex = baseDirectoryPath.IndexOf(cut, StringComparison.Ordinal);
             string pathBase = baseDirectoryPath.Substring(0, cutIndex);
             string path = pathBase + "Cassino.Core\\EmailTemplate";
 
