@@ -193,7 +193,6 @@ C:\Users\felip\OneDrive\Documentos\GitHub\Cassino\backend\Cassino.Api\bin\Debug\
 C:\Users\felip\OneDrive\Documentos\GitHub\Cassino\backend\Cassino.Api\obj\Debug\net6.0\Cassino.Api.csproj.SuggestedBindingRedirects.cache
 C:\Users\felip\OneDrive\Documentos\GitHub\Cassino\backend\Cassino.Api\obj\Debug\net6.0\Cassino.Api.dll.config
 C:\Users\felip\OneDrive\Documentos\GitHub\Cassino\backend\Cassino.Api\bin\Debug\net6.0\RestSharp.dll
-C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Api\obj\Debug\net6.0\ref\Cassino.Api.dll
 C:\Users\felip\OneDrive\Documentos\GitHub\Cassino\backend\Cassino.Api\bin\Debug\net6.0\EmailTemplate\TemplateEmailResetarSenha.cshtml
 C:\Users\felip\OneDrive\Documentos\GitHub\Cassino\backend\Cassino.Api\bin\Debug\net6.0\refs\Microsoft.AspNetCore.Antiforgery.dll
 C:\Users\felip\OneDrive\Documentos\GitHub\Cassino\backend\Cassino.Api\bin\Debug\net6.0\refs\Microsoft.AspNetCore.Authentication.Abstractions.dll
@@ -913,3 +912,4 @@ C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Api\obj\Debug\
 C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Api\obj\Debug\net6.0\refint\Cassino.Api.dll
 C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Api\obj\Debug\net6.0\Cassino.Api.pdb
 C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Api\obj\Debug\net6.0\Cassino.Api.genruntimeconfig.cache
+C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Api\obj\Debug\net6.0\ref\Cassino.Api.dll
