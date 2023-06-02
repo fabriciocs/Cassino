@@ -10,6 +10,8 @@ C:\Users\felip\OneDrive\Documentos\GitHub\Cassino\backend\Cassino.Core\obj\Debug
 C:\Users\felip\OneDrive\Documentos\GitHub\Cassino\backend\Cassino.Core\obj\Debug\net6.0\refint\Cassino.Core.dll
 C:\Users\felip\OneDrive\Documentos\GitHub\Cassino\backend\Cassino.Core\obj\Debug\net6.0\Cassino.Core.pdb
 C:\Users\felip\OneDrive\Documentos\GitHub\Cassino\backend\Cassino.Core\obj\Debug\net6.0\ref\Cassino.Core.dll
+C:\Users\felip\OneDrive\Documentos\GitHub\Cassino\backend\Cassino.Core\bin\Debug\net6.0\EmailTemplate\TemplateEmailResetarSenha.cshtml
+C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Core\bin\Debug\net6.0\EmailTemplate\TemplateEmailResetarSenha.cshtml
 C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Core\bin\Debug\net6.0\Cassino.Core.deps.json
 C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Core\bin\Debug\net6.0\Cassino.Core.dll
 C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Core\bin\Debug\net6.0\Cassino.Core.pdb
@@ -22,5 +24,3 @@ C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Core\obj\Debug
 C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Core\obj\Debug\net6.0\refint\Cassino.Core.dll
 C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Core\obj\Debug\net6.0\Cassino.Core.pdb
 C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Core\obj\Debug\net6.0\ref\Cassino.Core.dll
-C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Core\bin\Debug\net6.0\EmailTemplate\TemplateEmailResetarSenha.cshtml
-C:\Users\felip\OneDrive\Documentos\GitHub\Cassino\backend\Cassino.Core\bin\Debug\net6.0\EmailTemplate\TemplateEmailResetarSenha.cshtml

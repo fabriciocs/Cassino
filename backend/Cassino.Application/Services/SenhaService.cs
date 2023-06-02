@@ -81,11 +81,15 @@ namespace Cassino.Application.Services
         public async Task<bool> EmailRedefinicaoSenha(Usuario usuarioPreenchido)
         {
             #region Configuração do Template Email
-            string baseDirectoryPath = Directory.GetCurrentDirectory();
-            string cut = "Cassino.Api";
-            int cutIndex = baseDirectoryPath.IndexOf(cut, StringComparison.Ordinal);
-            string pathBase = baseDirectoryPath.Substring(0, cutIndex);
-            string path = pathBase + "Cassino.Core\\EmailTemplate";
+            var assemblyPath = Path.GetDirectoryName(typeof(DependencyInjection).Assembly.Location);
+            var pasta = "\\EmailTemplate";
+            var path = assemblyPath + pasta;
+
+            //string baseDirectoryPath = Directory.GetCurrentDirectory();
+            //string cut = "Cassino.Api";
+            //int cutIndex = baseDirectoryPath.IndexOf(cut, StringComparison.Ordinal);
+            //string pathBase = baseDirectoryPath.Substring(0, cutIndex);
+            //string path = pathBase + "Cassino.Core\\EmailTemplate";
 
             var engine = new RazorLightEngineBuilder()
                 .UseFileSystemProject(path)

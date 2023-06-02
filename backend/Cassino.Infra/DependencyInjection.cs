@@ -48,6 +48,7 @@ public static class DependencyInjection
         service
             .AddScoped<IAdministradorRepository, AdministradorRepository>()
             .AddScoped<IRendaCasaRepository, RendaCasaRepository>()
+            .AddScoped<IApostaRepository, ApostaRepository>()
             .AddScoped<IUsuarioRepository, UsuarioRepository>();
     }
 

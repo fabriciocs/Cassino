@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Cassino.Application.Contracts;
+using Cassino.Application.Dtos.V1.Aposta;
 using Cassino.Application.Dtos.V1.Saldo;
 using Cassino.Application.Notification;
 using Cassino.Domain.Contracts.Repositories;
@@ -9,10 +10,14 @@ namespace Cassino.Application.Services
     public class SaldoService : BaseService, ISaldoService
     {
         private readonly IUsuarioRepository _clienteRepository;
+        private readonly IApostaRepository _apostaRepository;
+        private readonly IApostaService _apostaService;
 
-        public SaldoService(IMapper mapper, INotificator notificator, IUsuarioRepository clienteRepository) : base(mapper, notificator)
+        public SaldoService(IMapper mapper, INotificator notificator, IUsuarioRepository clienteRepository, IApostaService apostaService, IApostaRepository apostaRepository) : base(mapper, notificator)
         {
             _clienteRepository = clienteRepository;
+            _apostaRepository = apostaRepository;
+            _apostaService = apostaService;
         }
         
 
@@ -28,21 +33,32 @@ namespace Cassino.Application.Services
             return null;
         }
 
-        public async Task<Boolean> AtualizarSaldo(SaldoUsuarioDto saldoUsuarioDto)
+        public async Task<SaldoUsuarioDto> AtualizarSaldo(AdicionarApostaDto apostaDto)
         {
-            var usuario = await _clienteRepository.ObterPorId(saldoUsuarioDto.Id);
+            var usuario = await _clienteRepository.ObterPorId(apostaDto.IdUsuario);
             if (usuario == null)
             {
-                Notificator.Handle("Não foi possível atualizar o saldo do usuário no banco de dados.");
-                return false;
+                Notificator.Handle("Não foi possível encontrar o usuário no banco de dados.");
+                return null;
             }
 
-            usuario.Saldo = saldoUsuarioDto.Saldo;
+            usuario.Saldo += apostaDto.Valor;
             _clienteRepository.Alterar(usuario);
 
-            if (await _clienteRepository.UnitOfWork.Commit())
-                return true;
-            return false;
+            if (!await _clienteRepository.UnitOfWork.Commit())
+            {
+                Notificator.Handle("Não foi possível atualizar o saldo do usuário no banco de dados.");
+                return null;
+            }
+
+            _apostaService.RegistrarAposta(apostaDto);
+            if (!await _apostaRepository.UnitOfWork.Commit())
+            {
+                Notificator.Handle("Não foi possível registrar a aposta do usuário no banco de dados.");
+                return null;
+            }
+
+            return Mapper.Map<SaldoUsuarioDto>(usuario);
         }
     }
 }
