@@ -21,9 +21,9 @@ namespace Cassino.Api.Controllers.Usuario
         [SwaggerOperation(Summary = "Envia um e-mail de redefinição de senha para o usuario deslogado.", Tags = new[] { "Usuario - Cliente - Senha" })]
         [ProducesResponseType(typeof(Nullable), StatusCodes.Status204NoContent)]
         [ProducesResponseType(typeof(Nullable), StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> SolicitarRedefinicaoSenha([FromBody] string email)
+        public async Task<IActionResult> SolicitarRedefinicaoSenha([FromBody] UserEmailDto userEmail)
         {
-            var resultado = await _senhaService.Solicitar(email);
+            var resultado = await _senhaService.Solicitar(userEmail.Email);
             return resultado ? NoContentResponse() : BadRequest();
         }
 
