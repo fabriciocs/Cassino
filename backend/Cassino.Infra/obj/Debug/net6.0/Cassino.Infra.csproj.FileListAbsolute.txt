@@ -34,3 +34,5 @@ C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Infra\obj\Debu
 C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Infra\obj\Debug\net6.0\Cassino.Infra.AssemblyInfo.cs
 C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Infra\obj\Debug\net6.0\Cassino.Infra.csproj.CoreCompileInputs.cache
 C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Infra\obj\Debug\net6.0\Cassino.Infra.csproj.CopyComplete
+C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Infra\bin\Debug\net6.0\Cassino.Infra.runtimeconfig.json
+C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Infra\obj\Debug\net6.0\Cassino.Infra.genruntimeconfig.cache
