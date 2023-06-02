@@ -27,7 +27,7 @@ public class UsuarioSaldoController : BaseController
         return NotFound();
     }
 
-    [HttpPut("atualizar-saldo")]
+    [HttpPatch("atualizar-saldo")]
     [SwaggerOperation(Summary = "Atualiza o Saldo de um Cliente.", Tags = new[] { "Usuario - Cliente - Saldo" })]
     [ProducesResponseType(typeof(decimal), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(Nullable), StatusCodes.Status400BadRequest)]
