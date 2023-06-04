@@ -30,7 +30,6 @@ public class ClientesCadastroController : BaseController
     }
     
     [HttpPut("{id}")]
-    [AllowAnonymous]
     [SwaggerOperation(Summary = "Alterar um Cliente.", Tags = new [] { "Usuario - Cliente" })]
     [ProducesResponseType(typeof(UsuarioDto), StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
