@@ -23,28 +23,37 @@ namespace Cassino.Application.Services
             _apostaRepository.Adicionar(aposta);
         }
 
-        public async Task<List<Aposta>> ObterApostasDeUsuario(int id)
+        public async Task<List<VMApostaDto>> ObterApostasDeUsuario(int id)
         {
             var usuario = await _usuarioRepository.ObterPorId(id);
             if(usuario != null)
             {
-                var listaApostasDeUsuario = await _apostaRepository.ObterPorUsuario(usuario);
-                if (listaApostasDeUsuario.Count != 0)
-                    return listaApostasDeUsuario;
+                var lista = await _apostaRepository.ObterPorUsuario(usuario);
+                if (lista.Count != 0)
+                {
+                    var apostasUsuario = Mapper.Map<List<VMApostaDto>>(lista);
+                    return apostasUsuario;
+                }
                 Notificator.Handle("Lista vazia: Ainda não existem apostas registradas.");
-                return listaApostasDeUsuario;
+                var listaVazia = Mapper.Map<List<VMApostaDto>>(lista);
+                return listaVazia;
             }
             Notificator.HandleNotFoundResource();
             return null;
         }
 
-        public async Task<List<Aposta>> ObterTodasApostas()
+        public async Task<List<VMApostaDto>> ObterTodasApostas()
         {
-            var listaApostas = await _apostaRepository.ObterTodas();
-            if (listaApostas.Count != 0)
-                return listaApostas;
+            var lista = await _apostaRepository.ObterTodas();
+            if (lista.Count != 0)
+            {
+                var apostas = Mapper.Map<List<VMApostaDto>>(lista);
+                return apostas;
+            }
+                
             Notificator.Handle("Lista vazia: Esse usuario ainda não tem apostas registradas.");
-            return listaApostas;
+            var listaApostasVazia = Mapper.Map<List<VMApostaDto>>(lista);
+            return listaApostasVazia;
         }
     }
 }
