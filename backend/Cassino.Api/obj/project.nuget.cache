@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "d1dez/fCW1YzOJGL5uPXyFRw7hWnkrLeNM8qELoh/6ynabXKsaChRkStORyNnUjnWC+HoiiCixGs4P1a8L5gtA==",
+  "dgSpecHash": "VK18NL96Mfu7lfAFMBGbw89D0zDVQwnIac52lV4d3mzdTfHyZqc62fntgWcr4vZZ/2zeOlMBFwnZasrst8SiwQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\felip\\OneDrive\\Documentos\\GitHub\\Cassino\\backend\\Cassino.Api\\Cassino.Api.csproj",
   "expectedPackageFiles": [
@@ -120,6 +120,7 @@
     "C:\\Users\\felip\\.nuget\\packages\\opentracing\\0.12.1\\opentracing.0.12.1.nupkg.sha512",
     "C:\\Users\\felip\\.nuget\\packages\\pagar.me\\5.7.3\\pagar.me.5.7.3.nupkg.sha512",
     "C:\\Users\\felip\\.nuget\\packages\\razorlight\\2.3.1\\razorlight.2.3.1.nupkg.sha512",
+    "C:\\Users\\felip\\.nuget\\packages\\restsharp\\110.2.0\\restsharp.110.2.0.nupkg.sha512",
     "C:\\Users\\felip\\.nuget\\packages\\scottbrady91.aspnetcore.identity.argon2passwordhasher\\1.4.0\\scottbrady91.aspnetcore.identity.argon2passwordhasher.1.4.0.nupkg.sha512",
     "C:\\Users\\felip\\.nuget\\packages\\serilog\\2.10.0\\serilog.2.10.0.nupkg.sha512",
     "C:\\Users\\felip\\.nuget\\packages\\serilog.aspnetcore\\6.0.1\\serilog.aspnetcore.6.0.1.nupkg.sha512",
@@ -159,7 +160,7 @@
     "C:\\Users\\felip\\.nuget\\packages\\system.text.encoding\\4.3.0\\system.text.encoding.4.3.0.nupkg.sha512",
     "C:\\Users\\felip\\.nuget\\packages\\system.text.encoding.codepages\\6.0.0\\system.text.encoding.codepages.6.0.0.nupkg.sha512",
     "C:\\Users\\felip\\.nuget\\packages\\system.text.encodings.web\\7.0.0\\system.text.encodings.web.7.0.0.nupkg.sha512",
-    "C:\\Users\\felip\\.nuget\\packages\\system.text.json\\7.0.0\\system.text.json.7.0.0.nupkg.sha512",
+    "C:\\Users\\felip\\.nuget\\packages\\system.text.json\\7.0.2\\system.text.json.7.0.2.nupkg.sha512",
     "C:\\Users\\felip\\.nuget\\packages\\system.threading.tasks.extensions\\4.5.4\\system.threading.tasks.extensions.4.5.4.nupkg.sha512",
     "C:\\Users\\felip\\.nuget\\packages\\system.valuetuple\\4.5.0\\system.valuetuple.4.5.0.nupkg.sha512",
     "C:\\Users\\felip\\.nuget\\packages\\system.windows.extensions\\4.7.0\\system.windows.extensions.4.7.0.nupkg.sha512"

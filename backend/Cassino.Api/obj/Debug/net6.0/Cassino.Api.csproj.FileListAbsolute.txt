@@ -345,3 +345,4 @@ C:\Users\felip\OneDrive\Documentos\GitHub\Cassino\backend\Cassino.Api\bin\Debug\
 C:\Users\felip\OneDrive\Documentos\GitHub\Cassino\backend\Cassino.Api\bin\Debug\net6.0\PagarmeCoreApi.PCL.dll
 C:\Users\felip\OneDrive\Documentos\GitHub\Cassino\backend\Cassino.Api\obj\Debug\net6.0\Cassino.Api.csproj.SuggestedBindingRedirects.cache
 C:\Users\felip\OneDrive\Documentos\GitHub\Cassino\backend\Cassino.Api\obj\Debug\net6.0\Cassino.Api.dll.config
+C:\Users\felip\OneDrive\Documentos\GitHub\Cassino\backend\Cassino.Api\bin\Debug\net6.0\RestSharp.dll

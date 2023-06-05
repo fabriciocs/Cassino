@@ -123,6 +123,10 @@
               "target": "Package",
               "version": "[5.7.3, )"
             },
+            "RestSharp": {
+              "target": "Package",
+              "version": "[110.2.0, )"
+            },
             "Serilog.AspNetCore": {
               "target": "Package",
               "version": "[6.0.1, )"
