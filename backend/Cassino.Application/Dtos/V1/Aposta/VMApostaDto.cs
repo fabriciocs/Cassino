@@ -9,6 +9,6 @@ namespace Cassino.Application.Dtos.V1.Aposta
         public decimal Valor { get; set; }
         public DateTime Data { get; set; } = DateTime.Now;
         public GameName Jogo { get; set; }
-        //public bool EhApostaInicial {get; set}
+        public bool EhApostaInicial { get; set; }
     }
 }

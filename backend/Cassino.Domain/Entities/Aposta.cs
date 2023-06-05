@@ -11,6 +11,7 @@ namespace Cassino.Domain.Entities
         public DateTime Data { get; set; } = DateTime.Now;
         public GameName Jogo { get; set; }
         public Usuario Usuario { get; set; } = null!;
+        public bool EhApostaInicial { get; set; }
     }
 
     public enum GameName
