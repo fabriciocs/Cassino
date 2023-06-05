@@ -18,6 +18,9 @@ namespace Cassino.Domain.Validation
 
             RuleFor(a => a.Jogo)
                 .NotEmpty();
+
+            RuleFor(a => a.EhApostaInicial)
+                .NotEmpty();
         }
     }
 }

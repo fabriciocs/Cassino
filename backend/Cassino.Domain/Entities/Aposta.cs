@@ -8,9 +8,10 @@ namespace Cassino.Domain.Entities
         public int Id { get; set; }
         public int IdUsuario { get; set; }
         public decimal Valor { get; set; }
-        public DateTime Data { get; set; } = DateTime.UtcNow;
+        public DateTime Data { get; set; } = DateTime.Now;
         public GameName Jogo { get; set; }
         public Usuario Usuario { get; set; } = null!;
+        public bool EhApostaInicial { get; set; }
     }
 
     public enum GameName

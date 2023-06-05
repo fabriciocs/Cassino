@@ -11,19 +11,20 @@ public class AutoMapperProfile : Profile
     {
         #region Administrador
 
-        CreateMap<Application.Dtos.V1.Administrador.AdministradorDto, Administrador>().ReverseMap();
-        CreateMap<Application.Dtos.V1.Administrador.AdicionarAdministradorDto, Administrador>().ReverseMap();
-        CreateMap<Application.Dtos.V1.Administrador.AlterarAdministradorDto, Administrador>().ReverseMap();
-        CreateMap<PagedDto<Application.Dtos.V1.Administrador.BuscarAdministradorDto>, ResultadoPaginado<Administrador>>().ReverseMap();
+        CreateMap<Dtos.V1.Administrador.AdministradorDto, Administrador>().ReverseMap();
+        CreateMap<Dtos.V1.Administrador.AdicionarAdministradorDto, Administrador>().ReverseMap();
+        CreateMap<Dtos.V1.Administrador.AlterarAdministradorDto, Administrador>().ReverseMap();
+        CreateMap<PagedDto<Dtos.V1.Administrador.BuscarAdministradorDto>, ResultadoPaginado<Administrador>>().ReverseMap();
 
         #endregion
         
         
-        CreateMap<Application.Dtos.V1.Usuario.CadastrarUsuarioDto, Usuario>().ReverseMap();
-        CreateMap<Application.Dtos.V1.Usuario.AlterarUsuarioDto, Usuario>().ReverseMap();
-        CreateMap<Application.Dtos.V1.Usuario.UsuarioDto, Usuario>().ReverseMap();
-        CreateMap<Application.Dtos.V1.Usuario.BuscarUsuarioDto, ResultadoPaginado<Usuario>>().ReverseMap();
-        CreateMap<Application.Dtos.V1.Aposta.AdicionarApostaDto, Aposta>().ReverseMap();
+        CreateMap<Dtos.V1.Usuario.CadastrarUsuarioDto, Usuario>().ReverseMap();
+        CreateMap<Dtos.V1.Usuario.AlterarUsuarioDto, Usuario>().ReverseMap();
+        CreateMap<Dtos.V1.Usuario.UsuarioDto, Usuario>().ReverseMap();
+        CreateMap<Dtos.V1.Usuario.BuscarUsuarioDto, ResultadoPaginado<Usuario>>().ReverseMap();
+        CreateMap<Dtos.V1.Aposta.AdicionarApostaDto, Aposta>().ReverseMap();
         CreateMap<Dtos.V1.Saldo.SaldoUsuarioDto, Usuario>().ReverseMap();
+        CreateMap<Dtos.V1.Aposta.VMApostaDto, Aposta>().ReverseMap();
     }
 }
