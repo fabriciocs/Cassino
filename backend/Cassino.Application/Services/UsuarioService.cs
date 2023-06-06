@@ -47,11 +47,11 @@ public class UsuarioService : BaseService, IUsuarioService
 
     public async Task<UsuarioDto?> Alterar(int id, AlterarUsuarioDto dto)
     {
-        if (id != dto.Id)
-        {
-            Notificator.Handle("Os ids não conferem!");
-            return null;
-        }
+        //if (id != dto.Id)
+        //{
+        //    Notificator.Handle("Os ids não conferem!");
+        //    return null;
+        //}
 
         var usuario = await _clienteRepository.ObterPorId(id);
         if (usuario == null)
@@ -60,12 +60,23 @@ public class UsuarioService : BaseService, IUsuarioService
             return null;
         }
 
-        Mapper.Map(dto, usuario);
-        if (!await Validar(usuario))
+        //Caso o usuario tenha trocado de email verificamos se o novo email é um email livre ou se ele ja existe no sistema.
+        if (dto.Email != usuario.Email) 
         {
-            return null;
+            var emailJaExistente = await _clienteRepository.FistOrDefault(c => c.Email == dto.Email);
+            if(emailJaExistente != null)
+            {
+                Notificator.Handle("Este e-mail já existe.");
+                return null;
+            }
         }
-        
+
+        Mapper.Map(dto, usuario);
+        //if (!await Validar(usuario))
+        //{
+        //    return null;
+        //}
+
         usuario.Senha = _passwordHasher.HashPassword(usuario, usuario.Senha);
         _clienteRepository.Alterar(usuario);
         if (await _clienteRepository.UnitOfWork.Commit())
