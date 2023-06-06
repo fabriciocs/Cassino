@@ -99,6 +99,9 @@ namespace Cassino.Infra.Migrations
                     b.Property<DateTime>("Data")
                         .HasColumnType("datetime2");
 
+                    b.Property<bool>("EhApostaInicial")
+                        .HasColumnType("bit");
+
                     b.Property<int>("IdUsuario")
                         .HasColumnType("int");
 
