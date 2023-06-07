@@ -46,7 +46,7 @@ public class UsuarioCarteira : BaseController
         object? output = JsonConvert.DeserializeObject(response.Content);
         // Defina outras propriedades da transação, se necessário
         //response.IsSuccessStatusCode TODO: adicionar validação
-        int indiceInicio = 1960; //2010; // 900 a 920 pega o status
+        int indiceInicio = 1961; //2010; // 900 a 920 pega o status
         int comprimento = 420; // Comprimento da seção desejada
 
         string secaoExtraida = response.Content.Substring(indiceInicio, comprimento);
