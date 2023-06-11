@@ -49,7 +49,8 @@ public static class DependencyInjection
             .AddScoped<IAdministradorRepository, AdministradorRepository>()
             .AddScoped<IRendaCasaRepository, RendaCasaRepository>()
             .AddScoped<IApostaRepository, ApostaRepository>()
-            .AddScoped<IUsuarioRepository, UsuarioRepository>();
+            .AddScoped<IUsuarioRepository, UsuarioRepository>()
+            .AddScoped<IPagamentosRepository, PagamentosRepository>();
     }
 
     public static void UseMigrations(this IApplicationBuilder app, IServiceProvider service)

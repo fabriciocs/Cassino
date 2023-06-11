@@ -3,7 +3,7 @@ using FluentValidation;
 
 namespace Cassino.Domain.Validation
 {
-    public class ApostaValidator : AbstractValidator<Aposta>
+    public class ApostaValidator : AbstractValidator<Aposta> // não tá sendo usado
     {
         public ApostaValidator()
         {

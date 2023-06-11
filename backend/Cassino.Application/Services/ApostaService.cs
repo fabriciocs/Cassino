@@ -19,7 +19,7 @@ namespace Cassino.Application.Services
 
         public void RegistrarAposta(AdicionarApostaDto apostaDto)
         {
-            var aposta = Mapper.Map<Aposta>(apostaDto);
+            var aposta = Mapper.Map<Aposta>(apostaDto); // precisa validar aposta e verificar se ela registrou no banco
             _apostaRepository.Adicionar(aposta);
         }
 
@@ -29,7 +29,7 @@ namespace Cassino.Application.Services
             if(usuario != null)
             {
                 var lista = await _apostaRepository.ObterPorUsuario(usuario);
-                if (lista.Count != 0)
+                if (lista.Count != 0) // da pra usar o .any
                 {
                     var apostasUsuario = Mapper.Map<List<VMApostaDto>>(lista);
                     return apostasUsuario;
@@ -39,7 +39,7 @@ namespace Cassino.Application.Services
                 return listaVazia;
             }
             Notificator.HandleNotFoundResource();
-            return null;
+            return null; // retorna null mas a função n permite esse tipo de retorno
         }
 
         public async Task<List<VMApostaDto>> ObterTodasApostas()

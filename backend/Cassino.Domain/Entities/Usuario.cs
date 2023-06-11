@@ -17,7 +17,8 @@ public class Usuario : Entity, ISoftDelete, IAggregateRoot
     public decimal Saldo { get; set; }
     public string? CodigoRecuperacaoSenha { get; set; }
     public DateTime? TempoExpiracaoDoCodigo { get; set; }
-    public List<Aposta> Apostas { get; set; } = null!;
+    public virtual List<Aposta> Apostas { get; set; } = null!;
+    public virtual List<Pagamento> Pagamentos { get; set; } = null!;
 
     public override bool Validar(out ValidationResult validationResult)
     {

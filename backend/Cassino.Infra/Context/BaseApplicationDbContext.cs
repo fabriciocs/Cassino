@@ -23,6 +23,7 @@ public abstract class BaseApplicationDbContext : DbContext, IUnitOfWork
     public DbSet<Usuario> Usuarios { get; set; } = null!;
     public DbSet<Renda> Rendas { get; set; } = null!;
     public DbSet<Aposta> Apostas { get; set; } = null!;
+    public DbSet<Pagamento> Pagamentos { get; set; } = null!;
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
