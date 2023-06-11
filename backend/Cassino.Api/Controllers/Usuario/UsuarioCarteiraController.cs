@@ -3,8 +3,8 @@ using Cassino.Application.Dtos.V1.Pagamentos;
 using Cassino.Application.Notification;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
 using RestSharp;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace Cassino.Api.Controllers.Usuario;
 
@@ -18,10 +18,13 @@ public class UsuarioCarteiraController : BaseController
 
     [AllowAnonymous]
     [HttpPost]
+    [SwaggerOperation(Summary = "Realizar depósito pix de um Cliente.", Tags = new [] { "Usuario - Cliente" })]
+    [ProducesResponseType(typeof(string), StatusCodes.Status201Created)]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+    [ProducesResponseType(StatusCodes.Status403Forbidden)]
     public async Task<IActionResult> PagarComPix([FromBody] DadosPagamentoPixDto dto)
     {
         var pix = await  _service.Deposito(dto);
-        // Retorne a resposta adequada para o cliente
         return Ok(pix);
     }
     [AllowAnonymous]
@@ -38,7 +41,7 @@ public class UsuarioCarteiraController : BaseController
         return Ok(response.Content);
     }
 
-    [HttpPost]
+    [HttpPost("/saque")]
     public async Task<IActionResult> Saque()
     {
 
