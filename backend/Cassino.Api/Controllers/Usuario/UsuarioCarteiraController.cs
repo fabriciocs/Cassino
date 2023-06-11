@@ -8,6 +8,7 @@ using Swashbuckle.AspNetCore.Annotations;
 
 namespace Cassino.Api.Controllers.Usuario;
 
+[Route("v{version:apiVersion}/Cliente/[controller]")]
 public class UsuarioCarteiraController : BaseController
 {
     private readonly IUsuarioCarteiraService _service;
@@ -18,7 +19,7 @@ public class UsuarioCarteiraController : BaseController
 
     [AllowAnonymous]
     [HttpPost]
-    [SwaggerOperation(Summary = "Realizar depósito pix de um Cliente.", Tags = new [] { "Usuario - Cliente" })]
+    [SwaggerOperation(Summary = "Realizar depósito pix de um Cliente.", Tags = new [] { "Usuario - Carteira" })]
     [ProducesResponseType(typeof(string), StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     [ProducesResponseType(StatusCodes.Status403Forbidden)]
@@ -27,8 +28,10 @@ public class UsuarioCarteiraController : BaseController
         var pix = await  _service.Deposito(dto);
         return Ok(pix);
     }
+    
     [AllowAnonymous]
     [HttpGet]
+    [SwaggerOperation(Summary = "Ver últimos depósitos pix de um Cliente.", Tags = new [] { "Usuario - Carteira" })]
     public async Task<IActionResult> UltimosPagamentos()
     {
         var client = new RestClient("https://api.pagar.me/core/v5/orders");

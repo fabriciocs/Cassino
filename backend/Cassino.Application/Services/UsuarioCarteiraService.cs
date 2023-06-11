@@ -52,7 +52,7 @@ public class UsuarioCarteiraService : BaseService, IUsuarioCarteiraService
         }
         
         int indiceInicio = 1961;
-        int comprimento = 420;
+        int comprimento = 430;
 
         var pagamento = new Pagamento
         {
@@ -68,6 +68,7 @@ public class UsuarioCarteiraService : BaseService, IUsuarioCarteiraService
         if (!await _repository.UnitOfWork.Commit())
         {
             Notificator.Handle("Não foi possível salvar pagamento.");
+            return null;
         }
         
         string secaoExtraida = response.Content.Substring(indiceInicio, comprimento);
