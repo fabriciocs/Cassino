@@ -10,30 +10,28 @@ namespace Cassino.Application.Services
     public class SaldoService : BaseService, ISaldoService
     {
         private readonly IUsuarioRepository _clienteRepository;
-        private readonly IApostaRepository _apostaRepository;
         private readonly IApostaService _apostaService;
 
-        public SaldoService(IMapper mapper, INotificator notificator, IUsuarioRepository clienteRepository, IApostaService apostaService, IApostaRepository apostaRepository) : base(mapper, notificator)
+        public SaldoService(IMapper mapper, INotificator notificator, IUsuarioRepository clienteRepository, IApostaService apostaService) : base(mapper, notificator)
         {
             _clienteRepository = clienteRepository;
-            _apostaRepository = apostaRepository;
             _apostaService = apostaService;
         }
         
 
-        public async Task<SaldoUsuarioDto> BuscarSaldo(int id)
+        public async Task<SaldoUsuarioDto?> BuscarSaldo(int id)
         {
             var usuario = await _clienteRepository.ObterPorId(id);
             if (usuario != null)
             {
-                return Mapper.Map<SaldoUsuarioDto>(usuario);
+                return Mapper.Map<SaldoUsuarioDto?>(usuario);
             }
 
             Notificator.HandleNotFoundResource();
             return null;
         }
 
-        public async Task<SaldoUsuarioDto> AtualizarSaldo(AdicionarApostaDto apostaDto)
+        public async Task<SaldoUsuarioDto?> AtualizarSaldo(AdicionarApostaDto apostaDto)
         {
             var usuario = await _clienteRepository.ObterPorId(apostaDto.IdUsuario);
             if (usuario == null)
@@ -51,8 +49,7 @@ namespace Cassino.Application.Services
                 return null;
             }
 
-            _apostaService.RegistrarAposta(apostaDto);
-            if (!await _apostaRepository.UnitOfWork.Commit())
+            if (!await _apostaService.RegistrarAposta(apostaDto))
             {
                 Notificator.Handle("Não foi possível registrar a aposta do usuário no banco de dados.");
                 return null;

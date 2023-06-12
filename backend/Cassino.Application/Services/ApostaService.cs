@@ -17,42 +17,50 @@ namespace Cassino.Application.Services
             _usuarioRepository = usuarioRepository;
         }
 
-        public void RegistrarAposta(AdicionarApostaDto apostaDto)
+        public async Task<bool> RegistrarAposta(AdicionarApostaDto apostaDto)
         {
-            var aposta = Mapper.Map<Aposta>(apostaDto); // precisa validar aposta e verificar se ela registrou no banco
+            var aposta = Mapper.Map<Aposta>(apostaDto);
             _apostaRepository.Adicionar(aposta);
+
+            if (!await _apostaRepository.UnitOfWork.Commit())
+            {
+                Notificator.Handle("Não foi possível registrar a aposta do usuário no banco de dados.");
+                return false;
+            }
+
+            return true;
         }
 
-        public async Task<List<VMApostaDto>> ObterApostasDeUsuario(int id)
+        public async Task<List<VMApostaDto>?> ObterApostasDeUsuario(int id)
         {
             var usuario = await _usuarioRepository.ObterPorId(id);
             if(usuario != null)
             {
                 var lista = await _apostaRepository.ObterPorUsuario(usuario);
-                if (lista.Count != 0) // da pra usar o .any
+                if (lista.Any())
                 {
-                    var apostasUsuario = Mapper.Map<List<VMApostaDto>>(lista);
+                    var apostasUsuario = Mapper.Map<List<VMApostaDto>?>(lista);
                     return apostasUsuario;
                 }
                 Notificator.Handle("Lista vazia: Ainda não existem apostas registradas.");
-                var listaVazia = Mapper.Map<List<VMApostaDto>>(lista);
+                var listaVazia = Mapper.Map<List<VMApostaDto>?>(lista);
                 return listaVazia;
             }
             Notificator.HandleNotFoundResource();
-            return null; // retorna null mas a função n permite esse tipo de retorno
+            return null;
         }
 
-        public async Task<List<VMApostaDto>> ObterTodasApostas()
+        public async Task<List<VMApostaDto>?> ObterTodasApostas()
         {
             var lista = await _apostaRepository.ObterTodas();
-            if (lista.Count != 0)
+            if (lista.Any())
             {
-                var apostas = Mapper.Map<List<VMApostaDto>>(lista);
+                var apostas = Mapper.Map<List<VMApostaDto>?>(lista);
                 return apostas;
             }
                 
             Notificator.Handle("Lista vazia: Esse usuario ainda não tem apostas registradas.");
-            var listaApostasVazia = Mapper.Map<List<VMApostaDto>>(lista);
+            var listaApostasVazia = Mapper.Map<List<VMApostaDto>?>(lista);
             return listaApostasVazia;
         }
     }
