@@ -4,5 +4,5 @@ namespace Cassino.Application.Contracts;
 
 public interface IUsuarioCarteiraService
 {
-    Task<string?> Deposito(DadosPagamentoPixDto dto);
+    Task<PixDto?> Deposito(DadosPagamentoPixDto dto);
 }

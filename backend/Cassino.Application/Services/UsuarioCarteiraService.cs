@@ -4,6 +4,7 @@ using Cassino.Application.Dtos.V1.Pagamentos;
 using Cassino.Application.Notification;
 using Cassino.Domain.Contracts.Repositories;
 using Cassino.Domain.Entities;
+using Newtonsoft.Json;
 using RestSharp;
 
 namespace Cassino.Application.Services;
@@ -16,7 +17,7 @@ public class UsuarioCarteiraService : BaseService, IUsuarioCarteiraService
         _repository = repository;
     }
     
-    public async Task<string?> Deposito(DadosPagamentoPixDto dto)
+    public async Task<PixDto?> Deposito(DadosPagamentoPixDto dto)
     {
         var client = new RestClient("https://api.pagar.me/core/v5/orders");
         var request = new RestRequest();
@@ -44,24 +45,44 @@ public class UsuarioCarteiraService : BaseService, IUsuarioCarteiraService
             "\"amount\":" + dto.Valor + "}]," +
             "\"closed\":false}", ParameterType.RequestBody);
         RestResponse response = await client.ExecuteAsync(request);
-        
-        if (!response.IsSuccessStatusCode || response.Content == null)
+        if (!response.IsSuccessStatusCode || response.Content == null || response.IsSuccessful)
         {
             Notificator.Handle("Algo deu errado, não foi possível realizar o pagamento!");
             return null;
         }
         
-        int indiceInicio = 1961;
-        int comprimento = 430;
+        var pagarmeResponse = JsonConvert.DeserializeObject<PixResponseDto>(response.Content);
+        
+        if (pagarmeResponse is null)
+        {
+            Notificator.HandleNotFoundResource();
+            return null;
+        }
+        
+        var dados = pagarmeResponse.charges.FirstOrDefault();
+        if (dados is null)
+        {
+            return null;
+        }
+        
+        var pix = new PixDto
+        {
+            amount = dados.last_transaction.amount,
+            qr_code = dados.last_transaction.qr_code,
+            qr_code_url = dados.last_transaction.qr_code_url,
+            status = dados.last_transaction.status,
+            expires_at = dados.last_transaction.expires_at,
+            id = pagarmeResponse.id
+        };
 
         var pagamento = new Pagamento
         {
-            Valor = dto.Valor,
+            Valor = dados.last_transaction.amount,
             Aprovado = false,
+            PagamentoId = dados.last_transaction.id,
             UsuarioId = dto.UsuarioId,
-            Conteudo = response.Content,
-            DataPagamento = DateTime.Now,
-            DataExpiracaoPagamento = DateTime.Now.AddMinutes(5)
+            DataPagamento = dados.last_transaction.created_at,
+            DataExpiracaoPagamento = dados.last_transaction.expires_at
         };
         
         _repository.Adicionar(pagamento);
@@ -70,9 +91,44 @@ public class UsuarioCarteiraService : BaseService, IUsuarioCarteiraService
             Notificator.Handle("Não foi possível salvar pagamento.");
             return null;
         }
-        
-        string secaoExtraida = response.Content.Substring(indiceInicio, comprimento);
+        return pix;
+    }
 
-        return secaoExtraida;
+    private async Task LoopPix(PixDto dto)
+    {
+        
+    }
+    
+    private async Task VerificarPagemnto(PixDto dto)
+    {
+        bool pagamentoConfirmado = false;
+        // var timer = new Timer(VerificarPagemnto(), null, TimeSpan.Zero, TimeSpan.FromSeconds(5));
+
+        do
+        {
+
+            var client = new RestClient($"https://api.pagar.me/core/v5/orders/{dto.id}");
+            var request = new RestRequest();
+            request.Method = Method.Get;
+            request.AddHeader("accept", "application/json");
+            request.AddHeader("authorization", "Basic OnNrX05ROVdxTWtUUWlhYkpNMnI=");
+            RestResponse response = await client.ExecuteAsync(request);
+            var pagarmeResponse = JsonConvert.DeserializeObject<PixResponseDto>(response.Content);
+
+            if (pagarmeResponse is null)
+            {
+                Notificator.HandleNotFoundResource();
+                return;
+            }
+
+            var dados = pagarmeResponse.charges.FirstOrDefault();
+            if (dados is null)
+            {
+                Notificator.HandleNotFoundResource();
+            }
+
+            if (dados.last_transaction.status == "") 
+            await Task.Delay(TimeSpan.FromSeconds(10));
+        } while (pagamentoConfirmado != true);
     }
 }

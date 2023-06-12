@@ -20,7 +20,7 @@ public class UsuarioCarteiraController : BaseController
     [AllowAnonymous]
     [HttpPost]
     [SwaggerOperation(Summary = "Realizar depósito pix de um Cliente.", Tags = new [] { "Usuario - Carteira" })]
-    [ProducesResponseType(typeof(string), StatusCodes.Status201Created)]
+    [ProducesResponseType(typeof(PixDto), StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     [ProducesResponseType(StatusCodes.Status403Forbidden)]
     public async Task<IActionResult> PagarComPix([FromBody] DadosPagamentoPixDto dto)

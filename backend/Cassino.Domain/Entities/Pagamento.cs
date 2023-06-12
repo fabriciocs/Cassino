@@ -10,7 +10,7 @@ public class Pagamento : Entity, ISoftDelete, IAggregateRoot
     public string Conteudo { get; set; } = String.Empty;
     public Decimal Valor { get; set; }
     public int UsuarioId { get; set; }
-    public int PagamentoId { get; set; }
+    public string PagamentoId { get; set; } = String.Empty;
     public bool Aprovado { get; set; }
     public bool Desativado { get; set; }
 
