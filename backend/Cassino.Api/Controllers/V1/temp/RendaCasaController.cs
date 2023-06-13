@@ -1,6 +1,7 @@
 
 using Cassino.Application.Contracts.temp;
 using Cassino.Application.Notification;
+using Cassino.Application.Services.temp;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -20,5 +21,13 @@ public class RendaCasaController : BaseController
     {
         await _rendaCasaService.Adicionar(valor);
         return OkResponse();
+    }
+
+    [AllowAnonymous]
+    [HttpGet]
+    public IActionResult ObterRendaCasa()
+    {
+        var RendaCasa = (_rendaCasaService.ObterRendaCasa());
+        return Ok(RendaCasa);
     }
 }

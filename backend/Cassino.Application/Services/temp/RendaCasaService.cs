@@ -64,4 +64,10 @@ public class RendaCasaService : BaseService, IRendaCasaService
     {
         return _rendaCasaRepository.ObterCasa();
     }
+
+    public decimal ObterRendaCasa()
+    {
+        var casa = ObterCasa();
+        return casa.Valor;
+    }
 }
