@@ -1,9 +1,11 @@
+using System.Net.Mime;
 using AutoMapper;
 using Cassino.Application.Contracts;
 using Cassino.Application.Dtos.V1.Pagamentos;
 using Cassino.Application.Notification;
 using Cassino.Domain.Contracts.Repositories;
 using Cassino.Domain.Entities;
+using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using RestSharp;
 
@@ -93,16 +95,19 @@ public class UsuarioCarteiraService : BaseService, IUsuarioCarteiraService
         return pix;
     }
 
-    public async Task WebhookPix(string dto)
+    public async Task WebhookPix(HttpRequest dto)
     {
-        var pagamento = await _repository.FistOrDefault(c => c.Id < 0);
-
+        using StreamReader reader = new StreamReader(dto.Body);
+        string bodyContent = await reader.ReadToEndAsync();
+        
+        var pagarmeResponse = JsonConvert.DeserializeObject<Root>(bodyContent);
+        var pagamento = await _repository.FistOrDefault(c => c.PagamentoId == pagarmeResponse.data.id);
         if (pagamento is null)
         {
             return;
         }
         
-        pagamento.Conteudo = dto;
+        pagamento.Aprovado = true;
         _repository.Alterar(pagamento);
         if (!await _repository.UnitOfWork.Commit())
         {

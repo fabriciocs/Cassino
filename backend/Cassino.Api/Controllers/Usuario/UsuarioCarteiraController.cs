@@ -49,7 +49,7 @@ public class UsuarioCarteiraController : BaseController
     [SwaggerOperation(Summary = "Webhook confirmação pix.", Tags = new[] { "Usuario - Carteira" })]
     public async Task<IActionResult> PixWebHook()
     {
-        var retorno = Request.Body.ToString();
+        var retorno = Request;
         await _service.WebhookPix(retorno);
         return OkResponse();
     }
