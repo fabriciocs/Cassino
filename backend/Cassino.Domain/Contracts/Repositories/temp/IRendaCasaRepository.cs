@@ -8,5 +8,5 @@ public interface IRendaCasaRepository : IDisposable
     IUnitOfWork UnitOfWork { get; }
     void Adicionar(Renda renda);
     void AtualizarSaldoCasa(Renda renda);
-    Renda ObterCasa();
+    Task<Renda> ObterCasa();
 }

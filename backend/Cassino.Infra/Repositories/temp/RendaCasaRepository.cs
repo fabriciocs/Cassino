@@ -26,9 +26,9 @@ public class RendaCasaRepository : IRendaCasaRepository
         Context.Rendas.Update(renda);
     }
 
-    public Renda ObterCasa()
+    public async Task<Renda> ObterCasa()
     {
-        return Context.Rendas.FirstOrDefault();
+        return await Context.Rendas.FirstOrDefaultAsync();
     }
 
     public void Dispose()

@@ -26,9 +26,9 @@ public class RendaCasaController : BaseController
     [AllowAnonymous]
     [HttpPost("alterar")]
     [SwaggerOperation(Summary = "Define um valor total para a Casa.", Tags = new[] { "RendaCasa - TESTES" })]
-    public IActionResult MudarRendaCasa([FromBody] decimal valor)
+    public async Task<IActionResult> MudarRendaCasa([FromBody] decimal valor)
     {
-        var valorTotal = _rendaCasaService.MudarRendaCasa(valor);
+        var valorTotal = await _rendaCasaService.MudarRendaCasa(valor);
         if (valorTotal == null)
             return BadRequest("Houver um problema ao atualizar o saldo da casa.");
         return Ok(valorTotal);
@@ -37,9 +37,9 @@ public class RendaCasaController : BaseController
     [AllowAnonymous]
     [HttpGet("obter")]
     [SwaggerOperation(Summary = "Retorna o valor total da Casa.", Tags = new[] { "RendaCasa - TESTES" })]
-    public IActionResult ObterRendaCasa()
+    public async Task<IActionResult> ObterRendaCasa()
     {
-        var RendaCasa = (_rendaCasaService.ObterRendaCasa());
+        var RendaCasa = await _rendaCasaService.ObterRendaCasa();
         return Ok(RendaCasa);
     }
 }

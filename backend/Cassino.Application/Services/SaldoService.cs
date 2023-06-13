@@ -44,7 +44,7 @@ namespace Cassino.Application.Services
                 return null;
             }
 
-            var casa = _rendaCasaService.ObterCasa();
+            var casa = await _rendaCasaService.ObterCasa();
             if (!await _rendaCasaService.MovimentacaoRenda(apostaDto, casa))
                 return null;
 
