@@ -26,7 +26,7 @@ public class UsuarioCarteiraController : BaseController
     public async Task<IActionResult> PagarComPix([FromBody] DadosPagamentoPixDto dto)
     {
         var pix = await  _service.Deposito(dto);
-        return Ok(pix);
+        return OkResponse(pix);
     }
     
     [AllowAnonymous]
@@ -44,6 +44,16 @@ public class UsuarioCarteiraController : BaseController
         return Ok(response.Content);
     }
 
+    [AllowAnonymous]
+    [HttpPost("webhook/")]
+    [SwaggerOperation(Summary = "Webhook confirmação pix.", Tags = new[] { "Usuario - Carteira" })]
+    public async Task<IActionResult> PixWebHook()
+    {
+        var retorno = Request.Body.ToString();
+        await _service.WebhookPix(retorno);
+        return OkResponse();
+    }
+    
     [HttpPost("/saque")]
     public async Task<IActionResult> Saque()
     {

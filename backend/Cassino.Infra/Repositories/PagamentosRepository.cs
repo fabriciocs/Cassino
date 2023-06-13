@@ -15,4 +15,9 @@ public class PagamentosRepository : Repository<Pagamento>, IPagamentosRepository
     {
         Context.Pagamentos.Add(pagamento);
     }
+
+    public void Alterar(Pagamento pagamento)
+    {
+        Context.Pagamentos.Update(pagamento);
+    }
 }

@@ -45,14 +45,13 @@ public class UsuarioCarteiraService : BaseService, IUsuarioCarteiraService
             "\"amount\":" + dto.Valor + "}]," +
             "\"closed\":false}", ParameterType.RequestBody);
         RestResponse response = await client.ExecuteAsync(request);
-        if (!response.IsSuccessStatusCode || response.Content == null || response.IsSuccessful)
+        if (!response.IsSuccessStatusCode || response.Content == null)
         {
             Notificator.Handle("Algo deu errado, não foi possível realizar o pagamento!");
             return null;
         }
         
         var pagarmeResponse = JsonConvert.DeserializeObject<PixResponseDto>(response.Content);
-        
         if (pagarmeResponse is null)
         {
             Notificator.HandleNotFoundResource();
@@ -94,9 +93,21 @@ public class UsuarioCarteiraService : BaseService, IUsuarioCarteiraService
         return pix;
     }
 
-    private async Task LoopPix(PixDto dto)
+    public async Task WebhookPix(string dto)
     {
+        var pagamento = await _repository.FistOrDefault(c => c.Id < 0);
+
+        if (pagamento is null)
+        {
+            return;
+        }
         
+        pagamento.Conteudo = dto;
+        _repository.Alterar(pagamento);
+        if (!await _repository.UnitOfWork.Commit())
+        {
+            Notificator.Handle("Não foi possível salvar pagamento.");
+        }
     }
     
     private async Task VerificarPagemnto(PixDto dto)
@@ -122,12 +133,15 @@ public class UsuarioCarteiraService : BaseService, IUsuarioCarteiraService
             }
 
             var dados = pagarmeResponse.charges.FirstOrDefault();
-            if (dados is null)
-            {
+            if (dados is null) {
                 Notificator.HandleNotFoundResource();
             }
 
-            if (dados.last_transaction.status == "") 
+            if (dados.last_transaction.status == "Paid")
+            {
+                pagamentoConfirmado = true;
+            }
+            
             await Task.Delay(TimeSpan.FromSeconds(10));
         } while (pagamentoConfirmado != true);
     }
