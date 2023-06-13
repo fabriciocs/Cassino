@@ -162,8 +162,9 @@ namespace Cassino.Infra.Migrations
                         .HasColumnType("bit")
                         .HasDefaultValue(false);
 
-                    b.Property<int>("PagamentoId")
-                        .HasColumnType("int");
+                    b.Property<string>("PagamentoId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("UsuarioId")
                         .HasColumnType("int");
