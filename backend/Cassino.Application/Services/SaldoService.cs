@@ -1,39 +1,41 @@
 ﻿using AutoMapper;
 using Cassino.Application.Contracts;
+using Cassino.Application.Contracts.temp;
 using Cassino.Application.Dtos.V1.Aposta;
 using Cassino.Application.Dtos.V1.Saldo;
 using Cassino.Application.Notification;
 using Cassino.Domain.Contracts.Repositories;
+using Cassino.Domain.Contracts.Repositories.temp;
 
 namespace Cassino.Application.Services
 {
     public class SaldoService : BaseService, ISaldoService
     {
         private readonly IUsuarioRepository _clienteRepository;
-        private readonly IApostaRepository _apostaRepository;
         private readonly IApostaService _apostaService;
+        private readonly IRendaCasaService _rendaCasaService;
 
-        public SaldoService(IMapper mapper, INotificator notificator, IUsuarioRepository clienteRepository, IApostaService apostaService, IApostaRepository apostaRepository) : base(mapper, notificator)
+        public SaldoService(IMapper mapper, INotificator notificator, IUsuarioRepository clienteRepository, IApostaService apostaService, IRendaCasaService rendaCasaService) : base(mapper, notificator)
         {
             _clienteRepository = clienteRepository;
-            _apostaRepository = apostaRepository;
             _apostaService = apostaService;
+            _rendaCasaService = rendaCasaService;
         }
         
 
-        public async Task<SaldoUsuarioDto> BuscarSaldo(int id)
+        public async Task<SaldoUsuarioDto?> BuscarSaldo(int id)
         {
             var usuario = await _clienteRepository.ObterPorId(id);
             if (usuario != null)
             {
-                return Mapper.Map<SaldoUsuarioDto>(usuario);
+                return Mapper.Map<SaldoUsuarioDto?>(usuario);
             }
 
             Notificator.HandleNotFoundResource();
             return null;
         }
 
-        public async Task<SaldoUsuarioDto> AtualizarSaldo(AdicionarApostaDto apostaDto)
+        public async Task<SaldoUsuarioDto?> AtualizarSaldo(AdicionarApostaDto apostaDto)
         {
             var usuario = await _clienteRepository.ObterPorId(apostaDto.IdUsuario);
             if (usuario == null)
@@ -41,6 +43,10 @@ namespace Cassino.Application.Services
                 Notificator.Handle("Não foi possível encontrar o usuário no banco de dados.");
                 return null;
             }
+
+            var casa = _rendaCasaService.ObterCasa();
+            if (!await _rendaCasaService.MovimentacaoRenda(apostaDto, casa))
+                return null;
 
             usuario.Saldo += apostaDto.Valor;
             _clienteRepository.Alterar(usuario);
@@ -51,14 +57,13 @@ namespace Cassino.Application.Services
                 return null;
             }
 
-            _apostaService.RegistrarAposta(apostaDto);
-            if (!await _apostaRepository.UnitOfWork.Commit())
+            if (!await _apostaService.RegistrarAposta(apostaDto))
             {
                 Notificator.Handle("Não foi possível registrar a aposta do usuário no banco de dados.");
                 return null;
             }
 
-            return Mapper.Map<SaldoUsuarioDto>(usuario);
+            return Mapper.Map<SaldoUsuarioDto?>(usuario);
         }
     }
 }

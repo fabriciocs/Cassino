@@ -5,7 +5,7 @@ namespace Cassino.Application.Contracts
 {
     public interface ISaldoService
     {
-        Task<SaldoUsuarioDto> BuscarSaldo(int id);
-        Task<SaldoUsuarioDto> AtualizarSaldo(AdicionarApostaDto apostaDto);
+        Task<SaldoUsuarioDto?> BuscarSaldo(int id);
+        Task<SaldoUsuarioDto?> AtualizarSaldo(AdicionarApostaDto apostaDto);
     }
 }
