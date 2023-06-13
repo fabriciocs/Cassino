@@ -29,16 +29,7 @@ public class RendaCasaService : BaseService, IRendaCasaService
     public async Task<bool> MovimentacaoRenda(AdicionarApostaDto apostaDto, Renda renda)
     {
         if (apostaDto.EhApostaInicial)
-        {
             renda.Valor += apostaDto.Valor;
-            _rendaCasaRepository.AtualizarSaldoCasa(renda);
-            if(!await _rendaCasaRepository.UnitOfWork.Commit())
-            {
-                Notificator.Handle("Houver um problema ao atualizar o saldo da casa.");
-                return false;
-            }
-            return true;
-        }
 
         if (!apostaDto.EhApostaInicial)
         {
@@ -48,16 +39,15 @@ public class RendaCasaService : BaseService, IRendaCasaService
                 Notificator.Handle("A casa quebrou! FUDEU");
                 return false;
             }
-            
-            _rendaCasaRepository.AtualizarSaldoCasa(renda);
-            if (!await _rendaCasaRepository.UnitOfWork.Commit())
-            {
-                Notificator.Handle("Houver um problema ao atualizar o saldo da casa.");
-                return false;
-            }
-            return true;
         }
-        return false;
+
+        _rendaCasaRepository.AtualizarSaldoCasa(renda);
+        if (!await _rendaCasaRepository.UnitOfWork.Commit())
+        {
+            Notificator.Handle("Houver um problema ao atualizar o saldo da casa.");
+            return false;
+        }
+        return true;
     }
 
     public Renda ObterCasa()
@@ -68,6 +58,19 @@ public class RendaCasaService : BaseService, IRendaCasaService
     public decimal ObterRendaCasa()
     {
         var casa = ObterCasa();
+        return casa.Valor;
+    }
+
+    public async Task<decimal?> MudarRendaCasa(decimal NovoValor)
+    {
+        var casa = ObterCasa();
+        casa.Valor = NovoValor;
+        _rendaCasaRepository.AtualizarSaldoCasa(casa);
+        if (!await _rendaCasaRepository.UnitOfWork.Commit())
+        {
+            Notificator.Handle("Houver um problema ao atualizar o saldo da casa.");
+            return null;
+        }
         return casa.Valor;
     }
 }

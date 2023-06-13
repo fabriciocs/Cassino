@@ -1,9 +1,9 @@
 
 using Cassino.Application.Contracts.temp;
 using Cassino.Application.Notification;
-using Cassino.Application.Services.temp;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace Cassino.Api.Controllers.V1.temp;
 
@@ -24,7 +24,19 @@ public class RendaCasaController : BaseController
     }
 
     [AllowAnonymous]
-    [HttpGet]
+    [HttpPost("alterar")]
+    [SwaggerOperation(Summary = "Define um valor total para a Casa.", Tags = new[] { "RendaCasa - TESTES" })]
+    public IActionResult MudarRendaCasa([FromBody] decimal valor)
+    {
+        var valorTotal = _rendaCasaService.MudarRendaCasa(valor);
+        if (valorTotal == null)
+            return BadRequest("Houver um problema ao atualizar o saldo da casa.");
+        return Ok(valorTotal);
+    }
+
+    [AllowAnonymous]
+    [HttpGet("obter")]
+    [SwaggerOperation(Summary = "Retorna o valor total da Casa.", Tags = new[] { "RendaCasa - TESTES" })]
     public IActionResult ObterRendaCasa()
     {
         var RendaCasa = (_rendaCasaService.ObterRendaCasa());

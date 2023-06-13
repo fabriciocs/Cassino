@@ -9,4 +9,5 @@ public interface IRendaCasaService
     Task<bool> MovimentacaoRenda(AdicionarApostaDto apostaDto, Renda renda);
     Renda ObterCasa();
     decimal ObterRendaCasa();
+    Task<decimal?> MudarRendaCasa(decimal valor);
 }
