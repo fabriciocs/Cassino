@@ -1,6 +1,7 @@
 using Cassino.Application.Contracts;
 using Cassino.Application.Dtos.V1.Pagamentos;
 using Cassino.Application.Notification;
+using Cassino.Domain.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using RestSharp;
@@ -47,11 +48,12 @@ public class UsuarioCarteiraController : BaseController
     [AllowAnonymous]
     [HttpPost("webhook/")]
     [SwaggerOperation(Summary = "Webhook confirmação pix.", Tags = new[] { "Usuario - Carteira" })]
+    [ProducesResponseType(typeof(Pagamento), StatusCodes.Status201Created)]
     public async Task<IActionResult> PixWebHook()
     {
         var retorno = Request;
-        await _service.WebhookPix(retorno);
-        return OkResponse();
+        var pagamento = await _service.WebhookPix(retorno);
+        return OkResponse(pagamento);
     }
     
     [HttpPost("/saque")]

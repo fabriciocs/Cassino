@@ -1,4 +1,3 @@
-using System.Net.Mime;
 using AutoMapper;
 using Cassino.Application.Contracts;
 using Cassino.Application.Dtos.V1.Pagamentos;
