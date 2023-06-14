@@ -63,7 +63,7 @@ public class SaldoService : BaseService, ISaldoService
         return Mapper.Map<SaldoUsuarioDto?>(usuario);
     }
     
-    public async Task AtualizarSaldo(Decimal valor, int usuarioId)
+    public async Task AtualizarSaldo(decimal valor, int usuarioId)
     {
         var usuario = await _clienteRepository.ObterPorId(usuarioId);
         if (usuario == null)
@@ -72,7 +72,7 @@ public class SaldoService : BaseService, ISaldoService
             return;
         }
 
-        usuario.Saldo += valor;
+        usuario.Saldo += valor / 10;
         _clienteRepository.Alterar(usuario);
         if (!await _clienteRepository.UnitOfWork.Commit())
         {
