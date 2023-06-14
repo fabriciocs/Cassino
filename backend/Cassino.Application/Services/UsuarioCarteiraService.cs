@@ -100,13 +100,12 @@ public class UsuarioCarteiraService : BaseService, IUsuarioCarteiraService
         string bodyContent = await reader.ReadToEndAsync();
         
         var pagarmeResponse = JsonConvert.DeserializeObject<Root>(bodyContent);
-        var pagamento = await _repository.FistOrDefault(c => c.PagamentoId == pagarmeResponse.data.id);
+        var pagamento = await _repository.FistOrDefault(c => pagarmeResponse.data.charges.FirstOrDefault().last_transaction.qr_code_url.Contains(c.PagamentoId));
         if (pagamento is null)
         {
             return null;
         }
-        
-        
+
         pagamento.Aprovado = true;
         _repository.Alterar(pagamento);
         if (!await _repository.UnitOfWork.Commit())
