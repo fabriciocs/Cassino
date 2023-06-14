@@ -13,9 +13,11 @@ namespace Cassino.Application.Services;
 public class UsuarioCarteiraService : BaseService, IUsuarioCarteiraService
 {
     private readonly IPagamentosRepository _repository;
-    public UsuarioCarteiraService(IMapper mapper, INotificator notificator, IPagamentosRepository repository) : base(mapper, notificator)
+    private readonly ISaldoService _service;
+    public UsuarioCarteiraService(IMapper mapper, INotificator notificator, IPagamentosRepository repository, ISaldoService service) : base(mapper, notificator)
     {
         _repository = repository;
+        _service = service;
     }
     
     public async Task<PixDto?> Deposito(DadosPagamentoPixDto dto)
@@ -91,6 +93,7 @@ public class UsuarioCarteiraService : BaseService, IUsuarioCarteiraService
             Notificator.Handle("Não foi possível salvar pagamento.");
             return null;
         }
+        
         return pix;
     }
 
@@ -100,13 +103,19 @@ public class UsuarioCarteiraService : BaseService, IUsuarioCarteiraService
         string bodyContent = await reader.ReadToEndAsync();
         
         var pagarmeResponse = JsonConvert.DeserializeObject<Root>(bodyContent);
-        var pagamento = await _repository.FistOrDefault(c => pagarmeResponse.data.charges.FirstOrDefault().last_transaction.qr_code_url.Contains(c.PagamentoId));
+        if (pagarmeResponse is null)
+        {
+            return null;
+        }
+        
+        var pagamento = await _repository.FistOrDefault(c => pagarmeResponse.data.charges.FirstOrDefault()!.last_transaction.qr_code_url.Contains(c.PagamentoId));
         if (pagamento is null)
         {
             return null;
         }
 
         pagamento.Aprovado = true;
+        await _service.AtualizarSaldo(pagarmeResponse.data.amount, pagamento.UsuarioId);
         _repository.Alterar(pagamento);
         if (!await _repository.UnitOfWork.Commit())
         {

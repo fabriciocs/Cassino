@@ -7,5 +7,6 @@ namespace Cassino.Application.Contracts
     {
         Task<SaldoUsuarioDto?> BuscarSaldo(int id);
         Task<SaldoUsuarioDto?> AtualizarSaldo(AdicionarApostaDto apostaDto);
+        Task AtualizarSaldo(Decimal valor, int usuarioId);
     }
 }
