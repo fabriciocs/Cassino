@@ -12,12 +12,14 @@ namespace Cassino.Application.Services;
 
 public class UsuarioCarteiraService : BaseService, IUsuarioCarteiraService
 {
+    private readonly IUsuarioRepository _usuarioRepository;
     private readonly IPagamentosRepository _repository;
     private readonly ISaldoService _service;
-    public UsuarioCarteiraService(IMapper mapper, INotificator notificator, IPagamentosRepository repository, ISaldoService service) : base(mapper, notificator)
+    public UsuarioCarteiraService(IMapper mapper, INotificator notificator, IPagamentosRepository repository, ISaldoService service, IUsuarioRepository usuarioRepository) : base(mapper, notificator)
     {
         _repository = repository;
         _service = service;
+        _usuarioRepository = usuarioRepository;
     }
     
     public async Task<PixDto?> Deposito(DadosPagamentoPixDto dto)
@@ -120,6 +122,11 @@ public class UsuarioCarteiraService : BaseService, IUsuarioCarteiraService
         if (!await _repository.UnitOfWork.Commit())
         {
             Notificator.Handle("Não foi possível salvar pagamento.");
+        }
+        
+        if (!await _usuarioRepository.UnitOfWork.Commit())
+        {
+            Notificator.Handle("Não foi possível atualizar o saldo do usuário no banco de dados.");
         }
 
         return pagamento;

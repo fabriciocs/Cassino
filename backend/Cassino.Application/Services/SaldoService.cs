@@ -77,7 +77,6 @@ public class SaldoService : BaseService, ISaldoService
         if (!await _clienteRepository.UnitOfWork.Commit())
         {
             Notificator.Handle("Não foi possível atualizar o saldo do usuário no banco de dados.");
-            return;
         }
     }
 }
