@@ -2,6 +2,7 @@ using Cassino.Domain.Contracts;
 using Cassino.Domain.Contracts.Repositories.temp;
 using Cassino.Domain.Entities.temp;
 using Cassino.Infra.Context;
+using Microsoft.EntityFrameworkCore;
 
 namespace Cassino.Infra.Repositories.temp;
 
@@ -18,6 +19,16 @@ public class RendaCasaRepository : IRendaCasaRepository
     public void Adicionar(Renda renda)
     {
         Context.Rendas.Add(renda);
+    }
+
+    public void AtualizarSaldoCasa(Renda renda)
+    {
+        Context.Rendas.Update(renda);
+    }
+
+    public async Task<Renda> ObterCasa()
+    {
+        return await Context.Rendas.FirstOrDefaultAsync();
     }
 
     public void Dispose()

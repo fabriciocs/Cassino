@@ -453,6 +453,15 @@ C:\Users\felip\OneDrive\Documentos\GitHub\Cassino\backend\Cassino.Api\bin\Debug\
 C:\Users\felip\OneDrive\Documentos\GitHub\Cassino\backend\Cassino.Api\bin\Debug\net6.0\refs\System.Xml.XPath.dll
 C:\Users\felip\OneDrive\Documentos\GitHub\Cassino\backend\Cassino.Api\bin\Debug\net6.0\refs\System.Xml.XPath.XDocument.dll
 C:\Users\felip\OneDrive\Documentos\GitHub\Cassino\backend\Cassino.Api\bin\Debug\net6.0\refs\WindowsBase.dll
+C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Api\obj\Debug\net6.0\Cassino.Api.csproj.AssemblyReference.cache
+C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Api\obj\Debug\net6.0\Cassino.Api.csproj.SuggestedBindingRedirects.cache
+C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Api\obj\Debug\net6.0\Cassino.Api.dll.config
+C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Api\obj\Debug\net6.0\Cassino.Api.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Api\obj\Debug\net6.0\Cassino.Api.AssemblyInfoInputs.cache
+C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Api\obj\Debug\net6.0\Cassino.Api.AssemblyInfo.cs
+C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Api\obj\Debug\net6.0\Cassino.Api.csproj.CoreCompileInputs.cache
+C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Api\obj\Debug\net6.0\Cassino.Api.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Api\obj\Debug\net6.0\Cassino.Api.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Api\bin\Debug\net6.0\appsettings.Development.json
 C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Api\bin\Debug\net6.0\appsettings.json
 C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Api\bin\Debug\net6.0\Cassino.Api.exe
@@ -890,15 +899,6 @@ C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Api\bin\Debug\
 C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Api\bin\Debug\net6.0\Cassino.Infra.pdb
 C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Api\bin\Debug\net6.0\Cassino.Core.pdb
 C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Api\bin\Debug\net6.0\Cassino.Domain.pdb
-C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Api\obj\Debug\net6.0\Cassino.Api.csproj.AssemblyReference.cache
-C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Api\obj\Debug\net6.0\Cassino.Api.csproj.SuggestedBindingRedirects.cache
-C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Api\obj\Debug\net6.0\Cassino.Api.dll.config
-C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Api\obj\Debug\net6.0\Cassino.Api.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Api\obj\Debug\net6.0\Cassino.Api.AssemblyInfoInputs.cache
-C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Api\obj\Debug\net6.0\Cassino.Api.AssemblyInfo.cs
-C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Api\obj\Debug\net6.0\Cassino.Api.csproj.CoreCompileInputs.cache
-C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Api\obj\Debug\net6.0\Cassino.Api.MvcApplicationPartsAssemblyInfo.cs
-C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Api\obj\Debug\net6.0\Cassino.Api.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Api\obj\Debug\net6.0\staticwebassets\msbuild.Cassino.Api.Microsoft.AspNetCore.StaticWebAssets.props
 C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Api\obj\Debug\net6.0\staticwebassets\msbuild.build.Cassino.Api.props
 C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Api\obj\Debug\net6.0\staticwebassets\msbuild.buildMultiTargeting.Cassino.Api.props

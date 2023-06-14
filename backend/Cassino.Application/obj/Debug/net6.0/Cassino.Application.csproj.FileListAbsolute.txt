@@ -555,8 +555,6 @@ C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Application\bi
 C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Application\bin\Debug\net6.0\refs\System.Text.Encoding.CodePages.dll
 C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Application\bin\Debug\net6.0\refs\System.Text.Encoding.dll
 C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Application\bin\Debug\net6.0\refs\System.Text.Encoding.Extensions.dll
-C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Application\bin\Debug\net6.0\refs\System.Text.Encodings.Web.dll
-C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Application\bin\Debug\net6.0\refs\System.Text.Json.dll
 C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Application\bin\Debug\net6.0\refs\System.Text.RegularExpressions.dll
 C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Application\bin\Debug\net6.0\refs\System.Threading.Channels.dll
 C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Application\bin\Debug\net6.0\refs\System.Threading.dll
