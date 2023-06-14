@@ -117,8 +117,16 @@ public class UsuarioCarteiraService : BaseService, IUsuarioCarteiraService
         }
 
         pagamento.Aprovado = true;
-        await _service.AtualizarSaldo(pagarmeResponse.data.amount, pagamento.UsuarioId);
+        var usuario = await _usuarioRepository.ObterPorId(pagamento.UsuarioId);
+        if (usuario is null)
+        {
+            Notificator.HandleNotFoundResource();
+            return null;
+        }
+        
+        usuario.Saldo += pagarmeResponse.data.amount;
         _repository.Alterar(pagamento);
+        _usuarioRepository.Alterar(usuario);
         if (!await _repository.UnitOfWork.Commit())
         {
             Notificator.Handle("Não foi possível salvar pagamento.");
