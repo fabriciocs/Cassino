@@ -91,6 +91,7 @@ public class UsuarioCarteiraService : BaseService, IUsuarioCarteiraService
             Notificator.Handle("Não foi possível salvar pagamento.");
             return null;
         }
+        
         return pix;
     }
 
