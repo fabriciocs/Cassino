@@ -79,7 +79,7 @@ public class UsuarioCarteiraService : BaseService, IUsuarioCarteiraService
         {
             Valor = dados.last_transaction.amount,
             Aprovado = false,
-            PagamentoId = pagarmeResponse.id,
+            PagamentoId = dados.last_transaction.id,
             UsuarioId = dto.UsuarioId,
             DataPagamento = dados.last_transaction.created_at,
             DataExpiracaoPagamento = dados.last_transaction.expires_at
@@ -91,7 +91,6 @@ public class UsuarioCarteiraService : BaseService, IUsuarioCarteiraService
             Notificator.Handle("Não foi possível salvar pagamento.");
             return null;
         }
-        
         return pix;
     }
 
@@ -101,7 +100,7 @@ public class UsuarioCarteiraService : BaseService, IUsuarioCarteiraService
         string bodyContent = await reader.ReadToEndAsync();
         
         var pagarmeResponse = JsonConvert.DeserializeObject<Root>(bodyContent);
-        var pagamento = await _repository.FistOrDefault(c => c.PagamentoId == pagarmeResponse.id);
+        var pagamento = await _repository.FistOrDefault(c => pagarmeResponse.data.charges.FirstOrDefault().last_transaction.qr_code_url.Contains(c.PagamentoId));
         if (pagamento is null)
         {
             return null;
