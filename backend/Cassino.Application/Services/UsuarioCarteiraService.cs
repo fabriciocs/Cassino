@@ -95,7 +95,7 @@ public class UsuarioCarteiraService : BaseService, IUsuarioCarteiraService
         return pix;
     }
 
-    public async Task WebhookPix(HttpRequest dto)
+    public async Task<Pagamento?> WebhookPix(HttpRequest dto)
     {
         using StreamReader reader = new StreamReader(dto.Body);
         string bodyContent = await reader.ReadToEndAsync();
@@ -104,8 +104,9 @@ public class UsuarioCarteiraService : BaseService, IUsuarioCarteiraService
         var pagamento = await _repository.FistOrDefault(c => c.PagamentoId == pagarmeResponse.data.id);
         if (pagamento is null)
         {
-            return;
+            return null;
         }
+        
         
         pagamento.Aprovado = true;
         _repository.Alterar(pagamento);
@@ -113,6 +114,8 @@ public class UsuarioCarteiraService : BaseService, IUsuarioCarteiraService
         {
             Notificator.Handle("Não foi possível salvar pagamento.");
         }
+
+        return pagamento;
     }
     
     private async Task VerificarPagemnto(PixDto dto)
