@@ -30,7 +30,7 @@ public class RendaCasaService : BaseService, IRendaCasaService
     {
         if (apostaDto.EhApostaInicial)
         {
-            renda.Valor += apostaDto.Valor;
+            renda.Valor += Math.Abs(apostaDto.Valor);
         }
 
         if (!apostaDto.EhApostaInicial)
