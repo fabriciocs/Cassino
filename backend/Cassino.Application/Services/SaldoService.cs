@@ -72,7 +72,7 @@ public class SaldoService : BaseService, ISaldoService
             return;
         }
 
-        usuario.Saldo += valor / 10;
+        usuario.Saldo += valor;
         _clienteRepository.Alterar(usuario);
         if (!await _clienteRepository.UnitOfWork.Commit())
         {
