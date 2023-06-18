@@ -103,7 +103,6 @@ public class UsuarioCarteiraService : BaseService, IUsuarioCarteiraService
     {
         using StreamReader reader = new StreamReader(dto.Body);
         string bodyContent = await reader.ReadToEndAsync();
-        
         var pagarmeResponse = JsonConvert.DeserializeObject<Root>(bodyContent);
         if (pagarmeResponse is null)
         {
@@ -124,9 +123,9 @@ public class UsuarioCarteiraService : BaseService, IUsuarioCarteiraService
             return null;
         }
         
-        usuario.Saldo += pagarmeResponse.data.amount;
+        // ReSharper disable once PossibleLossOfFraction
+        await _service.AtualizarSaldo(pagarmeResponse.data.amount, pagamento.UsuarioId);
         _repository.Alterar(pagamento);
-        _usuarioRepository.Alterar(usuario);
         if (!await _repository.UnitOfWork.Commit())
         {
             Notificator.Handle("Não foi possível salvar pagamento.");
@@ -136,7 +135,7 @@ public class UsuarioCarteiraService : BaseService, IUsuarioCarteiraService
         {
             Notificator.Handle("Não foi possível atualizar o saldo do usuário no banco de dados.");
         }
-
+        
         return pagamento;
     }
     
