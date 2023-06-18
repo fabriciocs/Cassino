@@ -131,11 +131,6 @@ public class UsuarioCarteiraService : BaseService, IUsuarioCarteiraService
             Notificator.Handle("Não foi possível salvar pagamento.");
         }
         
-        if (!await _usuarioRepository.UnitOfWork.Commit())
-        {
-            Notificator.Handle("Não foi possível atualizar o saldo do usuário no banco de dados.");
-        }
-        
         return pagamento;
     }
     
