@@ -136,40 +136,4 @@ public class UsuarioCarteiraService : BaseService, IUsuarioCarteiraService
         await enviar.EnviarTransacaoPix($"{pagamento.UsuarioId}");
         return pagamento;
     }
-    
-    private async Task VerificarPagemnto(PixDto dto)
-    {
-        bool pagamentoConfirmado = false;
-        // var timer = new Timer(VerificarPagemnto(), null, TimeSpan.Zero, TimeSpan.FromSeconds(5));
-
-        do
-        {
-
-            var client = new RestClient($"https://api.pagar.me/core/v5/orders/{dto.id}");
-            var request = new RestRequest();
-            request.Method = Method.Get;
-            request.AddHeader("accept", "application/json");
-            request.AddHeader("authorization", "Basic OnNrX05ROVdxTWtUUWlhYkpNMnI=");
-            RestResponse response = await client.ExecuteAsync(request);
-            var pagarmeResponse = JsonConvert.DeserializeObject<PixResponseDto>(response.Content);
-
-            if (pagarmeResponse is null)
-            {
-                Notificator.HandleNotFoundResource();
-                return;
-            }
-
-            var dados = pagarmeResponse.charges.FirstOrDefault();
-            if (dados is null) {
-                Notificator.HandleNotFoundResource();
-            }
-
-            if (dados.last_transaction.status == "Paid")
-            {
-                pagamentoConfirmado = true;
-            }
-            
-            await Task.Delay(TimeSpan.FromSeconds(10));
-        } while (pagamentoConfirmado != true);
-    }
 }
