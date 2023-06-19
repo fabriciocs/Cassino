@@ -1,6 +1,7 @@
 using AutoMapper;
 using Cassino.Application.Contracts;
 using Cassino.Application.Dtos.V1.Pagamentos;
+using Cassino.Application.Hubs;
 using Cassino.Application.Notification;
 using Cassino.Domain.Contracts.Repositories;
 using Cassino.Domain.Entities;
@@ -130,7 +131,9 @@ public class UsuarioCarteiraService : BaseService, IUsuarioCarteiraService
         {
             Notificator.Handle("Não foi possível salvar pagamento.");
         }
-        
+
+        var enviar = new PixHub();
+        await enviar.EnviarTransacaoPix($"{pagamento.UsuarioId}");
         return pagamento;
     }
     
