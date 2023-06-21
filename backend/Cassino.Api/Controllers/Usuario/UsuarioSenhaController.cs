@@ -28,7 +28,7 @@ namespace Cassino.Api.Controllers.Usuario
         }
 
         [AllowAnonymous]
-        [HttpPost("codigo={code}")]
+        [HttpPost("redefinir-senha/codigo={code}")]
         [SwaggerOperation(Summary = "Valida e salva uma nova senha para o usuário deslogado.", Tags = new[] { "Usuario - Cliente - Senha" })]
         [ProducesResponseType(typeof(Nullable), StatusCodes.Status204NoContent)]
         [ProducesResponseType(typeof(Nullable), StatusCodes.Status400BadRequest)]
