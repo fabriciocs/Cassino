@@ -50,6 +50,7 @@ public static class DependencyInjection
             .AddScoped<IRendaCasaRepository, RendaCasaRepository>()
             .AddScoped<IApostaRepository, ApostaRepository>()
             .AddScoped<IUsuarioRepository, UsuarioRepository>()
+            .AddScoped<ISaqueRepository, SaqueRepository>()
             .AddScoped<IPagamentosRepository, PagamentosRepository>();
     }
 

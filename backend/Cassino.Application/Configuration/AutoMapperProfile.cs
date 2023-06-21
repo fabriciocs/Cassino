@@ -26,5 +26,7 @@ public class AutoMapperProfile : Profile
         CreateMap<Dtos.V1.Aposta.AdicionarApostaDto, Aposta>().ReverseMap();
         CreateMap<Dtos.V1.Saldo.SaldoUsuarioDto, Usuario>().ReverseMap();
         CreateMap<Dtos.V1.Aposta.VMApostaDto, Aposta>().ReverseMap();
+        
+        CreateMap<Dtos.V1.Pagamentos.SaqueDto, Saque>().ReverseMap();
     }
 }

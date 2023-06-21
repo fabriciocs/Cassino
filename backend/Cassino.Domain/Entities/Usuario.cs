@@ -19,6 +19,7 @@ public class Usuario : Entity, ISoftDelete, IAggregateRoot
     public DateTime? TempoExpiracaoDoCodigo { get; set; }
     public virtual List<Aposta> Apostas { get; set; } = null!;
     public virtual List<Pagamento> Pagamentos { get; set; } = null!;
+    public virtual List<Saque> Saques { get; set; } = null!;
 
     public override bool Validar(out ValidationResult validationResult)
     {

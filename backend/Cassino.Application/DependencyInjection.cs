@@ -46,7 +46,7 @@ public static class DependencyInjection
             .AddScoped<IPasswordHasher<Administrador>, Argon2PasswordHasher<Administrador>>()
             .AddScoped<IPasswordHasher<Usuario>, Argon2PasswordHasher<Usuario>>();
         
-        services.AddSignalR();
+        services.AddSignalR().AddAzureSignalR("Endpoint=https://signaltestpix.service.signalr.net;AccessKey=mYDV9DNqoReXp0D7YKuDYVzUC43Qpwl2Hrv6mHaM0rM=;Version=1.0;");
     }
     
     // public static void UseStaticFileConfiguration(this IApplicationBuilder app, IConfiguration configuration)

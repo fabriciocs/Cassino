@@ -913,3 +913,4 @@ C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Api\obj\Debug\
 C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Api\obj\Debug\net6.0\Cassino.Api.pdb
 C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Api\obj\Debug\net6.0\Cassino.Api.genruntimeconfig.cache
 C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Api\obj\Debug\net6.0\ref\Cassino.Api.dll
+C:\Users\felip\OneDrive\Documentos\GitHub\Cassino\backend\Cassino.Api\bin\Debug\net6.0\System.Net.WebSockets.WebSocketProtocol.dll

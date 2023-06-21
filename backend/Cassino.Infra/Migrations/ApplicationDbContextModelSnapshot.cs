@@ -179,6 +179,58 @@ namespace Cassino.Infra.Migrations
                     b.ToTable("Pagamentos");
                 });
 
+            modelBuilder.Entity("Cassino.Domain.Entities.Saque", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<bool>("Aprovado")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(true);
+
+                    b.Property<int?>("AtualizadoPor")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("AtualizadoPorAdmin")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false);
+
+                    b.Property<int?>("CriadoPor")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("CriadoPorAdmin")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false);
+
+                    b.Property<DateTime>("DataSaque")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValue(new DateTime(2023, 6, 20, 9, 35, 27, 687, DateTimeKind.Local).AddTicks(8010));
+
+                    b.Property<bool>("Desativado")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false);
+
+                    b.Property<int>("UsuarioId")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("Valor")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UsuarioId");
+
+                    b.ToTable("Saques");
+                });
+
             modelBuilder.Entity("Cassino.Domain.Entities.temp.Renda", b =>
                 {
                     b.Property<int>("Id")
@@ -308,11 +360,24 @@ namespace Cassino.Infra.Migrations
                     b.Navigation("Usuario");
                 });
 
+            modelBuilder.Entity("Cassino.Domain.Entities.Saque", b =>
+                {
+                    b.HasOne("Cassino.Domain.Entities.Usuario", "Usuario")
+                        .WithMany("Saques")
+                        .HasForeignKey("UsuarioId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Usuario");
+                });
+
             modelBuilder.Entity("Cassino.Domain.Entities.Usuario", b =>
                 {
                     b.Navigation("Apostas");
 
                     b.Navigation("Pagamentos");
+
+                    b.Navigation("Saques");
                 });
 #pragma warning restore 612, 618
         }

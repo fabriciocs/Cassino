@@ -64,7 +64,7 @@ app.MapHub<PixHub>("/hubs/pix");
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
-{
+{ 
     app.UseSwagger();
     app.UseSwaggerUI();
 }
