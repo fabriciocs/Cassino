@@ -453,6 +453,7 @@ C:\Users\felip\OneDrive\Documentos\GitHub\Cassino\backend\Cassino.Api\bin\Debug\
 C:\Users\felip\OneDrive\Documentos\GitHub\Cassino\backend\Cassino.Api\bin\Debug\net6.0\refs\System.Xml.XPath.dll
 C:\Users\felip\OneDrive\Documentos\GitHub\Cassino\backend\Cassino.Api\bin\Debug\net6.0\refs\System.Xml.XPath.XDocument.dll
 C:\Users\felip\OneDrive\Documentos\GitHub\Cassino\backend\Cassino.Api\bin\Debug\net6.0\refs\WindowsBase.dll
+C:\Users\felip\OneDrive\Documentos\GitHub\Cassino\backend\Cassino.Api\bin\Debug\net6.0\System.Net.WebSockets.WebSocketProtocol.dll
 C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Api\bin\Debug\net6.0\appsettings.Development.json
 C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Api\bin\Debug\net6.0\appsettings.json
 C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Api\bin\Debug\net6.0\Cassino.Api.exe
@@ -723,6 +724,8 @@ C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Api\bin\Debug\
 C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Api\bin\Debug\net6.0\refs\WindowsBase.dll
 C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Api\bin\Debug\net6.0\AutoMapper.dll
 C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Api\bin\Debug\net6.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Api\bin\Debug\net6.0\Azure.Core.dll
+C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Api\bin\Debug\net6.0\Azure.Identity.dll
 C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Api\bin\Debug\net6.0\BouncyCastle.Cryptography.dll
 C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Api\bin\Debug\net6.0\DateOnlyTimeOnly.AspNet.dll
 C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Api\bin\Debug\net6.0\DateOnlyTimeOnly.AspNet.Swashbuckle.dll
@@ -740,9 +743,13 @@ C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Api\bin\Debug\
 C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Api\bin\Debug\net6.0\Microsoft.AspNetCore.Mvc.Versioning.dll
 C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Api\bin\Debug\net6.0\Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer.dll
 C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Api\bin\Debug\net6.0\Microsoft.AspNetCore.Razor.Language.dll
+C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Api\bin\Debug\net6.0\Microsoft.Azure.SignalR.Common.dll
+C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Api\bin\Debug\net6.0\Microsoft.Azure.SignalR.dll
+C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Api\bin\Debug\net6.0\Microsoft.Azure.SignalR.Protocols.dll
 C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Api\bin\Debug\net6.0\Microsoft.Threading.Tasks.Extensions.Desktop.dll
 C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Api\bin\Debug\net6.0\Microsoft.Threading.Tasks.Extensions.dll
 C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Api\bin\Debug\net6.0\Microsoft.Threading.Tasks.dll
+C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Api\bin\Debug\net6.0\Microsoft.Bcl.AsyncInterfaces.dll
 C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Api\bin\Debug\net6.0\Microsoft.CodeAnalysis.dll
 C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Api\bin\Debug\net6.0\Microsoft.CodeAnalysis.CSharp.dll
 C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Api\bin\Debug\net6.0\Microsoft.CodeAnalysis.Razor.dll
@@ -781,6 +788,7 @@ C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Api\bin\Debug\
 C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Api\bin\Debug\net6.0\Microsoft.Extensions.Options.ConfigurationExtensions.dll
 C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Api\bin\Debug\net6.0\Microsoft.Extensions.Primitives.dll
 C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Api\bin\Debug\net6.0\Microsoft.Identity.Client.dll
+C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Api\bin\Debug\net6.0\Microsoft.Identity.Client.Extensions.Msal.dll
 C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Api\bin\Debug\net6.0\Microsoft.IdentityModel.Abstractions.dll
 C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Api\bin\Debug\net6.0\Microsoft.IdentityModel.JsonWebTokens.dll
 C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Api\bin\Debug\net6.0\Microsoft.IdentityModel.Logging.dll
@@ -790,6 +798,7 @@ C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Api\bin\Debug\
 C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Api\bin\Debug\net6.0\System.Net.Http.Extensions.dll
 C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Api\bin\Debug\net6.0\System.Net.Http.Primitives.dll
 C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Api\bin\Debug\net6.0\Microsoft.OpenApi.dll
+C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Api\bin\Debug\net6.0\Microsoft.Rest.ClientRuntime.dll
 C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Api\bin\Debug\net6.0\Microsoft.Win32.SystemEvents.dll
 C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Api\bin\Debug\net6.0\MimeKit.dll
 C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Api\bin\Debug\net6.0\Newtonsoft.Json.dll
@@ -828,6 +837,7 @@ C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Api\bin\Debug\
 C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Api\bin\Debug\net6.0\System.Diagnostics.EventLog.dll
 C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Api\bin\Debug\net6.0\System.Drawing.Common.dll
 C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Api\bin\Debug\net6.0\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Api\bin\Debug\net6.0\System.Memory.Data.dll
 C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Api\bin\Debug\net6.0\System.Net.WebSockets.WebSocketProtocol.dll
 C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Api\bin\Debug\net6.0\System.Runtime.Caching.dll
 C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Api\bin\Debug\net6.0\System.Security.Cryptography.Pkcs.dll
@@ -914,4 +924,3 @@ C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Api\obj\Debug\
 C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Api\obj\Debug\net6.0\Cassino.Api.pdb
 C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Api\obj\Debug\net6.0\Cassino.Api.genruntimeconfig.cache
 C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Api\obj\Debug\net6.0\ref\Cassino.Api.dll
-C:\Users\felip\OneDrive\Documentos\GitHub\Cassino\backend\Cassino.Api\bin\Debug\net6.0\System.Net.WebSockets.WebSocketProtocol.dll
