@@ -24,13 +24,15 @@ namespace Cassino.Domain.Entities
         Roleta = 3,
         [Description("Game: Penalty")]
         Penalty = 4,
-        [Description("Game: Dados")]
+        [Description("Game: Dices")]
         Dados = 5,
         [Description("Game: Space Man")]
         SpaceMan = 6,
         [Description("Game: Football Studio")]
         FootballStudio = 7,
         [Description("Game: Black Jack")]
-        BlackJack = 8
+        BlackJack = 8,
+        [Description("Game: Fortune Tiger")]
+        FortuneTiger = 9
     }
 }
