@@ -915,3 +915,12 @@ C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Api\obj\Debug\
 C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Api\obj\Debug\net6.0\Cassino.Api.genruntimeconfig.cache
 C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Api\obj\Debug\net6.0\ref\Cassino.Api.dll
 C:\Users\felip\OneDrive\Documentos\GitHub\Cassino\backend\Cassino.Api\bin\Debug\net6.0\System.Net.WebSockets.WebSocketProtocol.dll
+C:\Users\felip\OneDrive\Documentos\GitHub\Cassino\backend\Cassino.Api\bin\Debug\net6.0\Azure.Core.dll
+C:\Users\felip\OneDrive\Documentos\GitHub\Cassino\backend\Cassino.Api\bin\Debug\net6.0\Azure.Identity.dll
+C:\Users\felip\OneDrive\Documentos\GitHub\Cassino\backend\Cassino.Api\bin\Debug\net6.0\Microsoft.Azure.SignalR.Common.dll
+C:\Users\felip\OneDrive\Documentos\GitHub\Cassino\backend\Cassino.Api\bin\Debug\net6.0\Microsoft.Azure.SignalR.dll
+C:\Users\felip\OneDrive\Documentos\GitHub\Cassino\backend\Cassino.Api\bin\Debug\net6.0\Microsoft.Azure.SignalR.Protocols.dll
+C:\Users\felip\OneDrive\Documentos\GitHub\Cassino\backend\Cassino.Api\bin\Debug\net6.0\Microsoft.Bcl.AsyncInterfaces.dll
+C:\Users\felip\OneDrive\Documentos\GitHub\Cassino\backend\Cassino.Api\bin\Debug\net6.0\Microsoft.Identity.Client.Extensions.Msal.dll
+C:\Users\felip\OneDrive\Documentos\GitHub\Cassino\backend\Cassino.Api\bin\Debug\net6.0\Microsoft.Rest.ClientRuntime.dll
+C:\Users\felip\OneDrive\Documentos\GitHub\Cassino\backend\Cassino.Api\bin\Debug\net6.0\System.Memory.Data.dll

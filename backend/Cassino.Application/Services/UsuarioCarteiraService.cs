@@ -6,6 +6,7 @@ using Cassino.Application.Notification;
 using Cassino.Domain.Contracts.Repositories;
 using Cassino.Domain.Entities;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.SignalR;
 using Newtonsoft.Json;
 using RestSharp;
 
@@ -16,11 +17,13 @@ public class UsuarioCarteiraService : BaseService, IUsuarioCarteiraService
     private readonly IUsuarioRepository _usuarioRepository;
     private readonly IPagamentosRepository _repository;
     private readonly ISaldoService _service;
-    public UsuarioCarteiraService(IMapper mapper, INotificator notificator, IPagamentosRepository repository, ISaldoService service, IUsuarioRepository usuarioRepository) : base(mapper, notificator)
+    private readonly IHubContext<PixHub> _confirmationpix;
+    public UsuarioCarteiraService(IMapper mapper, INotificator notificator, IPagamentosRepository repository, ISaldoService service, IUsuarioRepository usuarioRepository, IHubContext<PixHub> confirmationpix) : base(mapper, notificator)
     {
         _repository = repository;
         _service = service;
         _usuarioRepository = usuarioRepository;
+        _confirmationpix = confirmationpix;
     }
     
     public async Task<PixDto?> Deposito(DadosPagamentoPixDto dto)
@@ -132,8 +135,7 @@ public class UsuarioCarteiraService : BaseService, IUsuarioCarteiraService
             Notificator.Handle("Não foi possível salvar pagamento.");
         }
 
-        var enviar = new PixHub();
-        await enviar.EnviarTransacaoPix($"{pagamento.UsuarioId}");
+        await _confirmationpix.Clients.All.SendAsync($"{pagamento.UsuarioId}");
         return pagamento;
     }
 }
