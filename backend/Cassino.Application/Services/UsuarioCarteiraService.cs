@@ -135,7 +135,7 @@ public class UsuarioCarteiraService : BaseService, IUsuarioCarteiraService
             Notificator.Handle("Não foi possível salvar pagamento.");
         }
 
-        await _confirmationpix.Clients.All.SendAsync($"{pagamento.UsuarioId}");
+        await _confirmationpix.Clients.All.SendAsync("TransacaoPIXRecebida", $"{pagamento.UsuarioId}");
         return pagamento;
     }
 }

@@ -25,4 +25,15 @@ public class SaqueController : BaseController
         var saque = await _service.Adicionar(dto);
         return CreatedResponse("", saque);
     }
+
+    [HttpPatch]
+    [SwaggerOperation(Summary = "Realizar saque.", Tags = new [] { "Usuario - Carteira" })]
+    [ProducesResponseType(typeof(UsuarioDto), StatusCodes.Status201Created)]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+    [ProducesResponseType(StatusCodes.Status403Forbidden)]
+    public async Task<IActionResult> Confirmar()
+    {
+
+        return Ok();
+    }
 }
