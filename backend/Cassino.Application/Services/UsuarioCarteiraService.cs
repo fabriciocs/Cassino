@@ -100,7 +100,7 @@ public class UsuarioCarteiraService : BaseService, IUsuarioCarteiraService
             return null;
         }
         
-        await _confirmationpix.Clients.All.SendAsync("QRCODE GERADO", $"{pagamento.UsuarioId}");
+        await _confirmationpix.Clients.All.SendAsync("TransacaoPIXRecebida", $"{pagamento.UsuarioId}");
         return pix;
     }
 

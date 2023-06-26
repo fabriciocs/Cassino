@@ -50,8 +50,6 @@ builder.Services.AddCors(options =>
         policy  =>
         {
             policy.AllowAnyOrigin()
-                .AllowCredentials()
-                .WithOrigins("https://cassino-homologacao.azurewebsites.net")
                 .AllowAnyHeader()
                 .AllowAnyMethod();
         });

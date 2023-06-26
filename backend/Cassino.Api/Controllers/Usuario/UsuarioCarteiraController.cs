@@ -1,9 +1,11 @@
 using Cassino.Application.Contracts;
 using Cassino.Application.Dtos.V1.Pagamentos;
+using Cassino.Application.Hubs;
 using Cassino.Application.Notification;
 using Cassino.Domain.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using RestSharp;
 using Swashbuckle.AspNetCore.Annotations;
 
@@ -12,10 +14,12 @@ namespace Cassino.Api.Controllers.Usuario;
 [Route("v{version:apiVersion}/Cliente/[controller]")]
 public class UsuarioCarteiraController : BaseController
 {
+    private readonly IHubContext<PixHub> _hubContext;
     private readonly IUsuarioCarteiraService _service;
-    public UsuarioCarteiraController(INotificator notificator, IUsuarioCarteiraService service) : base(notificator)
+    public UsuarioCarteiraController(INotificator notificator, IUsuarioCarteiraService service, IHubContext<PixHub> hubContext) : base(notificator)
     {
         _service = service;
+        _hubContext = hubContext;
     }
 
     [AllowAnonymous]
@@ -30,6 +34,14 @@ public class UsuarioCarteiraController : BaseController
         return OkResponse(pix);
     }
     
+    [AllowAnonymous]
+    [HttpPost("/testando")]
+    public async Task<IActionResult> EnviarNotificacao([FromBody] string mensagem)
+    {
+        await _hubContext.Clients.All.SendAsync("ReceberNotificacao", mensagem);
+        return Ok();
+    }
+
     [AllowAnonymous]
     [HttpGet]
     [SwaggerOperation(Summary = "Ver últimos depósitos pix de um Cliente.", Tags = new [] { "Usuario - Carteira" })]

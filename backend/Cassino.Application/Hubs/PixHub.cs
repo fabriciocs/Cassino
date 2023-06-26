@@ -13,4 +13,10 @@ public class PixHub : Hub
     {
         await Clients.All.SendAsync("TransacaoPIXRecebida", dadosTransacao);
     }
+    
+    public async Task EnviarNotificacao(string mensagem)
+    {
+        // Notifique todos os clientes conectados chamando o método "ReceberNotificacao"
+        await Clients.All.SendAsync("ReceberNotificacao", mensagem);
+    }
 }
