@@ -33,6 +33,7 @@ builder
     });
 
 builder.Services.ConfigureApplication(builder.Configuration);
+builder.Services.AddSignalR().AddAzureSignalR("Endpoint=https://signaltestpix.service.signalr.net;AccessKey=mYDV9DNqoReXp0D7YKuDYVzUC43Qpwl2Hrv6mHaM0rM=;Version=1.0;");
 builder.Services.AddApiConfiguration();
 builder.Services.ConfigureServices();
 builder.Services.AddVersioning();
@@ -49,6 +50,8 @@ builder.Services.AddCors(options =>
         policy  =>
         {
             policy.AllowAnyOrigin()
+                .AllowCredentials()
+                .WithOrigins("https://cassino-homologacao.azurewebsites.net")
                 .AllowAnyHeader()
                 .AllowAnyMethod();
         });
