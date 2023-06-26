@@ -4,10 +4,13 @@ namespace Cassino.Application.Hubs;
 
 public class PixHub : Hub
 {
-    public async Task<string> EnviarTransacaoPix(string dadosTransacao)
+    
+    public override Task OnConnectedAsync()
+    {
+        return Clients.All.SendAsync("broadcastMessage", "_SYSTEM_", $"{Context.ConnectionId}");
+    }
+    public async Task EnviarTransacaoPix(string dadosTransacao)
     {
         await Clients.All.SendAsync("TransacaoPIXRecebida", dadosTransacao);
-
-        return dadosTransacao;
     }
 }
