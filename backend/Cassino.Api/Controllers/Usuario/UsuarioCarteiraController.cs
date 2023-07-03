@@ -34,17 +34,17 @@ public class UsuarioCarteiraController : BaseController
         return OkResponse(pix);
     }
     
-    [AllowAnonymous]
-    [HttpPost("/autenticar")]
-    [SwaggerOperation(Summary = "Autenticação.", Tags = new [] { "Usuario - Carteira" })]
-    [ProducesResponseType(typeof(PixDto), StatusCodes.Status201Created)]
-    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-    [ProducesResponseType(StatusCodes.Status403Forbidden)]
-    public async Task<IActionResult> Autenticar([FromBody] DadosPagamentoPixDto dto)
-    {
-        // var pix = await  _service.Autenticar();
-        // return OkResponse(pix);
-    }
+    // [AllowAnonymous]
+    // [HttpPost("/autenticar")]
+    // [SwaggerOperation(Summary = "Autenticação.", Tags = new [] { "Usuario - Carteira" })]
+    // [ProducesResponseType(typeof(PixDto), StatusCodes.Status201Created)]
+    // [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+    // [ProducesResponseType(StatusCodes.Status403Forbidden)]
+    // public async Task<IActionResult> Autenticar([FromBody] DadosPagamentoPixDto dto)
+    // {
+    //     var pix = await  _service.Autenticar();
+    //     return OkResponse(pix);
+    // }
     
     [AllowAnonymous]
     [HttpPost("/testando")]
