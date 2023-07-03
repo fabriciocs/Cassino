@@ -6,6 +6,6 @@ namespace Cassino.Application.Contracts;
 
 public interface IUsuarioCarteiraService
 {
-    Task<PixDto?> Deposito(DadosPagamentoPixDto dto);
+    Task<ObterQrCodeDto?> Deposito(DadosPagamentoPixDto dto)
     Task<Pagamento?> WebhookPix(HttpRequest dto);
 }

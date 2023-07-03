@@ -924,3 +924,4 @@ C:\Users\felip\OneDrive\Documentos\GitHub\Cassino\backend\Cassino.Api\bin\Debug\
 C:\Users\felip\OneDrive\Documentos\GitHub\Cassino\backend\Cassino.Api\bin\Debug\net6.0\Microsoft.Identity.Client.Extensions.Msal.dll
 C:\Users\felip\OneDrive\Documentos\GitHub\Cassino\backend\Cassino.Api\bin\Debug\net6.0\Microsoft.Rest.ClientRuntime.dll
 C:\Users\felip\OneDrive\Documentos\GitHub\Cassino\backend\Cassino.Api\bin\Debug\net6.0\System.Memory.Data.dll
+C:\Users\felip\OneDrive\Documentos\GitHub\Cassino\backend\Cassino.Api\bin\Debug\net6.0\Gerencianet.SDK.dll

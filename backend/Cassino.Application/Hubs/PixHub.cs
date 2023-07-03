@@ -11,7 +11,7 @@ public class PixHub : Hub
     }
     public async Task EnviarTransacaoPix(string dadosTransacao)
     {
-        await Clients.All.SendAsync("TransacaoPIXRecebida", dadosTransacao);
+        await Clients.Client(Context.ConnectionId).SendAsync("TransacaoPIXRecebida", dadosTransacao);
     }
     
     public async Task EnviarNotificacao(string mensagem)

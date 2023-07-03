@@ -36,7 +36,27 @@ public class SaqueController : BaseController
     {
         
         
-        dynamic endpoints = new Endpoints("client_id", "client_secret", true);
+        dynamic endpoints = new Endpoints("Client_Id_b25e406f1ee8a087a88b7ad61cfae160b5b915db", "Client_Secret_91ce6d6e91b36a14ddcb754b27bc84f865855418", true);
+        
+        var body = new
+        {
+            items = new[] {
+                new {
+                    name = "Product 1",
+                    value = 1000,
+                    amount = 2
+                }
+            },
+            shippings = new[] {
+                new {
+                    name = "Default Shipping Cost",
+                    value = 100
+                }
+            }
+        };
+        
+        
+        var response = endpoints.CreateCharge(null, body);
         return Ok();
     }
 }

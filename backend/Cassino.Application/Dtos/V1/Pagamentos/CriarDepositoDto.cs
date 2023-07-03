@@ -1,3 +1,5 @@
+namespace Cassino.Application.Dtos.V1.Pagamentos;
+
 public class Calendario
 {
     public DateTime criacao { get; set; }
@@ -6,7 +8,7 @@ public class Calendario
 
 public class Devedor
 {
-    public string cpf { get; set; }
+    public string cnpj { get; set; }
     public string nome { get; set; }
 }
 
@@ -15,10 +17,9 @@ public class Loc
     public int id { get; set; }
     public string location { get; set; }
     public string tipoCob { get; set; }
-    public DateTime criacao { get; set; }
 }
 
-public class PixDto
+public class CriarDepositoDto
 {
     public Calendario calendario { get; set; }
     public string txid { get; set; }
