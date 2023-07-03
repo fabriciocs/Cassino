@@ -233,20 +233,22 @@ public class UsuarioCarteiraService : BaseService, IUsuarioCarteiraService
     {
         using StreamReader reader = new StreamReader(dto.Body);
         string bodyContent = await reader.ReadToEndAsync();
-        var pagarmeResponse = JsonConvert.DeserializeObject<Root>(bodyContent);
-        if (pagarmeResponse is null)
-        {
-            return null;
-        }
+        // var pagarmeResponse = JsonConvert.DeserializeObject<Root>(bodyContent);
+        // if (pagarmeResponse is null)
+        // {
+        //     return null;
+        // }
 
-        var pagamento = await _repository.FistOrDefault(c =>
-            pagarmeResponse.data.charges.FirstOrDefault()!.last_transaction.qr_code_url.Contains(c.PagamentoId));
+        // var pagamento = await _repository.FistOrDefault(c =>
+        //     pagarmeResponse.data.charges.FirstOrDefault()!.last_transaction.qr_code_url.Contains(c.PagamentoId));
+        var pagamento = await _repository.FistOrDefault(c => c.UsuarioId > 0);
         if (pagamento is null)
         {
             return null;
         }
 
         pagamento.Aprovado = true;
+        pagamento.Conteudo = bodyContent;
         var usuario = await _usuarioRepository.ObterPorId(pagamento.UsuarioId);
         if (usuario is null)
         {
@@ -254,7 +256,7 @@ public class UsuarioCarteiraService : BaseService, IUsuarioCarteiraService
             return null;
         }
 
-        await _service.AtualizarSaldo(pagarmeResponse.data.amount, pagamento.UsuarioId);
+        // await _service.AtualizarSaldo(pagarmeResponse.data.amount, pagamento.UsuarioId);
         _repository.Alterar(pagamento);
         if (!await _repository.UnitOfWork.Commit())
         {
