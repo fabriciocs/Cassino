@@ -32,9 +32,10 @@ public class UsuarioCarteiraService : BaseService, IUsuarioCarteiraService
 
     private async Task<string?> Autenticar()
     {
-        string filePath = Path.Combine(Directory.GetCurrentDirectory(),
-            "Certificates\\producao-467170-jogosProducao.p12");
-        X509Certificate2 uidCert = new X509Certificate2(filePath, "");
+        var assemblyPath = Path.GetDirectoryName(typeof(DependencyInjection).Assembly.Location);
+        var pasta = "\\Certificates\\producao-467170-jogosProducao.p12";
+        var path = assemblyPath + pasta;
+        X509Certificate2 uidCert = new X509Certificate2(path, "");
 
         var options = new RestClientOptions("https://api-pix.gerencianet.com.br/oauth/token")
         {
@@ -71,10 +72,13 @@ public class UsuarioCarteiraService : BaseService, IUsuarioCarteiraService
 
     public async Task<ObterQrCodeDto?> Deposito(DadosPagamentoPixDto dto)
     {
-        string filePath = Path.Combine(Directory.GetCurrentDirectory(),
-            "Certificates\\producao-467170-jogosProducao.p12");
-        X509Certificate2 uidCert = new X509Certificate2(filePath, "");
-
+        // string filePath = Path.Combine(Directory.GetCurrentDirectory(),
+            // "Certificates\\producao-467170-jogosProducao.p12");
+        var assemblyPath = Path.GetDirectoryName(typeof(DependencyInjection).Assembly.Location);
+        var pasta = "\\Certificates\\producao-467170-jogosProducao.p12";
+        var path = assemblyPath + pasta;
+        X509Certificate2 uidCert = new X509Certificate2(path, "");
+        
         var options = new RestClientOptions("https://api-pix.gerencianet.com.br/v2/cob")
         {
             ClientCertificates = new X509CertificateCollection { uidCert }
