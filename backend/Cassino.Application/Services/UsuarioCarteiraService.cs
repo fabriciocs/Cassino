@@ -90,7 +90,7 @@ public class UsuarioCarteiraService : BaseService, IUsuarioCarteiraService
                 ""solicitacaoPagador"": ""Informe o número ou identificador do pedido.""
             }";
 
-        var token = Autenticar().ToString();
+        var token = await Autenticar();
         request.AddHeader("Authorization", "Basic " + token);
         request.AddHeader("Content-Type", "application/json");
         request.AddParameter("application/json", jsonBody,
