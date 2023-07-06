@@ -11,12 +11,13 @@
       <PackageReference Include="AutoMapper" Version="12.0.1" />
       <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
       <PackageReference Include="FluentValidation" Version="11.5.2" />
+      <PackageReference Include="Gerencianet.NETCore.SDK" Version="3.0.0" />
       <PackageReference Include="MailKit" Version="4.0.0" />
       <PackageReference Include="Microsoft.AspNetCore.SignalR" Version="1.1.0" />
       <PackageReference Include="Microsoft.Azure.SignalR" Version="1.21.4" />
       <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="7.0.0" />
       <PackageReference Include="RazorLight" Version="2.3.1" />
-      <PackageReference Include="RestSharp" Version="110.2.0" />
+      <PackageReference Include="RestSharp" Version="108.0.1" />
       <PackageReference Include="ScottBrady91.AspNetCore.Identity.Argon2PasswordHasher" Version="1.4.0" />
       <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.8.0" />
     </ItemGroup>

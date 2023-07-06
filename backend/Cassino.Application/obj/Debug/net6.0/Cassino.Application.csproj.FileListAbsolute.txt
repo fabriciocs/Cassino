@@ -598,3 +598,5 @@ C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Application\ob
 C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Application\obj\Debug\net6.0\refint\Cassino.Application.dll
 C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Application\obj\Debug\net6.0\Cassino.Application.pdb
 C:\Users\Usuário\Documents\GitHub Clones\Cassino\backend\Cassino.Application\obj\Debug\net6.0\ref\Cassino.Application.dll
+C:\Users\felip\OneDrive\Documentos\GitHub\Cassino\backend\Cassino.Application\bin\Debug\net6.0\refs\System.Text.Encodings.Web.dll
+C:\Users\felip\OneDrive\Documentos\GitHub\Cassino\backend\Cassino.Application\bin\Debug\net6.0\refs\System.Text.Json.dll
