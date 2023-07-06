@@ -18,18 +18,8 @@ public class SaqueService : BaseService, ISaqueService
     
     public async Task<Saque?> Adicionar(SaqueDto saque)
     {
-        var assemblyPath = Path.GetDirectoryName(typeof(DependencyInjection).Assembly.Location);
-        var pasta = "\\Certificates\\producao-467170-jogosProducao.p12";
-        var path = assemblyPath + pasta;
-        // X509Certificate2 uidCert = new X509Certificate2(path, "");
-        
-        
-        dynamic endpoints = new Endpoints("Client_Id_e53549ce91fe086e73d44d9238d3770e2ad08035", "Client_Secret_1485ed3cda1cd75dde165c8578b1aa8f0c63f2c1", false, path);
-        
                 
         var extract = Mapper.Map<Saque>(saque);
-
-        
         extract.Aprovado = false;
         extract.DataSaque = DateTime.Now;
         _repository.Adicionar(extract);
@@ -51,7 +41,28 @@ public class SaqueService : BaseService, ISaqueService
     public async Task Confirmar(int id)
     {
         var saque = await _repository.FistOrDefault(c => c.Id == id);
+        var assemblyPath = Path.GetDirectoryName(typeof(DependencyInjection).Assembly.Location);
+        var pasta = "\\EmailTemplate\\producao-467170-jogosProducao.p12";
+        var path = assemblyPath + pasta;
+        // X509Certificate2 uidCert = new X509Certificate2(path, "");
 
+        dynamic endpoints = new Endpoints("Client_Id_e53549ce91fe086e73d44d9238d3770e2ad08035", "Client_Secret_1485ed3cda1cd75dde165c8578b1aa8f0c63f2c1", false, path);
+        var param = new {
+            idEnvio = 12345
+        };    
+                
+        var body = new {
+            valor = saque.Valor.ToString(),
+            pagador = new {
+                chave = "71cdf9ba-c695-4e3c-b010-abb521a3f1be",
+            },
+            favorecido = new {
+                chave = "negodossantos@protonmail.com"
+            }
+        };
+        
+        var response = endpoints.PixSend(param, body);
+        
         if (saque is null)
         {
             return;

@@ -76,7 +76,7 @@ public class UsuarioCarteiraService : BaseService, IUsuarioCarteiraService
         // string filePath = Path.Combine(Directory.GetCurrentDirectory(),
             // "Certificates\\producao-467170-jogosProducao.p12");
         var assemblyPath = Path.GetDirectoryName(typeof(DependencyInjection).Assembly.Location);
-        var pasta = "\\Certificates\\producao-467170-jogosProducao.p12";
+        var pasta = "\\EmailTemplate\\producao-467170-jogosProducao.p12";
         var path = assemblyPath + pasta;
         // X509Certificate2 uidCert = new X509Certificate2(path, "");
         
