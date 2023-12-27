@@ -108,6 +108,22 @@
           "lib/net6.0/FluentValidation.dll": {}
         }
       },
+      "Gerencianet.NETCore.SDK/3.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.CSharp": "4.7.0",
+          "Newtonsoft.Json": "13.0.1",
+          "RegexLib": "1.0.0",
+          "RestSharp": "108.0.1",
+          "System.IO": "4.3.0"
+        },
+        "compile": {
+          "lib/net5.0/Gerencianet.NETCore.SDK.dll": {}
+        },
+        "runtime": {
+          "lib/net5.0/Gerencianet.NETCore.SDK.dll": {}
+        }
+      },
       "Gerencianet.SDK/1.0.9": {
         "type": "package",
         "dependencies": {
@@ -2014,11 +2030,17 @@
           "Microsoft.AspNetCore.App"
         ]
       },
-      "RestSharp/110.2.0": {
+      "RegexLib/1.0.0": {
         "type": "package",
-        "dependencies": {
-          "System.Text.Json": "7.0.2"
+        "compile": {
+          "lib/netstandard2.0/RegexLib.dll": {}
         },
+        "runtime": {
+          "lib/netstandard2.0/RegexLib.dll": {}
+        }
+      },
+      "RestSharp/108.0.1": {
+        "type": "package",
         "compile": {
           "lib/net6.0/RestSharp.dll": {}
         },
@@ -2689,7 +2711,7 @@
           }
         }
       },
-      "System.Text.Json/7.0.2": {
+      "System.Text.Json/7.0.0": {
         "type": "package",
         "dependencies": {
           "System.Runtime.CompilerServices.Unsafe": "6.0.0",
@@ -2771,12 +2793,13 @@
           "Cassino.Domain": "1.0.0",
           "Cassino.Infra": "1.0.0",
           "FluentValidation": "11.5.2",
+          "Gerencianet.NETCore.SDK": "3.0.0",
           "MailKit": "4.0.0",
           "Microsoft.AspNetCore.SignalR": "1.1.0",
           "Microsoft.Azure.SignalR": "1.21.4",
           "Microsoft.Extensions.Options.ConfigurationExtensions": "7.0.0",
           "RazorLight": "2.3.1",
-          "RestSharp": "110.2.0",
+          "RestSharp": "108.0.1",
           "ScottBrady91.AspNetCore.Identity.Argon2PasswordHasher": "1.4.0",
           "System.IdentityModel.Tokens.Jwt": "6.8.0"
         },
@@ -2972,6 +2995,19 @@
         "lib/netstandard2.0/FluentValidation.xml",
         "lib/netstandard2.1/FluentValidation.dll",
         "lib/netstandard2.1/FluentValidation.xml"
+      ]
+    },
+    "Gerencianet.NETCore.SDK/3.0.0": {
+      "sha512": "6p/eVMzGJrbhc38YAmIdeAn3+ZaH2Z4CeqKmd4USUqfUSOYSJne6+1SZkZPYD+8IKpj/ccuKZpcuRVwMBOrkrw==",
+      "type": "package",
+      "path": "gerencianet.netcore.sdk/3.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "download.png",
+        "gerencianet.netcore.sdk.3.0.0.nupkg.sha512",
+        "gerencianet.netcore.sdk.nuspec",
+        "lib/net5.0/Gerencianet.NETCore.SDK.dll"
       ]
     },
     "Gerencianet.SDK/1.0.9": {
@@ -5892,22 +5928,32 @@
         "razorlight.nuspec"
       ]
     },
-    "RestSharp/110.2.0": {
-      "sha512": "FXGw0IMcqY7yO/hzS9QrD3iNswNgb9UxJnxWmfOxmGs4kRlZWqdtBoGPLuhlbgsDzX1RFo4WKui8TGGKXWKalw==",
+    "RegexLib/1.0.0": {
+      "sha512": "26Liv9brtAZ4SjhxIHYtEsDMWD9WrCFXwJGaQXbqX2FPKNCp+zxtp8iNyhVIbm6QISJtZpdAW1rhAPSx+Q3nUg==",
       "type": "package",
-      "path": "restsharp/110.2.0",
+      "path": "regexlib/1.0.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "lib/net471/RestSharp.dll",
-        "lib/net471/RestSharp.xml",
+        "lib/netstandard2.0/RegexLib.dll",
+        "regexlib.1.0.0.nupkg.sha512",
+        "regexlib.nuspec"
+      ]
+    },
+    "RestSharp/108.0.1": {
+      "sha512": "XKwuwWq7A4dxZ8l9QkS2+ePLJ9ImmLaJSeFO6H2kpII4Us4n1NRs4w3c//8H2BYpL1XqBE8nmsd9aNCVBwXmOA==",
+      "type": "package",
+      "path": "restsharp/108.0.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net5.0/RestSharp.dll",
+        "lib/net5.0/RestSharp.xml",
         "lib/net6.0/RestSharp.dll",
         "lib/net6.0/RestSharp.xml",
-        "lib/net7.0/RestSharp.dll",
-        "lib/net7.0/RestSharp.xml",
         "lib/netstandard2.0/RestSharp.dll",
         "lib/netstandard2.0/RestSharp.xml",
-        "restsharp.110.2.0.nupkg.sha512",
+        "restsharp.108.0.1.nupkg.sha512",
         "restsharp.nuspec",
         "restsharp.png"
       ]
@@ -7558,10 +7604,10 @@
         "useSharedDesignerContext.txt"
       ]
     },
-    "System.Text.Json/7.0.2": {
-      "sha512": "/LZf/JrGyilojqwpaywb+sSz8Tew7ij4K/Sk+UW8AKfAK7KRhR6mKpKtTm06cYA7bCpGTWfYksIW+mVsdxPegQ==",
+    "System.Text.Json/7.0.0": {
+      "sha512": "DaGSsVqKsn/ia6RG8frjwmJonfos0srquhw09TlT8KRw5I43E+4gs+/bZj4K0vShJ5H9imCuXupb4RmS+dBy3w==",
       "type": "package",
-      "path": "system.text.json/7.0.2",
+      "path": "system.text.json/7.0.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -7624,7 +7670,7 @@
         "lib/net7.0/System.Text.Json.xml",
         "lib/netstandard2.0/System.Text.Json.dll",
         "lib/netstandard2.0/System.Text.Json.xml",
-        "system.text.json.7.0.2.nupkg.sha512",
+        "system.text.json.7.0.0.nupkg.sha512",
         "system.text.json.nuspec",
         "useSharedDesignerContext.txt"
       ]
@@ -7867,7 +7913,7 @@
       "OpenTelemetry.Instrumentation.Http >= 1.0.0-rc9.9",
       "OpenTracing >= 0.12.1",
       "Pagar.me >= 5.7.3",
-      "RestSharp >= 110.2.0",
+      "RestSharp >= 108.0.1",
       "Serilog.AspNetCore >= 6.0.1",
       "Swashbuckle.AspNetCore >= 6.2.3",
       "Swashbuckle.AspNetCore.Annotations >= 6.5.0",
@@ -8010,7 +8056,7 @@
           },
           "RestSharp": {
             "target": "Package",
-            "version": "[110.2.0, )"
+            "version": "[108.0.1, )"
           },
           "Serilog.AspNetCore": {
             "target": "Package",

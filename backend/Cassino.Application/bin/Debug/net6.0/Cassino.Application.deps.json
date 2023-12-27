@@ -40,12 +40,13 @@
           "Cassino.Domain": "1.0.0",
           "Cassino.Infra": "1.0.0",
           "FluentValidation": "11.5.2",
+          "Gerencianet.NETCore.SDK": "3.0.0",
           "MailKit": "4.0.0",
           "Microsoft.AspNetCore.SignalR": "1.1.0",
           "Microsoft.Azure.SignalR": "1.21.4",
           "Microsoft.Extensions.Options.ConfigurationExtensions": "7.0.0",
           "RazorLight": "2.3.1",
-          "RestSharp": "110.2.0",
+          "RestSharp": "108.0.1",
           "ScottBrady91.AspNetCore.Identity.Argon2PasswordHasher": "1.4.0",
           "System.IdentityModel.Tokens.Jwt": "6.8.0",
           "Microsoft.AspNetCore.Antiforgery": "6.0.0.0",
@@ -301,6 +302,8 @@
           "System.Text.Encoding.CodePages.Reference": "6.0.0.0",
           "System.Text.Encoding.Reference": "6.0.0.0",
           "System.Text.Encoding.Extensions": "6.0.0.0",
+          "System.Text.Encodings.Web.Reference": "6.0.0.0",
+          "System.Text.Json.Reference": "6.0.0.0",
           "System.Text.RegularExpressions": "6.0.0.0",
           "System.Threading.Channels.Reference": "6.0.0.0",
           "System.Threading": "6.0.0.0",
@@ -373,8 +376,8 @@
           "System.Memory": "4.5.4",
           "System.Memory.Data": "1.0.2",
           "System.Numerics.Vectors": "4.5.0",
-          "System.Text.Encodings.Web": "7.0.0",
-          "System.Text.Json": "7.0.2",
+          "System.Text.Encodings.Web": "6.0.0",
+          "System.Text.Json": "6.0.0",
           "System.Threading.Tasks.Extensions": "4.5.4"
         },
         "runtime": {
@@ -394,7 +397,7 @@
           "Microsoft.Identity.Client.Extensions.Msal": "2.18.4",
           "System.Memory": "4.5.4",
           "System.Security.Cryptography.ProtectedData": "4.7.0",
-          "System.Text.Json": "7.0.2",
+          "System.Text.Json": "6.0.0",
           "System.Threading.Tasks.Extensions": "4.5.4"
         },
         "runtime": {
@@ -427,6 +430,24 @@
         },
         "compile": {
           "lib/net6.0/FluentValidation.dll": {}
+        }
+      },
+      "Gerencianet.NETCore.SDK/3.0.0": {
+        "dependencies": {
+          "Microsoft.CSharp": "4.7.0",
+          "Newtonsoft.Json": "13.0.3",
+          "RegexLib": "1.0.0",
+          "RestSharp": "108.0.1",
+          "System.IO": "4.3.0"
+        },
+        "runtime": {
+          "lib/net5.0/Gerencianet.NETCore.SDK.dll": {
+            "assemblyVersion": "3.0.0.0",
+            "fileVersion": "3.0.0.0"
+          }
+        },
+        "compile": {
+          "lib/net5.0/Gerencianet.NETCore.SDK.dll": {}
         }
       },
       "libsodium/1.0.18": {
@@ -538,7 +559,7 @@
       "Microsoft.AspNetCore.Http.Abstractions/2.2.0": {
         "dependencies": {
           "Microsoft.AspNetCore.Http.Features": "2.2.0",
-          "System.Text.Encodings.Web": "7.0.0"
+          "System.Text.Encodings.Web": "6.0.0"
         }
       },
       "Microsoft.AspNetCore.Http.Connections/1.1.0": {
@@ -685,7 +706,7 @@
       "Microsoft.AspNetCore.WebUtilities/2.2.0": {
         "dependencies": {
           "Microsoft.Net.Http.Headers": "2.2.0",
-          "System.Text.Encodings.Web": "7.0.0"
+          "System.Text.Encodings.Web": "6.0.0"
         }
       },
       "Microsoft.Azure.SignalR/1.21.4": {
@@ -1081,8 +1102,8 @@
           "System.Buffers": "4.5.1",
           "System.Memory": "4.5.4",
           "System.Runtime.CompilerServices.Unsafe": "6.0.0",
-          "System.Text.Encodings.Web": "7.0.0",
-          "System.Text.Json": "7.0.2"
+          "System.Text.Encodings.Web": "6.0.0",
+          "System.Text.Json": "6.0.0"
         },
         "runtime": {
           "lib/netstandard2.0/Microsoft.Extensions.DependencyModel.dll": {
@@ -1382,14 +1403,22 @@
           "lib/net6.0/RazorLight.dll": {}
         }
       },
-      "RestSharp/110.2.0": {
-        "dependencies": {
-          "System.Text.Json": "7.0.2"
+      "RegexLib/1.0.0": {
+        "runtime": {
+          "lib/netstandard2.0/RegexLib.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         },
+        "compile": {
+          "lib/netstandard2.0/RegexLib.dll": {}
+        }
+      },
+      "RestSharp/108.0.1": {
         "runtime": {
           "lib/net6.0/RestSharp.dll": {
-            "assemblyVersion": "110.2.0.0",
-            "fileVersion": "110.2.0.0"
+            "assemblyVersion": "108.0.1.0",
+            "fileVersion": "108.0.1.0"
           }
         },
         "compile": {
@@ -1505,8 +1534,8 @@
       "System.Memory/4.5.4": {},
       "System.Memory.Data/1.0.2": {
         "dependencies": {
-          "System.Text.Encodings.Web": "7.0.0",
-          "System.Text.Json": "7.0.2"
+          "System.Text.Encodings.Web": "6.0.0",
+          "System.Text.Json": "6.0.0"
         },
         "runtime": {
           "lib/netstandard2.0/System.Memory.Data.dll": {
@@ -1662,41 +1691,15 @@
           "System.Runtime.CompilerServices.Unsafe": "6.0.0"
         }
       },
-      "System.Text.Encodings.Web/7.0.0": {
+      "System.Text.Encodings.Web/6.0.0": {
         "dependencies": {
           "System.Runtime.CompilerServices.Unsafe": "6.0.0"
-        },
-        "runtime": {
-          "lib/net6.0/System.Text.Encodings.Web.dll": {
-            "assemblyVersion": "7.0.0.0",
-            "fileVersion": "7.0.22.51805"
-          }
-        },
-        "runtimeTargets": {
-          "runtimes/browser/lib/net6.0/System.Text.Encodings.Web.dll": {
-            "rid": "browser",
-            "assetType": "runtime",
-            "assemblyVersion": "7.0.0.0",
-            "fileVersion": "7.0.22.51805"
-          }
-        },
-        "compile": {
-          "lib/net6.0/System.Text.Encodings.Web.dll": {}
         }
       },
-      "System.Text.Json/7.0.2": {
+      "System.Text.Json/6.0.0": {
         "dependencies": {
           "System.Runtime.CompilerServices.Unsafe": "6.0.0",
-          "System.Text.Encodings.Web": "7.0.0"
-        },
-        "runtime": {
-          "lib/net6.0/System.Text.Json.dll": {
-            "assemblyVersion": "7.0.0.0",
-            "fileVersion": "7.0.323.6910"
-          }
-        },
-        "compile": {
-          "lib/net6.0/System.Text.Json.dll": {}
+          "System.Text.Encodings.Web": "6.0.0"
         }
       },
       "System.Threading.Channels/4.5.0": {},
@@ -3286,6 +3289,18 @@
         },
         "compileOnly": true
       },
+      "System.Text.Encodings.Web.Reference/6.0.0.0": {
+        "compile": {
+          "System.Text.Encodings.Web.dll": {}
+        },
+        "compileOnly": true
+      },
+      "System.Text.Json.Reference/6.0.0.0": {
+        "compile": {
+          "System.Text.Json.dll": {}
+        },
+        "compileOnly": true
+      },
       "System.Text.RegularExpressions/6.0.0.0": {
         "compile": {
           "System.Text.RegularExpressions.dll": {}
@@ -3497,6 +3512,13 @@
       "sha512": "sha512-kj/hW/iusp2zq1Vt1YPLgDj6UG0DhoJXGkLwjLwm3j7vUtRF8DVA5vHJfItG3BxDjLWJUR2pvw8fK7rnuysZNA==",
       "path": "fluentvalidation/11.5.2",
       "hashPath": "fluentvalidation.11.5.2.nupkg.sha512"
+    },
+    "Gerencianet.NETCore.SDK/3.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-6p/eVMzGJrbhc38YAmIdeAn3+ZaH2Z4CeqKmd4USUqfUSOYSJne6+1SZkZPYD+8IKpj/ccuKZpcuRVwMBOrkrw==",
+      "path": "gerencianet.netcore.sdk/3.0.0",
+      "hashPath": "gerencianet.netcore.sdk.3.0.0.nupkg.sha512"
     },
     "libsodium/1.0.18": {
       "type": "package",
@@ -4058,12 +4080,19 @@
       "path": "razorlight/2.3.1",
       "hashPath": "razorlight.2.3.1.nupkg.sha512"
     },
-    "RestSharp/110.2.0": {
+    "RegexLib/1.0.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-FXGw0IMcqY7yO/hzS9QrD3iNswNgb9UxJnxWmfOxmGs4kRlZWqdtBoGPLuhlbgsDzX1RFo4WKui8TGGKXWKalw==",
-      "path": "restsharp/110.2.0",
-      "hashPath": "restsharp.110.2.0.nupkg.sha512"
+      "sha512": "sha512-26Liv9brtAZ4SjhxIHYtEsDMWD9WrCFXwJGaQXbqX2FPKNCp+zxtp8iNyhVIbm6QISJtZpdAW1rhAPSx+Q3nUg==",
+      "path": "regexlib/1.0.0",
+      "hashPath": "regexlib.1.0.0.nupkg.sha512"
+    },
+    "RestSharp/108.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-XKwuwWq7A4dxZ8l9QkS2+ePLJ9ImmLaJSeFO6H2kpII4Us4n1NRs4w3c//8H2BYpL1XqBE8nmsd9aNCVBwXmOA==",
+      "path": "restsharp/108.0.1",
+      "hashPath": "restsharp.108.0.1.nupkg.sha512"
     },
     "ScottBrady91.AspNetCore.Identity.Argon2PasswordHasher/1.4.0": {
       "type": "package",
@@ -4289,19 +4318,19 @@
       "path": "system.text.encoding.codepages/6.0.0",
       "hashPath": "system.text.encoding.codepages.6.0.0.nupkg.sha512"
     },
-    "System.Text.Encodings.Web/7.0.0": {
+    "System.Text.Encodings.Web/6.0.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-OP6umVGxc0Z0MvZQBVigj4/U31Pw72ITihDWP9WiWDm+q5aoe0GaJivsfYGq53o6dxH7DcXWiCTl7+0o2CGdmg==",
-      "path": "system.text.encodings.web/7.0.0",
-      "hashPath": "system.text.encodings.web.7.0.0.nupkg.sha512"
+      "sha512": "sha512-Vg8eB5Tawm1IFqj4TVK1czJX89rhFxJo9ELqc/Eiq0eXy13RK00eubyU6TJE6y+GQXjyV5gSfiewDUZjQgSE0w==",
+      "path": "system.text.encodings.web/6.0.0",
+      "hashPath": "system.text.encodings.web.6.0.0.nupkg.sha512"
     },
-    "System.Text.Json/7.0.2": {
+    "System.Text.Json/6.0.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-/LZf/JrGyilojqwpaywb+sSz8Tew7ij4K/Sk+UW8AKfAK7KRhR6mKpKtTm06cYA7bCpGTWfYksIW+mVsdxPegQ==",
-      "path": "system.text.json/7.0.2",
-      "hashPath": "system.text.json.7.0.2.nupkg.sha512"
+      "sha512": "sha512-zaJsHfESQvJ11vbXnNlkrR46IaMULk/gHxYsJphzSF+07kTjPHv+Oc14w6QEOfo3Q4hqLJgStUaYB9DBl0TmWg==",
+      "path": "system.text.json/6.0.0",
+      "hashPath": "system.text.json.6.0.0.nupkg.sha512"
     },
     "System.Threading.Channels/4.5.0": {
       "type": "package",
@@ -5614,6 +5643,16 @@
       "sha512": ""
     },
     "System.Text.Encoding.Extensions/6.0.0.0": {
+      "type": "referenceassembly",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "System.Text.Encodings.Web.Reference/6.0.0.0": {
+      "type": "referenceassembly",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "System.Text.Json.Reference/6.0.0.0": {
       "type": "referenceassembly",
       "serviceable": false,
       "sha512": ""

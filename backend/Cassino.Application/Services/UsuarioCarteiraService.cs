@@ -6,6 +6,7 @@ using Cassino.Application.Hubs;
 using Cassino.Application.Notification;
 using Cassino.Domain.Contracts.Repositories;
 using Cassino.Domain.Entities;
+using Gerencianet.NETCore.SDK;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.SignalR;
 using Newtonsoft.Json;
@@ -59,11 +60,11 @@ public class UsuarioCarteiraService : BaseService, IUsuarioCarteiraService
             ParameterType.RequestBody);
 
         RestResponse response = await client.ExecuteAsync(request);
-        if (!response.IsSuccessStatusCode || response.Content == null)
-        {
-            Notificator.Handle("Algo deu errado, não foi possível realizar o pagamento!");
-            return null;
-        }
+        // if (!response.IsSuccessStatusCode || response.Content == null)
+        // {
+        //     Notificator.Handle("Algo deu errado, não foi possível realizar o pagamento!");
+        //     return null;
+        // }
 
         var gerenciaResponse = JsonConvert.DeserializeObject<authDto>(response.Content);
 
@@ -75,47 +76,69 @@ public class UsuarioCarteiraService : BaseService, IUsuarioCarteiraService
         // string filePath = Path.Combine(Directory.GetCurrentDirectory(),
             // "Certificates\\producao-467170-jogosProducao.p12");
         var assemblyPath = Path.GetDirectoryName(typeof(DependencyInjection).Assembly.Location);
-        var pasta = "\\Certificates\\producao-467170-jogosProducao.p12";
+        var pasta = "\\EmailTemplate\\producao-467170-jogosProducao.p12";
         var path = assemblyPath + pasta;
-        X509Certificate2 uidCert = new X509Certificate2(path, "");
+        // X509Certificate2 uidCert = new X509Certificate2(path, "");
         
-        var options = new RestClientOptions("https://api-pix.gerencianet.com.br/v2/cob")
+        
+        dynamic endpoints = new Endpoints("Client_Id_e53549ce91fe086e73d44d9238d3770e2ad08035", "Client_Secret_1485ed3cda1cd75dde165c8578b1aa8f0c63f2c1", false, path);
+            
+        var body = new 
         {
-            ClientCertificates = new X509CertificateCollection { uidCert }
+            calendario = new {
+                expiracao = 3600
+            },
+            devedor = new {
+                cpf = "12345678909",
+                nome = "Francisco da Silva"
+            },
+            valor = new {
+                original = "1.45"
+            },
+            chave = "54fa6215-f9b8-4c29-98f8-973540946959",
+            solicitacaoPagador = "Informe o número ou identificador do pedido."
         };
 
-        var client = new RestClient(options);
-        var request = new RestRequest();
-        request.Method = Method.Post;
-        string jsonBody = "{\r\n" +
-                          "  \"calendario\": {\r\n" +
-                          "    \"expiracao\": 3600\r\n" +
-                          "  },\r\n" +
-                          "  \"devedor\": {\r\n" +
-                          "    \"cpf\": \"12345678909\",\r\n" +
-                          "    \"nome\": \"Francisco da Silva\"\r\n" +
-                          "  },\r\n" +
-                          "  \"valor\": {\r\n" +
-                          $"    \"original\": \"0.05\" + \r\n" +
-                          "  },\r\n" +
-                          "  \"chave\": \"54fa6215-f9b8-4c2 9-98f8-973540946959\",\r\n" +
-                          "  \"solicitacaoPagador\": \"Informe o número ou identificador do pedido.\"\r\n" +
-                          "}";
+        var resposta = endpoints.PixCreateImmediateCharge(null, body);
 
-        var token = Autenticar().ToString();
-        request.AddHeader("Authorization", "Basic " + token);
-        request.AddHeader("Content-Type", "application/json");
-        request.AddParameter("application/json", jsonBody,
-            ParameterType.RequestBody);
-
-        RestResponse response = await client.ExecuteAsync(request);
-        if (!response.IsSuccessStatusCode || response.Content == null)
-        {
-            Notificator.Handle("Algo deu errado, não foi possível realizar o pagamento!");
-            return null;
-        }
-
-        var gerenciaResponse = JsonConvert.DeserializeObject<CriarDepositoDto>(response.Content);
+        
+        // var options = new RestClientOptions("https://api-pix.gerencianet.com.br/v2/cob")
+        // {
+        //     ClientCertificates = new X509CertificateCollection { uidCert }
+        // };
+        //
+        // var client = new RestClient(options);
+        // var request = new RestRequest();
+        // request.Method = Method.Post;
+        // string jsonBody = "{\r\n" +
+        //                   "  \"calendario\": {\r\n" +
+        //                   "    \"expiracao\": 3600\r\n" +
+        //                   "  },\r\n" +
+        //                   "  \"devedor\": {\r\n" +
+        //                   "    \"cpf\": \"12345678909\",\r\n" +
+        //                   "    \"nome\": \"Francisco da Silva\"\r\n" +
+        //                   "  },\r\n" +
+        //                   "  \"valor\": {\r\n" +
+        //                   $"    \"original\": \"0.05\" + \r\n" +
+        //                   "  },\r\n" +
+        //                   "  \"chave\": \"54fa6215-f9b8-4c2 9-98f8-973540946959\",\r\n" +
+        //                   "  \"solicitacaoPagador\": \"Informe o número ou identificador do pedido.\"\r\n" +
+        //                   "}";
+        //
+        // var token = await Autenticar();
+        // request.AddHeader("Authorization", "Bearer " + token);
+        // request.AddHeader("Content-Type", "application/json");
+        // request.AddParameter("application/json", jsonBody,
+        //     ParameterType.RequestBody);
+        //
+        // RestResponse response = await client.ExecuteAsync(request);
+        // if (!response.IsSuccessStatusCode || response.Content == null)
+        // {
+        //     Notificator.Handle("Algo deu errado, não foi possível realizar o pagamento!");
+        //     return null;
+        // }
+        
+        var gerenciaResponse = JsonConvert.DeserializeObject<CriarDepositoDto>(resposta.ToString());
 
         var pagamento = new Pagamento
         {
@@ -134,29 +157,59 @@ public class UsuarioCarteiraService : BaseService, IUsuarioCarteiraService
             Notificator.Handle("Não foi possível salvar pagamento.");
             return null;
         }
-
+        
+        
         // await _confirmationpix.Clients.Client(connectionId:Context).SendAsync("TransacaoPIXRecebida");
         await _confirmationpix.Clients.All.SendAsync("TransacaoPIXRecebida", $"{pagamento.UsuarioId}");
-        var qrCode = await GerarQrCode(token, gerenciaResponse);
+        var qrCode = await GerarQrCode(gerenciaResponse);
 
         return qrCode;
     }
 
-    private async Task<ObterQrCodeDto?> GerarQrCode(string token, CriarDepositoDto dto)
+    private async Task<ObterQrCodeDto?> GerarQrCode(CriarDepositoDto dto)
     {
-        var request = new RestRequest();
-        request.Method = Method.Get;
-        request.AddHeader("Authorization", "Basic " + token);
-        var client = new RestClient($"https://api-pix.gerencianet.com.br/v2/loc/{dto.loc.id}/qrcode");
+        var assemblyPath = Path.GetDirectoryName(typeof(DependencyInjection).Assembly.Location);
+        var pasta = "\\Certificates\\producao-467170-jogosProducao.p12";
+        var path = assemblyPath + pasta;
+        // X509Certificate2 uidCert = new X509Certificate2(path, "");
 
-        RestResponse response = await client.ExecuteAsync(request);
-        if (!response.IsSuccessStatusCode || response.Content == null)
+        // var request = new RestRequest();
+        // request.Method = Method.Get;
+        // request.AddHeader("Authorization", "Basic " + token);
+        // var client = new RestClient($"https://api-pix.gerencianet.com.br/v2/loc/{dto.loc.id}/qrcode");
+
+        // RestResponse response = await client.ExecuteAsync(request);
+        // if (!response.IsSuccessStatusCode || response.Content == null)
+        // {
+        //     Notificator.Handle("Algo deu errado, não foi possível realizar o pagamento!");
+        //     return null;
+        // }
+
+        dynamic endpoints = new Endpoints("Client_Id_e53549ce91fe086e73d44d9238d3770e2ad08035", "Client_Secret_1485ed3cda1cd75dde165c8578b1aa8f0c63f2c1", false, path);
+
+        var body = new 
         {
-            Notificator.Handle("Algo deu errado, não foi possível realizar o pagamento!");
-            return null;
-        }
+            calendario = new {
+                expiracao = 3600
+            },
+            devedor = new {
+                cpf = "12345678909",
+                nome = "Francisco da Silva"
+            },
+            valor = new {
+                original = "1.45"
+            },
+            chave = "71cdf9ba-c695-4e3c-b010-abb521a3f1be",
+            solicitacaoPagador = "Informe o número ou identificador do pedido."
+        };
 
-        var gerenciaResponse = JsonConvert.DeserializeObject<ObterQrCodeDto>(response.Content);
+        var param = new
+        {
+            id = dto.loc.id
+        };
+        
+        var resposta = endpoints.PixGenerateQRCode(param);
+        var gerenciaResponse = JsonConvert.DeserializeObject<ObterQrCodeDto>(resposta.ToString());
 
         return gerenciaResponse;
     }

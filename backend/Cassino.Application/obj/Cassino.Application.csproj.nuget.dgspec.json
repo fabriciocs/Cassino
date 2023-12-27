@@ -60,6 +60,10 @@
               "target": "Package",
               "version": "[11.5.2, )"
             },
+            "Gerencianet.NETCore.SDK": {
+              "target": "Package",
+              "version": "[3.0.0, )"
+            },
             "MailKit": {
               "target": "Package",
               "version": "[4.0.0, )"
@@ -82,7 +86,7 @@
             },
             "RestSharp": {
               "target": "Package",
-              "version": "[110.2.0, )"
+              "version": "[108.0.1, )"
             },
             "ScottBrady91.AspNetCore.Identity.Argon2PasswordHasher": {
               "target": "Package",
