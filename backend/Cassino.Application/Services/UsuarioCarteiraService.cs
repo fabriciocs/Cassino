@@ -32,9 +32,10 @@ public class UsuarioCarteiraService : BaseService, IUsuarioCarteiraService
 
     private async Task<string?> Autenticar()
     {
-        string filePath = Path.Combine(Directory.GetCurrentDirectory(),
-            "Certificates\\producao-467170-jogosProducao.p12");
-        X509Certificate2 uidCert = new X509Certificate2(filePath, "");
+        var assemblyPath = Path.GetDirectoryName(typeof(DependencyInjection).Assembly.Location);
+        var pasta = "\\Certificates\\producao-467170-jogosProducao.p12";
+        var path = assemblyPath + pasta;
+        X509Certificate2 uidCert = new X509Certificate2(path, "");
 
         var options = new RestClientOptions("https://api-pix.gerencianet.com.br/oauth/token")
         {
@@ -71,24 +72,35 @@ public class UsuarioCarteiraService : BaseService, IUsuarioCarteiraService
 
     public async Task<ObterQrCodeDto?> Deposito(DadosPagamentoPixDto dto)
     {
-        var client = new RestClient("https://api-pix.gerencianet.com.br/v2/cob");
+        // string filePath = Path.Combine(Directory.GetCurrentDirectory(),
+            // "Certificates\\producao-467170-jogosProducao.p12");
+        var assemblyPath = Path.GetDirectoryName(typeof(DependencyInjection).Assembly.Location);
+        var pasta = "\\Certificates\\producao-467170-jogosProducao.p12";
+        var path = assemblyPath + pasta;
+        X509Certificate2 uidCert = new X509Certificate2(path, "");
+        
+        var options = new RestClientOptions("https://api-pix.gerencianet.com.br/v2/cob")
+        {
+            ClientCertificates = new X509CertificateCollection { uidCert }
+        };
+
+        var client = new RestClient(options);
         var request = new RestRequest();
         request.Method = Method.Post;
-        string jsonBody = @"
-            {
-                ""calendario"": {
-                ""expiracao"": 3600
-            },
-                ""devedor"": {
-                ""cpf"": ""12345678909"",
-                ""nome"": ""Francisco da Silva""
-            },
-                ""valor"": {
-                ""original"": """ + dto.Valor + @"""
-            },
-                ""chave"": ""71cdf9ba-c695-4e3c-b010-abb521a3f1be"",
-                ""solicitacaoPagador"": ""Informe o número ou identificador do pedido.""
-            }";
+        string jsonBody = "{\r\n" +
+                          "  \"calendario\": {\r\n" +
+                          "    \"expiracao\": 3600\r\n" +
+                          "  },\r\n" +
+                          "  \"devedor\": {\r\n" +
+                          "    \"cpf\": \"12345678909\",\r\n" +
+                          "    \"nome\": \"Francisco da Silva\"\r\n" +
+                          "  },\r\n" +
+                          "  \"valor\": {\r\n" +
+                          $"    \"original\": \"0.05\" + \r\n" +
+                          "  },\r\n" +
+                          "  \"chave\": \"54fa6215-f9b8-4c2 9-98f8-973540946959\",\r\n" +
+                          "  \"solicitacaoPagador\": \"Informe o número ou identificador do pedido.\"\r\n" +
+                          "}";
 
         var token = Autenticar().ToString();
         request.AddHeader("Authorization", "Basic " + token);
@@ -113,7 +125,7 @@ public class UsuarioCarteiraService : BaseService, IUsuarioCarteiraService
             UsuarioId = dto.UsuarioId,
             DataPagamento = gerenciaResponse.calendario.criacao,
             DataExpiracaoPagamento = gerenciaResponse.calendario.criacao
-                .AddMilliseconds(gerenciaResponse.calendario.expiracao) 
+                .AddMilliseconds(gerenciaResponse.calendario.expiracao)
         };
 
         _repository.Adicionar(pagamento);
@@ -122,11 +134,11 @@ public class UsuarioCarteiraService : BaseService, IUsuarioCarteiraService
             Notificator.Handle("Não foi possível salvar pagamento.");
             return null;
         }
-        
+
         // await _confirmationpix.Clients.Client(connectionId:Context).SendAsync("TransacaoPIXRecebida");
         await _confirmationpix.Clients.All.SendAsync("TransacaoPIXRecebida", $"{pagamento.UsuarioId}");
         var qrCode = await GerarQrCode(token, gerenciaResponse);
-        
+
         return qrCode;
     }
 
@@ -143,7 +155,7 @@ public class UsuarioCarteiraService : BaseService, IUsuarioCarteiraService
             Notificator.Handle("Algo deu errado, não foi possível realizar o pagamento!");
             return null;
         }
-        
+
         var gerenciaResponse = JsonConvert.DeserializeObject<ObterQrCodeDto>(response.Content);
 
         return gerenciaResponse;
